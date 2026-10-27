@@ -1,0 +1,2 @@
+import {AnimatedButton} from '@/components/common/AnimatedButton';
+export function PartnerCTA(){return <section className="sv-partner sv-section"><div className="container sv-partner__inner" data-reveal><p className="sv-overline sv-overline--green">LET'S BUILD WHAT'S NEXT</p><h2>Great opportunities begin with the right conversation.</h2><p>We welcome discussions with strategic partners, technology providers, project developers and international businesses.</p><AnimatedButton dark href="/contact/">Start a conversation</AnimatedButton></div></section>}

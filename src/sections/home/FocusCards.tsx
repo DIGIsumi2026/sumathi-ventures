@@ -1,0 +1,6 @@
+'use client';
+import Link from 'next/link';
+import {motion} from 'motion/react';
+import {ArrowUpRight} from 'lucide-react';
+import {sectors} from '@/lib/site';
+export function FocusCards(){return <section className="sv-focus sv-section"><div className="container"><div className="sv-section__heading" data-reveal><div><p className="sv-overline">OUR INVESTMENT FOCUS</p><h2>Three pillars.<br/>Shared ambition.</h2></div><Link className="sv-small-pill" href="/investment-focus/">All sectors <ArrowUpRight size={17}/></Link></div><div className="sv-focus__grid">{sectors.map((s,i)=><motion.div key={s.slug} className={`sv-sector sv-sector--${s.slug}`} initial={{opacity:0,y:35}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:0.15}} transition={{duration:0.65,delay:i*0.09}}><Link href={`/investment-focus/${s.slug}/`} className="sv-sector__link"><div className="sv-sector__head"><span>{s.number} / 03</span><ArrowUpRight size={19}/></div><div className="sv-sector__visual"><span className="sv-sector__visual-word">{s.title.slice(0,1)}</span></div><div className="sv-sector__body"><p>{s.kicker}</p><h3>{s.title}</h3><div className="sv-sector__details">{s.summary}<span className="sv-sector__tags">{s.tags.map(t=><small key={t}>{t}</small>)}</span></div></div></Link></motion.div>)}</div></div></section>}

@@ -1,0 +1,5 @@
+import '@/styles/contact/contact.css';
+import {InnerHero} from '@/components/common/InnerHero';
+import {ContactForm} from '@/components/contact/ContactForm';
+import {site} from '@/lib/site';
+export function ContactScreen(){return <><InnerHero eyebrow="CONTACT / PARTNERSHIPS" title="Let's explore new possibilities together." description="Share your idea, project proposal or partnership enquiry with our team."/><section className="sv-section container sv-contact-grid"><div className="sv-contact-info"><p className="sv-overline sv-overline--green">START A CONVERSATION</p><h2>Tell us about your opportunity.</h2><p>Whether you represent an international business, technology provider, project developer or strategic partner, we welcome enquiries connected to our focus sectors.</p><div className="sv-contact-info__detail"><span>EMAIL</span><a href={`mailto:${site.email}`}>{site.email}</a></div><div className="sv-contact-info__detail"><span>PHONE</span><a href={`tel:${site.phone.replace(/\s/g,'')}`}>{site.phone}</a></div><div className="sv-contact-info__detail"><span>ADDRESS</span><p>{site.location}</p></div></div><ContactForm/></section></>}

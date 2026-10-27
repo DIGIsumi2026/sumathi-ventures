@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+server/private/vendor/
+server/private/smtp-config.php
+.DS_Store
+*.log
