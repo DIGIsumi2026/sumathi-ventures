@@ -1,90 +1,190 @@
-# Sumathi Ventures — Next.js & PHPMailer starter
 
-This is a **working starter architecture**, not a pixel-perfect or production-approved copy of the commercial Finzo theme. It implements a demo-inspired visual direction, sticky nav, pill CTA hover, scroll reveals, Anime.js word entrance, dark sector cards and GSAP slow-start/fast-finish back-to-top.
+# Sumathi Ventures — Next.js & PHPMailer Starter
+
+<p align="center">
+  <strong>Building Partnerships. Creating Lasting Value.</strong><br />
+  A modern corporate website for Sumathi Ventures, focused on strategic investments, venture development and business partnerships.
+</p>
+
+<p align="center">
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
+  <img alt="React" src="https://img.shields.io/badge/React-149ECA?style=for-the-badge&logo=react&logoColor=white" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img alt="GSAP" src="https://img.shields.io/badge/GSAP-0E100F?style=for-the-badge&logo=gsap&logoColor=88CE02" />
+  <img alt="Anime.js" src="https://img.shields.io/badge/Anime.js-EA4175?style=for-the-badge" />
+  <img alt="Motion" src="https://img.shields.io/badge/Motion-191919?style=for-the-badge" />
+  <img alt="PHP" src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+  <img alt="PHPMailer" src="https://img.shields.io/badge/PHPMailer-SMTP-4479A1?style=for-the-badge" />
+  <img alt="Hostinger" src="https://img.shields.io/badge/Hostinger-673DE6?style=for-the-badge&logo=hostinger&logoColor=white" />
+</p>
+
+## About the Project
+
+**Sumathi Ventures** is being redesigned as a professional, responsive corporate investment and venture-development website. The experience presents the company's business interests in **Industry, Commerce and Technology**, while giving prospective partners a clear way to explore the business and submit enquiries.
+
+This repository is a **development starter architecture**, not a production-approved or pixel-perfect reproduction of the commercial Finzo reference theme. The demo-inspired interface includes a sticky navbar, pill-shaped CTA animations, scroll reveals, Anime.js text entrances, expandable sector cards and a GSAP-powered scroll-to-top control that starts slowly and accelerates.
+
+## Key Features
+
+- Responsive, investment-focused interface with a **sticky, shrinking navigation bar**.
+- Animated pill buttons, mega-menu and off-canvas navigation.
+- Scroll-triggered headings, page transitions and interactive sector cards.
+- GSAP **slow-start / fast-finish** scroll-to-top animation.
+- Dedicated pages for company information, investment focus, strategic approach, ventures, insights and contact.
+- SEO-friendly Next.js App Router pages with a static-export deployment option.
+- Contact form with **React Hook Form, Zod and PHP/PHPMailer** integration.
+- SMTP email delivery with optional **Gmail or Hostinger mailbox forwarding**.
+- Separate page styles, reusable TSX components and centralised media references.
+
+## Technologies
+
+| Area | Technologies |
+| --- | --- |
+| Frontend | Next.js (App Router), React, TypeScript |
+| Styling | Tailwind CSS v4, modular page-level CSS |
+| UI and icons | shadcn/ui, Lucide React |
+| Animation | GSAP, ScrollTrigger, ScrollToPlugin, Anime.js v4, Motion |
+| Forms | React Hook Form, Zod |
+| Carousel (if needed) | Embla Carousel |
+| Backend | PHP 8.2+, PHPMailer, SMTP |
+| Hosting | Hostinger (Next.js static export + PHP endpoint) |
+
+> Some libraries and page features are part of the planned stack and may require implementation or configuration beyond the initial starter. Confirm installed dependencies in `package.json` and `composer.json`.
 
 ## Prerequisites
 
-- Node.js 20.9+ (Node 22 LTS recommended)
-- npm
-- For contact form: PHP 8.2+ and Composer on your Hostinger server (or locally to test)
-- Approved logo, photos, published projects and typography verification before launch
+- **Node.js 20.9+** (a supported Node.js LTS version is recommended).
+- **npm**.
+- For contact-form testing or deployment: **PHP 8.2+** and **Composer**.
+- Approved company logo, photographs, project details and final typography before production launch.
 
-## Start development
+## Start Development
 
 ```bash
 npm install
-cp .env.example .env.local           # Windows: copy .env.example .env.local
+cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://localhost:3000`. The pages and animations can be reviewed without PHP, but **contact submission only works after the PHP endpoint and SMTP settings are configured**.
+On Windows Command Prompt, replace `cp` with:
 
-## Test PHP locally (optional)
+```bat
+copy .env.example .env.local
+```
+
+Open **http://localhost:3000**.
+
+The pages and animations can be reviewed without PHP. **Contact submissions require the PHP endpoint and valid SMTP settings.**
+
+## Test PHP Locally (Optional)
+
+In a separate terminal:
 
 ```bash
 cd server/private
 composer install
-cp smtp-config.example.php smtp-config.php   # supply real SMTP credentials privately
+cp smtp-config.example.php smtp-config.php
 cd ../public_html
 php -S localhost:8000
 ```
 
-In `.env.local`, set `NEXT_PUBLIC_CONTACT_ENDPOINT=http://localhost:8000/api/contact.php`. The PHP configuration already allows `http://localhost:3000` for dev. Restart `npm run dev` after changing `.env.local`.
+On Windows Command Prompt, use `copy smtp-config.example.php smtp-config.php` instead of `cp`.
 
-## Build & deploy to PHP Hostinger
+Add your private SMTP settings to `smtp-config.php`, then set the following value in `.env.local`:
+
+```env
+NEXT_PUBLIC_CONTACT_ENDPOINT=http://localhost:8000/api/contact.php
+```
+
+The starter PHP endpoint is configured for the local frontend origin `http://localhost:3000`. Restart `npm run dev` after updating `.env.local`. If your PHP server cannot find the private configuration at runtime, check the relative include paths in `contact.php`.
+
+## Build & Deploy to Hostinger
 
 ```bash
 npm run typecheck
 npm run build
 ```
 
-`out/` is the generated frontend. Upload its **contents** to the website's `public_html/` directory. Upload `server/public_html/api/contact.php` to `public_html/api/contact.php`. Upload the **contents** of `server/private/` to the sibling `private/` directory **outside public_html**.
+The build generates the static frontend in `out/`. Deploy as follows:
 
-On Hostinger SSH, from the `private/` directory run `composer install --no-dev --optimize-autoloader` (or `composer require phpmailer/phpmailer`), then copy `smtp-config.example.php` to `smtp-config.php` and fill provider-specific SMTP details. Check permissions and protect secrets. **Never commit or upload the real smtp-config.php under public_html.**
+1. Upload the **contents of `out/`** into the domain's `public_html/` directory.
+2. Upload `server/public_html/api/contact.php` to `public_html/api/contact.php`.
+3. Upload the **contents of `server/private/`** to a sibling `private/` directory **outside `public_html/`**.
+4. Connect through Hostinger SSH, change into the private directory, and install PHP dependencies:
 
-With Next static export and trailingSlash, routes are emitted as `out/about/index.html`, etc. Do not delete the PHP `/api/` directory when updating the static frontend. In Hostinger, make sure your `.htaccess` does not rewrite `/api/contact.php` into a frontend route. You should keep a backup and plan redirects from original `index.php`/sector URLs.
+   ```bash
+   composer install --no-dev --optimize-autoloader
+   ```
 
-## Form routing & forwarding
+5. Create `smtp-config.php` from `smtp-config.example.php` and enter the SMTP credentials securely.
+6. Verify the endpoint's private-file paths, server permissions, SMTP connection and delivery before going live.
 
-The React form POSTs JSON to `NEXT_PUBLIC_CONTACT_ENDPOINT` (default `/api/contact.php`). PHP validates fields, handles rate limiting and sends the email through PHPMailer using the configured SMTP account. Use a verified From address; the visitor's email goes in Reply-To. Forwarding is configured in the **receiving mailbox provider**, not in the React or PHP code.
+With Next.js static export and `trailingSlash`, routes can be emitted as `out/about/index.html` and equivalent route directories. Preserve `/api/contact.php` during frontend deployments, and ensure `.htaccess` does not rewrite PHP API requests into frontend routes. Plan redirects from the previous `index.php` and sector URLs.
 
-Previously used Gmail-first flow: `ContactForm.tsx → api/contact.php → SMTP → Gmail inbox → Gmail forwarding/filter → company mailbox`. Configure Gmail forwarding in Gmail settings. Alternatively, use `to_email` as a Hostinger mailbox and configure Hostinger Email forwarding to a destination mailbox in hPanel. Do **not** configure both directions (mail loop).
+**Never commit SMTP credentials or place private config files inside the public web root.**
 
-To preserve only enquiries in forwarding, filter on the stable subject prefix `[Sumathi Ventures]` at the forwarding provider.
+## Contact Form & Email Forwarding
 
-For production, add CAPTCHA/Turnstile or another robust bot barrier, server-side logs and monitoring, proper mailbox authentication (SPF/DKIM/DMARC), consent/privacy content, and review rate limiting across multiple PHP instances. No uploaded files in this starter: for proposal attachments, add private storage and virus scanning before emailing anything.
+The form sends JSON to `NEXT_PUBLIC_CONTACT_ENDPOINT` (default: `/api/contact.php`). The PHP endpoint validates requests and uses PHPMailer to deliver messages over SMTP.
 
-## Architecture notes
+**Preferred email flow:**
 
-- `src/app/**/page.tsx`: required Next.js App Router thin route files.
-- `src/screens/*.tsx`: page content in separate TSX files (do not use `src/pages`, which Next also interprets as routing).
-- `src/sections/`: individual page sections, especially Home.
-- `src/components/common/`: shared Navbar, Footer, AnimatedButton, PageTransition, and BackToTop.
-- `src/styles/home`, `src/styles/about`, `src/styles/investment-focus`, `src/styles/approach`, `src/styles/ventures`, `src/styles/insights`, `src/styles/contact`: separate CSS folders by page. Shared patterns live in `src/styles/common`.
-- `src/assets/imageAssets.ts`/`videoAssets.ts`: central approved asset references. Place actual images/video inside `public/images` and `public/videos`.
-- `server/`: separate Hostinger PHP backend. SMTP config and Composer vendor MUST remain outside public web root.
+```text
+ContactForm.tsx
+    → /api/contact.php
+    → PHPMailer / SMTP
+    → Gmail receiving inbox
+    → Gmail forwarding or filter
+    → Company mailbox
+```
 
-## Animation responsibility
+Configure forwarding in the **receiving email provider** rather than React or PHP. An alternative is to receive messages in a Hostinger mailbox and configure forwarding from Hostinger hPanel. **Do not forward in both directions**, which may create a mail loop.
 
-| Motion | Tool | Implementation |
+Use a verified sender address and place the visitor's address in `Reply-To`. If forwarding only project enquiries, create a rule based on a consistent subject prefix such as `[Sumathi Ventures]`.
+
+For production, add CAPTCHA/Turnstile or equivalent bot protection, SPF/DKIM/DMARC, appropriate privacy/consent language, server-side monitoring and robust abuse prevention. Do not email user-uploaded proposal attachments without secure private storage and malware scanning.
+
+## Architecture Notes
+
+- `src/app/**/page.tsx` — Next.js App Router route wrappers.
+- `src/screens/*.tsx` — full page components in separate TSX files.
+- `src/sections/` — individual page sections.
+- `src/components/common/` — shared navbar, footer, animated buttons and navigation utilities.
+- `src/styles/` — separate page and common CSS folders.
+- `src/assets/imageAssets.ts` and `videoAssets.ts` — centralised asset references; media files live under `public/`.
+- `server/` — Hostinger-compatible PHP backend. SMTP configuration and Composer dependencies remain outside the public web root.
+
+> Use `src/screens/` for your main page components instead of `src/pages/`, because Next.js also treats `src/pages/` as a routing directory.
+
+## Animation Responsibilities
+
+| Effect | Technology | Component / style |
 | --- | --- | --- |
 | Hero word stagger | Anime.js v4 | `TextIntro.tsx` |
 | Scroll reveal | GSAP + ScrollTrigger | `ScrollReveals.tsx` |
-| Sector cards enter | Motion | `FocusCards.tsx` |
+| Sector card entrance | Motion | `FocusCards.tsx` |
 | Page transitions | Motion | `PageTransition.tsx` |
-| Native FAQ accordion | HTML/CSS | `Faq.tsx` |
-| Sector card hover | CSS transition | `home.css` |
-| Button dot transforms to arrow | CSS transition | `buttons.css` |
-| Sticky shrinking navbar + mega-menu | React + CSS | `Navbar.tsx` |
-| Off-canvas slide | CSS transition | `navigation.css` |
-| Scroll-to-top slowly then accelerates | GSAP ScrollToPlugin, `power3.in` | `BackToTop.tsx` |
+| FAQ accordion | HTML / CSS | `Faq.tsx` |
+| Sector card hover | CSS transitions | `home.css` |
+| Button dot-to-arrow transition | CSS transitions | `buttons.css` |
+| Sticky navbar and mega-menu | React + CSS | `Navbar.tsx` |
+| Off-canvas navigation | CSS transitions | `navigation.css` |
+| Accelerating scroll-to-top | GSAP ScrollToPlugin (`power3.in`) | `BackToTop.tsx` |
 
-Important: A screen recording cannot confirm original easing values or font-family declarations. The chosen Manrope font is provisional. Inspect the live reference in browser developer tools (Computed → font-family) and capture hover timings to match them exactly. Original theme license may constrain reuse of assets and source code.
+A screen recording alone cannot verify the reference website's exact font-family and easing values. **Manrope is provisional** until the original site's computed typography is checked. Reuse of original commercial theme assets or code may require a licence.
 
-## Pending business approval
+## Pending Business Approval
 
-- Replace wordmark mockup with official Sumathi Ventures logo.
-- Replace graphical hero with approved photography and responsive images.
-- Obtain actual project portfolio, leadership and case-study details.
-- Confirm proposed vision/mission copy and legal/compliance claims.
-- Verify contact email and phone number.
+- Replace placeholder branding with the official **Sumathi Ventures** logo.
+- Add approved hero imagery and optimised responsive media.
+- Verify venture/project details, leadership information and any case studies.
+- Approve proposed vision, mission and investment-related statements.
+- Confirm contact information, privacy notices and final company disclosures.
+
+---
+
+<p align="center">
+  <strong>Sumathi Ventures</strong><br />
+  Building Partnerships. Creating Lasting Value.
+</p>
