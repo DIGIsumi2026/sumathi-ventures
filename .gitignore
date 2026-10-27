@@ -1,9 +1,91 @@
+
+# ==============================================
+# SUMATHI VENTURES
+# ==============================================
+
+# Node.js and PHP dependencies
 node_modules/
+vendor/
+
+# Next.js and production builds
 .next/
 out/
-.env*
+build/
+dist/
+.vercel/
+.turbo/
+
+# Environment variables and secrets
+.env
+.env.*
 !.env.example
-server/private/vendor/
-server/private/smtp-config.php
-.DS_Store
+!.env.*.example
+
+# PHPMailer SMTP credentials
+**/smtp-config.php
+**/smtp-config.local.php
+**/smtp-secrets.php
+
+# Private certificates and keys
+*.pem
+*.p12
+*.pfx
+*.key
+id_rsa
+id_ed25519
+
+# PHP uploads and runtime files
+server/private/uploads/
+server/private/tmp/
+server/private/logs/
+server/public_html/uploads/
+server/public_html/api/uploads/
+
+# Logs
 *.log
+logs/
+tmp/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript and tool caches
+*.tsbuildinfo
+next-env.d.ts
+coverage/
+.nyc_output/
+.eslintcache
+.cache/
+.phpunit.cache/
+.phpunit.result.cache
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# VS Code and JetBrains
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+
+# Temporary editor files
+*.swp
+*.swo
+*~
+
+# ==============================================
+# KEEP TRACKED IN GIT:
+# package-lock.json
+# pnpm-lock.yaml
+# composer.json
+# composer.lock
+# .env.example
+# smtp-config.example.php
+# src/
+# public/images/
+# public/videos/
+# server/public_html/api/contact.php
+# ==============================================
