@@ -1,2 +1,35 @@
-const faq=[{q:'Which sectors are within Sumathi Ventures’ investment focus?',a:'Our stated strategic pillars are Industry, Commerce and Technology. The fit of a specific opportunity is assessed on its own merits.'},{q:'What partnership models do you consider?',a:'Depending on the opportunity, models may include joint ventures, public–private partnerships and Build–Own–Operate–Transfer arrangements.'},{q:'How can I submit a business proposal?',a:'Use the Contact page to describe your organisation, sector and proposed opportunity. The team can then determine whether further information is required.'}];
-export function Faq(){return <section className="sv-faq sv-section container"><div data-reveal><p className="sv-overline sv-overline--green">QUESTIONS & ANSWERS</p><h2>Partnership FAQs</h2></div><div className="sv-faq__list">{faq.map((x,i)=><details key={x.q} name="sv-faq"><summary>{x.q}<span>+</span></summary><p>{x.a}</p></details>)}</div></section>}
+const faq = [
+    {
+        q: 'Which sectors are within Sumathi Ventures’ investment focus?',
+        a: 'Our stated strategic pillars are Industry, Commerce and Technology. The fit of a specific opportunity is assessed on its own merits.',
+    },
+    {
+        q: 'What partnership models do you consider?',
+        a: 'Depending on the opportunity, models may include joint ventures, public–private partnerships and Build–Own–Operate–Transfer arrangements.',
+    },
+    {
+        q: 'How can I submit a business proposal?',
+        a: 'Use the Contact page to describe your organisation, sector and proposed opportunity. The team can then determine whether further information is required.',
+    },
+];
+export function Faq() {
+    return (
+        <section className="sv-faq sv-section container">
+            <div data-reveal>
+                <p className="sv-overline sv-overline--green">QUESTIONS & ANSWERS</p>
+                <h2>Partnership FAQs</h2>
+            </div>
+            <div className="sv-faq__list">
+                {faq.map((x, i) => (
+                    <details key={x.q} name="sv-faq">
+                        <summary>
+                            {x.q}
+                            <span>+</span>
+                        </summary>
+                        <p>{x.a}</p>
+                    </details>
+                ))}
+            </div>
+        </section>
+    );
+}

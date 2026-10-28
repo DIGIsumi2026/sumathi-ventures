@@ -1,1 +1,101 @@
-.sv-button{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:space-between;gap:24px;background:var(--sv-accent);color:var(--sv-green-dark);font-size:12px;font-weight:800;letter-spacing:-.01em;border:0;border-radius:100px;min-height:51px;padding:8px 12px 8px 25px;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}.sv-button:before{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(105deg,transparent 18%,rgba(255,255,255,.62) 50%,transparent 82%);transform:translateX(-150%);transition:transform .7s ease}.sv-button:hover{transform:translateY(-3px);box-shadow:0 12px 28px #030e0d25}.sv-button:hover:before{transform:translateX(150%)}.sv-button__label{position:relative}.sv-button__spot{height:25px;width:25px;display:grid;place-items:center;position:relative;border-radius:100%;transition:background .3s,transform .3s}.sv-button__dot{display:block;width:7px;height:7px;background:#123a29;border-radius:100%;transform:scale(1);transition:transform .32s,opacity .25s}.sv-button__arrow{position:absolute;opacity:0;transform:translate(-8px,8px) rotate(-18deg);transition:opacity .32s,transform .32s}.sv-button:hover .sv-button__spot{background:var(--sv-green)}.sv-button:hover .sv-button__dot{opacity:0;transform:scale(.3)}.sv-button:hover .sv-button__arrow{opacity:1;transform:translate(0,0) rotate(0);color:white}.sv-button--dark{background:var(--sv-green);color:white}.sv-button--dark .sv-button__dot{background:var(--sv-accent)}.sv-button--dark:hover .sv-button__spot{background:var(--sv-accent)}.sv-button--dark:hover .sv-button__arrow{color:var(--sv-green)}
+.sv-button{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    background:var(--sv-accent);
+    color:var(--sv-green-dark);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:-.01em;
+    border:0;
+    border-radius:100px;
+    min-height:51px;
+    padding:8px 12px 8px 25px;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+}
+
+.sv-button:before{
+    content:'';
+    position:absolute;
+    z-index:-1;
+    inset:0;
+    background:linear-gradient(105deg,transparent 18%,rgba(255,255,255,.62) 50%,transparent 82%);
+    transform:translateX(-150%);
+    transition:transform .7s ease;
+}
+
+.sv-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px #030e0d25;
+}
+
+.sv-button:hover:before{
+    transform:translateX(150%);
+}
+
+.sv-button__label{
+    position:relative;
+}
+
+.sv-button__spot{
+    height:25px;
+    width:25px;
+    display:grid;
+    place-items:center;
+    position:relative;
+    border-radius:100%;
+    transition:background .3s,transform .3s;
+}
+
+.sv-button__dot{
+    display:block;
+    width:7px;
+    height:7px;
+    background:#123a29;
+    border-radius:100%;
+    transform:scale(1);
+    transition:transform .32s,opacity .25s;
+}
+
+.sv-button__arrow{
+    position:absolute;
+    opacity:0;
+    transform:translate(-8px,8px) rotate(-18deg);
+    transition:opacity .32s,transform .32s;
+}
+
+.sv-button:hover .sv-button__spot{
+    background:var(--sv-green);
+}
+
+.sv-button:hover .sv-button__dot{
+    opacity:0;
+    transform:scale(.3);
+}
+
+.sv-button:hover .sv-button__arrow{
+    opacity:1;
+    transform:translate(0,0) rotate(0);
+    color:white;
+}
+
+.sv-button--dark{
+    background:var(--sv-green);
+    color:white;
+}
+
+.sv-button--dark .sv-button__dot{
+    background:var(--sv-accent);
+}
+
+.sv-button--dark:hover .sv-button__spot{
+    background:var(--sv-accent);
+}
+
+.sv-button--dark:hover .sv-button__arrow{
+    color:var(--sv-green);
+}

@@ -1,4 +1,39 @@
-import {AnimatedButton} from '@/components/common/AnimatedButton';
-import {ArrowUpRight} from 'lucide-react';
-const steps=[['01','Discover','Identify sector opportunities and strategic fit.'],['02','Evaluate','Explore commercial potential and complementary capabilities.'],['03','Structure','Consider appropriate partnership arrangements.'],['04','Develop','Work toward durable business outcomes.']];
-export function ApproachPreview(){return <section className="sv-approach sv-section"><div className="container sv-approach__layout"><div data-reveal><p className="sv-overline sv-overline--green">OUR APPROACH</p><h2>The right partnership builds a stronger business.</h2><p className="sv-lead">We consider joint ventures, public-private partnerships and BOOT arrangements, depending on each opportunity.</p><AnimatedButton dark href="/approach/">How we work</AnimatedButton></div><div className="sv-approach__steps">{steps.map(([num,title,desc])=><div data-reveal className="sv-approach__step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{desc}</p></div><ArrowUpRight size={20}/></div>)}</div></div></section>}
+import { AnimatedButton } from '@/components/common/AnimatedButton';
+import { ArrowUpRight } from 'lucide-react';
+const steps = [
+    ['01', 'Discover', 'Identify sector opportunities and strategic fit.'],
+    ['02', 'Evaluate', 'Explore commercial potential and complementary capabilities.'],
+    ['03', 'Structure', 'Consider appropriate partnership arrangements.'],
+    ['04', 'Develop', 'Work toward durable business outcomes.'],
+];
+export function ApproachPreview() {
+    return (
+        <section className="sv-approach sv-section">
+            <div className="container sv-approach__layout">
+                <div data-reveal>
+                    <p className="sv-overline sv-overline--green">OUR APPROACH</p>
+                    <h2>The right partnership builds a stronger business.</h2>
+                    <p className="sv-lead">
+                        We consider joint ventures, public-private partnerships and BOOT
+                        arrangements, depending on each opportunity.
+                    </p>
+                    <AnimatedButton dark href="/approach/">
+                        How we work
+                    </AnimatedButton>
+                </div>
+                <div className="sv-approach__steps">
+                    {steps.map(([num, title, desc]) => (
+                        <div data-reveal className="sv-approach__step" key={num}>
+                            <span>{num}</span>
+                            <div>
+                                <h3>{title}</h3>
+                                <p>{desc}</p>
+                            </div>
+                            <ArrowUpRight size={20} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
