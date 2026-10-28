@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeft, ArrowRight, ArrowUpRight, Pause, Play } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import gsap from 'gsap';
@@ -28,11 +28,9 @@ export function Hero() {
     const [hasStarted, setHasStarted] = useState(false);
     const [compact, setCompact] = useState(false);
     const [reducedMotion, setReducedMotion] = useState(false);
-    const [hovered, setHovered] = useState(false);
     const [focused, setFocused] = useState(false);
-    const [userPaused, setUserPaused] = useState(false);
     const [pageHidden, setPageHidden] = useState(false);
-    const shouldPause = hovered || focused || userPaused || pageHidden || !inView;
+    const shouldPause = focused || pageHidden || !inView;
     const pauseRequested = useRef(true);
     pauseRequested.current = shouldPause || reducedMotion || !hasStarted;
 
@@ -54,7 +52,6 @@ export function Hero() {
             { threshold: 0.15 },
         );
         if (root.current) observer.observe(root.current);
-        // Cached images may have finished before React attached onLoad.
         if (firstImage.current?.complete) setImageReady(true);
 
         return () => {
@@ -135,7 +132,6 @@ export function Hero() {
     const finishTransition = (instance: SwiperInstance) => {
         const image = instance.slides[instance.activeIndex]?.querySelector('img');
         if (image?.complete && image.naturalWidth) {
-            // A loaded outgoing image stays underneath the next pop/crossfade.
             root.current?.style.setProperty('--sv-hero-backdrop', `url("${image.currentSrc}")`);
         }
         if (pauseRequested.current && instance.autoplay.running && !instance.autoplay.paused) {
@@ -153,12 +149,6 @@ export function Hero() {
             data-ready={hasStarted}
             data-motion-paused={pageHidden || !inView}
             style={{ '--sv-hero-backdrop': `url("${heroSlides[0].image}")` } as CSSProperties}
-            onPointerEnter={(event) => {
-                if (event.pointerType === 'mouse') setHovered(true);
-            }}
-            onPointerLeave={(event) => {
-                if (event.pointerType === 'mouse') setHovered(false);
-            }}
             onFocusCapture={() => setFocused(true)}
             onBlurCapture={(event) => {
                 if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
@@ -175,7 +165,11 @@ export function Hero() {
                     allowTouchMove={true}
                     loopPreventsSliding={false}
                     fadeEffect={{ crossFade: true }}
-                    autoplay={{ delay: HERO_AUTOPLAY_DELAY, disableOnInteraction: false }}
+                    autoplay={{
+                        delay: HERO_AUTOPLAY_DELAY,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: false,
+                    }}
                     lazyPreloadPrevNext={1}
                     navigation={{ prevEl: previousButton.current, nextEl: nextButton.current }}
                     pagination={{
@@ -263,11 +257,6 @@ export function Hero() {
                         aria-roledescription="slide"
                         aria-label={`${index + 1} of ${heroSlides.length}`}
                     >
-                        <div className="sv-hero-carousel__meta" aria-hidden="true">
-                            <span>{String(index + 1).padStart(2, '0')}</span>
-                            <span className="sv-hero-carousel__meta-line" />
-                            <span>{String(heroSlides.length).padStart(2, '0')}</span>
-                        </div>
                         <p className="sv-hero-carousel__eyebrow">{slide.eyebrow}</p>
                         <div className="sv-hero-carousel__title-mask">
                             <h1 aria-label={slide.title}>
@@ -309,16 +298,6 @@ export function Hero() {
                     <button ref={previousButton} type="button" aria-label="Previous slide">
                         <ArrowLeft size={18} />
                     </button>
-                    {!reducedMotion && (
-                        <button
-                            type="button"
-                            onClick={() => setUserPaused(!userPaused)}
-                            aria-label={userPaused ? 'Play slideshow' : 'Pause slideshow'}
-                            aria-pressed={userPaused}
-                        >
-                            {userPaused ? <Play size={16} /> : <Pause size={16} />}
-                        </button>
-                    )}
                     <button ref={nextButton} type="button" aria-label="Next slide">
                         <ArrowRight size={18} />
                     </button>

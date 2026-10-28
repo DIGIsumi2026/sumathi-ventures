@@ -69,7 +69,7 @@ test.describe('All slides at every requested viewport', () => {
                             .getBoundingClientRect();
                         const clipped = Array.from(
                             active.querySelectorAll<HTMLElement>(
-                                'h1, p, a, .sv-hero-carousel__meta, .sv-hero-carousel__quote-line',
+                                'h1, p, a, .sv-hero-carousel__quote-line',
                             ),
                         )
                             .filter((element) => {
@@ -149,7 +149,7 @@ test('Stationary left-to-right reveal, image pop and rapid manual navigation', a
     expect(errors).toEqual([]);
 });
 
-test('Autoplay progress pauses and resumes from the current slide', async ({ page }) => {
+test('Autoplay continues on hover and pauses for focus and offscreen content', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await openHero(page);
     const progress = () =>
@@ -160,14 +160,16 @@ test('Autoplay progress pauses and resumes from the current slide', async ({ pag
             );
     await page.mouse.move(-5, -5);
     await expect.poll(progress).toBeGreaterThan(0.05);
-    await page.getByRole('button', { name: 'Pause slideshow' }).click();
-    await page.mouse.move(-5, -5);
-    await page.locator('.skip-link').focus();
+    await expect(page.getByRole('button', { name: /Pause slideshow|Play slideshow/ })).toHaveCount(0);
+    await expect(page.locator('.sv-hero-carousel__meta')).toHaveCount(0);
+    await expect(page.locator('.sv-hero-carousel__meta-line')).toHaveCount(0);
+    await page.mouse.move(1200, 250);
+    const hovered = await progress();
+    await expect.poll(progress).toBeGreaterThan(hovered + 0.05);
+    await page.locator(`${copy} .sv-button`).focus();
     const paused = await progress();
     await page.waitForTimeout(600);
     expect(await progress()).toBeCloseTo(paused, 1);
-    await page.getByRole('button', { name: 'Play slideshow' }).click();
-    await page.mouse.move(-5, -5);
     await page.locator('.skip-link').focus();
     await expect.poll(progress).toBeGreaterThan(paused + 0.03);
     await expect(page.locator(copy)).toHaveAttribute('data-hero-copy', '1', { timeout: 8500 });
@@ -236,7 +238,7 @@ test('Every mobile slide replays its stationary reveal and keeps the group image
     test.setTimeout(45000);
     await page.setViewportSize({ width: 390, height: 844 });
     await openHero(page);
-    await page.getByRole('button', { name: 'Pause slideshow' }).click();
+    await page.locator(`${copy} .sv-button`).focus();
     const count = await page.locator(`${hero} .swiper-slide`).count();
     for (let index = 0; index < count; index++) {
         await expect(page.locator(copy)).toHaveAttribute('data-hero-copy', String(index));
