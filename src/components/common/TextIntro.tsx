@@ -14,7 +14,9 @@ export function TextIntro({ words }: { words: string }) {
             duration: 800,
             ease: 'out(3)',
         });
-        return () => animation.revert();
+        return () => {
+            animation.revert();
+        };
     }, [words]);
     return (
         <span ref={root} className="sv-intro-words">

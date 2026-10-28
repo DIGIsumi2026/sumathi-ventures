@@ -54,6 +54,8 @@ pnpm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 coverage/
+playwright-report/
+test-results/
 .nyc_output/
 .eslintcache
 .cache/

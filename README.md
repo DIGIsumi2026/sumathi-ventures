@@ -153,6 +153,7 @@ For production, add CAPTCHA/Turnstile or equivalent bot protection, SPF/DKIM/DMA
 - `src/components/common/` — shared navbar, footer, animated buttons and navigation utilities.
 - `src/styles/` — separate page and common CSS folders.
 - `src/assets/imageAssets.ts` and `videoAssets.ts` — centralised asset references; media files live under `public/`.
+- `src/data/heroSlides.ts` — existing hero copy, CTA destinations, image alt text, portrait presentation and per-slide focal positions.
 - `server/` — Hostinger-compatible PHP backend. SMTP configuration and Composer dependencies remain outside the public web root.
 
 > Use `src/screens/` for your main page components instead of `src/pages/`, because Next.js also treats `src/pages/` as a routing directory.
@@ -161,7 +162,10 @@ For production, add CAPTCHA/Turnstile or equivalent bot protection, SPF/DKIM/DMA
 
 | Effect | Technology | Component / style |
 | --- | --- | --- |
-| Hero word stagger | Anime.js v4 | `TextIntro.tsx` |
+| Hero crossfade, autoplay and progress | Swiper | `Hero.tsx` |
+| Hero stationary masked line reveal | GSAP | `Hero.tsx` |
+| Hero image pop, label and CTA entrance | CSS keyframes | `hero.css` |
+| Reusable word stagger | Anime.js v4 | `TextIntro.tsx` |
 | Scroll reveal | GSAP + ScrollTrigger | `ScrollReveals.tsx` |
 | Sector card entrance | Motion | `FocusCards.tsx` |
 | Page transitions | Motion | `PageTransition.tsx` |
@@ -173,6 +177,12 @@ For production, add CAPTCHA/Turnstile or equivalent bot protection, SPF/DKIM/DMA
 | Accelerating scroll-to-top | GSAP ScrollToPlugin (`power3.in`) | `BackToTop.tsx` |
 
 A screen recording alone cannot verify the reference website's exact font-family and easing values. **Manrope is provisional** until the original site's computed typography is checked. Reuse of original commercial theme assets or code may require a licence.
+
+## Hero Validation
+
+Run `npm run build`, then `npm run test:hero`. The Playwright checks serve the production export on port 3100 and cover all five slides at the 13 specified desktop, tablet and mobile sizes, plus stationary text reveal, rapid navigation, autoplay pause/resume, keyboard pagination, responsive line changes and touch swipes. Windows uses installed Microsoft Edge; set `PLAYWRIGHT_CHANNEL` to choose another installed browser channel. Other platforms use Playwright Chromium (`npx playwright install chromium`). Screenshots and failure traces are saved under the ignored `test-results/` directory.
+
+The hero uses a 1100ms crossfade, a 6500ms autoplay delay and a 10-second image pop/settle/zoom. GSAP reveals stationary quote lines with a 1.28-second delay, 3.25-second duration and 0.45-second stagger. Progress is driven by Swiper's remaining autoplay time. Hover, keyboard focus, an explicit pause control, hidden pages and an offscreen hero pause autoplay; reduced motion disables autoplay and entrance effects. Portrait screens use the original group photos as contained foregrounds over static blurred copies to preserve all subjects.
 
 ## Pending Business Approval
 
