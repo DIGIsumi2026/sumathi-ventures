@@ -1,8 +1,15 @@
-/** Replace with approved local assets in /public/images/ before launch. */
 export const imageAssets = {
-    logo: '/images/sumathi-ventures-logo.svg',
-    hero: '/images/hero-investments.webp',
-    industry: '/images/industry.webp',
-    commerce: '/images/commerce.webp',
-    technology: '/images/technology.webp',
+    //logo
+    logo: '/images/brand/nLogo.webp',
+
+    //home -hero 
+    hero:{
+    boardroom: '/images/hero/hero-boardroom.png',
+    renewableEnergy: '/images/hero/hero-renewable-energy.png',
+    technology: '/images/hero/hero-technology.png',
+    agriculture: '/images/hero/hero-agriculture.png',
+    portLogistics: '/images/hero/hero-port-logistics.png',
+    
+    }
+
 } as const;
