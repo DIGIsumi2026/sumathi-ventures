@@ -30,7 +30,7 @@
   line-height: 1.13;
   letter-spacing: -0.005em;
   text-wrap: balance;
-  font-weight: 600px;
+  font-weight: 600;
 }
 
 .sv-investment-fields__intro {
@@ -46,16 +46,10 @@
 ========================================================= */
 
 .sv-investment-carousel {
+  --sv-investment-gap: clamp(16px, 2.7vw, 40px);
   width: 100%;
   overflow: hidden;
   cursor: grab;
-  /*
-   * Important:
-   * no outer container here.
-   *
-   * The reference carousel runs almost
-   * completely edge-to-edge.
-   */
 }
 
 .sv-investment-carousel:active {
@@ -69,15 +63,10 @@
 .sv-investment-carousel__track {
   display: flex;
   align-items: stretch;
-  gap: clamp(10px, 0.95vw, 18px);
-  /*
-   * Small outer offset lets edge cards
-   * appear partially cropped as in
-   * the reference video.
-   */
-  padding-inline: clamp(16px, 2.3vw, 42px);
+  gap: var(--sv-investment-gap);
   touch-action: pan-y pinch-zoom;
   backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* =========================================================
@@ -86,13 +75,18 @@
 
 .sv-investment-card {
   position: relative;
-  flex: 0 0 clamp(270px, 22vw, 390px);
-  height: clamp(480px, 65vh, 650px);
+  flex: 0 0 clamp(280px, 30.45vw, 450px);
+  height: clamp(420px, 40.6vw, 600px);
   overflow: hidden;
   border-radius: clamp(16px, 1.45vw, 24px);
   background: #102a20;
   isolation: isolate;
   transform: translateZ(0);
+}
+
+/* Include the final gap in Embla's loop measurements. */
+.sv-investment-card:last-child {
+  margin-right: var(--sv-investment-gap);
 }
 
 /* =========================================================
@@ -111,10 +105,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /*
-   * Creates the subtle image movement
-   * visible during interaction.
-   */
   transform: scale(1.015) translateZ(0);
   transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 700ms cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
@@ -130,33 +120,6 @@
   inset: 0;
   z-index: -2;
   background: linear-gradient(180deg, rgba(3, 15, 11, 0.08) 0%, rgba(3, 15, 11, 0.05) 37%, rgba(3, 15, 11, 0.46) 68%, rgba(3, 15, 11, 0.94) 100%);
-  transition: background 650ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* =========================================================
-   NUMBER
-========================================================= */
-
-.sv-investment-card__number {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  border-radius: 50%;
-  background: rgba(5, 25, 18, 0.18);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: border-color 350ms ease, background 350ms ease, color 350ms ease;
 }
 
 /* =========================================================
@@ -173,8 +136,6 @@
   flex-direction: column;
   align-items: flex-start;
   padding: clamp(24px, 2.2vw, 34px);
-  transform: translateY(52px);
-  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sv-investment-card h3 {
@@ -189,7 +150,6 @@
 
 /* =========================================================
    CTA
-   HIDDEN UNTIL CARD HOVER
 ========================================================= */
 
 .sv-investment-card__button {
@@ -201,10 +161,6 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(20px);
-  transition: opacity 400ms ease, transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sv-investment-card__button-icon {
@@ -215,68 +171,30 @@
   border: 1px solid rgba(255, 255, 255, 0.62);
   border-radius: 50%;
   color: #fff;
-  transition: background 350ms cubic-bezier(0.16, 1, 0.3, 1), border-color 350ms ease, color 350ms ease, transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 250ms ease, border-color 250ms ease, color 250ms ease;
 }
 
 /* =========================================================
    CARD HOVER
 ========================================================= */
 
-@media (hover: hover) {
-  .sv-investment-card:hover
-  .sv-investment-card__media img {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .sv-investment-card:hover .sv-investment-card__media img {
     transform: scale(1.065) translateZ(0);
   }
+}
 
-  .sv-investment-card:hover
-  .sv-investment-card__shade {
-    background: linear-gradient(180deg, rgba(3, 15, 11, 0.08) 0%, rgba(3, 15, 11, 0.14) 36%, rgba(3, 15, 11, 0.60) 67%, rgba(3, 15, 11, 0.98) 100%);
-  }
-
-  .sv-investment-card:hover
-  .sv-investment-card__content {
-    transform: translateY(0);
-  }
-
-  .sv-investment-card:hover
-  .sv-investment-card__button {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-    transition-delay: 100ms;
-  }
-
-  .sv-investment-card:hover
-  .sv-investment-card__number {
+@media (hover: hover) {
+  .sv-investment-card__button:hover .sv-investment-card__button-icon {
     border-color: var(--sv-accent);
     background: var(--sv-accent);
     color: var(--sv-green-dark);
-  }
-
-  .sv-investment-card__button:hover
-  .sv-investment-card__button-icon {
-    border-color: var(--sv-accent);
-    background: var(--sv-accent);
-    color: var(--sv-green-dark);
-    transform: rotate(45deg);
   }
 }
 
 /* =========================================================
    FOCUS
 ========================================================= */
-
-.sv-investment-card:focus-within
-.sv-investment-card__content {
-  transform: translateY(0);
-}
-
-.sv-investment-card:focus-within
-.sv-investment-card__button {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
 
 .sv-investment-card__button:focus-visible {
   outline: 2px solid var(--sv-accent);
@@ -320,9 +238,8 @@
     font-size: clamp(2.4rem, 10vw, 3.6rem);
   }
 
-  .sv-investment-carousel__track {
-    gap: 10px;
-    padding-inline: 14px;
+  .sv-investment-carousel {
+    --sv-investment-gap: 10px;
   }
 
   .sv-investment-card {
@@ -335,30 +252,15 @@
   }
 }
 
-/*
- * Touch devices have no hover.
- *
- * CTA remains visible so users
- * can actually access each page.
- */
-
-@media (hover: none) {
-  .sv-investment-card__content {
-    transform: translateY(0);
-  }
-
-  .sv-investment-card__button {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-}
-
 /* =========================================================
    REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+  .sv-investment-card__media img {
+    transform: none;
+  }
+
   .sv-investment-card__media img,
   .sv-investment-card__content,
   .sv-investment-card__button,

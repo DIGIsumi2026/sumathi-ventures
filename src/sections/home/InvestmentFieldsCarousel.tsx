@@ -4,23 +4,20 @@ import AutoScroll from 'embla-carousel-auto-scroll';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import { useReducedMotion } from 'motion/react';
+import { useEffect, useMemo } from 'react';
 
 import { imageAssets } from '@/assets/imageAssets';
 
 const investmentFields = [
   {
     id: 'industry',
-    number: '01',
     title: 'Industry & Sustainable Development',
-    image:
-      imageAssets.investmentFields.industrySustainableDevelopment,
-    href:'/investment-fields/industry-sustainable-development/',
+    image: imageAssets.investmentFields.industrySustainableDevelopment,
+    href: '/investment-fields/industry-sustainable-development/',
   },
 
   {
     id: 'printing',
-    number: '02',
     title: 'Printing',
     image: imageAssets.investmentFields.industryPrinting,
     href: '/investment-fields/printing/',
@@ -28,7 +25,6 @@ const investmentFields = [
 
   {
     id: 'business',
-    number: '03',
     title: 'Business',
     image: imageAssets.investmentFields.industryBusiness,
     href: '/investment-fields/business/',
@@ -36,7 +32,6 @@ const investmentFields = [
 
   {
     id: 'entertainment',
-    number: '04',
     title: 'Entertainment',
     image: imageAssets.investmentFields.industryEntertainment,
     href: '/investment-fields/entertainment/',
@@ -44,7 +39,6 @@ const investmentFields = [
 
   {
     id: 'technology',
-    number: '05',
     title: 'Technology',
     image: imageAssets.investmentFields.industryTechnology,
     href: '/investment-fields/technology/',
@@ -52,7 +46,6 @@ const investmentFields = [
 
   {
     id: 'engineering',
-    number: '06',
     title: 'Engineering',
     image: imageAssets.investmentFields.industryEngineering,
     href: '/investment-fields/engineering/',
@@ -60,69 +53,82 @@ const investmentFields = [
 ] as const;
 
 export function InvestmentFieldsCarousel() {
-  const reduceMotion = useReducedMotion();
+  const autoScroll = useMemo(
+    () =>
+      AutoScroll({
+        direction: 'forward',
+        speed: 50 / 60,
+        startDelay: 0,
+        playOnInit: false,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+        stopOnFocusIn: true,
+        breakpoints: {
+          '(hover: none)': { stopOnMouseEnter: false },
+          '(prefers-reduced-motion: reduce)': { active: false },
+        },
+      }),
+    [],
+  );
 
-  const [emblaRef] = useEmblaCarousel(
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-
-      /*
-       * Matches the loose/free movement
-       * visible in the reference recording.
-       */
       dragFree: true,
-
-      /*
-       * We deliberately do not snap each
-       * card into the center.
-       */
       align: 'start',
-
       containScroll: false,
-
-      /*
-       * Gives drag movement a softer,
-       * weightier finish.
-       */
       duration: 34,
     },
-
-    [
-      AutoScroll({
-        /*
-         * Continuous horizontal movement
-         * like courasel.mp4.
-         */
-        playOnInit: !reduceMotion,
-
-        /*
-         * Lower = slower.
-         *
-         * This gives a controlled,
-         * premium continuous movement.
-         */
-        speed: 1.05,
-
-        /*
-         * Keep autoplay available after
-         * the user drags the carousel.
-         */
-        stopOnInteraction: false,
-
-        /*
-         * Reference movement pauses while
-         * the pointer interacts with cards.
-         */
-        stopOnMouseEnter: true,
-
-        /*
-         * Pause while keyboard users focus
-         * on links/buttons.
-         */
-        stopOnFocusIn: true,
-      }),
-    ],
+    [autoScroll],
   );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const viewport = emblaApi.rootNode();
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const hover = window.matchMedia('(hover: hover)');
+    let inView = false;
+    const updatePlayback = () => {
+      if (
+        motion.matches ||
+        document.hidden ||
+        !inView ||
+        (hover.matches && viewport.matches(':hover')) ||
+        viewport.contains(document.activeElement)
+      ) {
+        autoScroll.stop();
+      } else {
+        autoScroll.play(0);
+      }
+    };
+    const afterFocusChange = () => queueMicrotask(updatePlayback);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting && entry.intersectionRatio >= 0.1;
+        updatePlayback();
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(viewport);
+    document.addEventListener('visibilitychange', updatePlayback);
+    motion.addEventListener('change', updatePlayback);
+    viewport.addEventListener('mouseenter', updatePlayback);
+    viewport.addEventListener('mouseleave', updatePlayback);
+    viewport.addEventListener('focusin', updatePlayback);
+    viewport.addEventListener('focusout', afterFocusChange);
+    emblaApi.on('reInit', updatePlayback);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', updatePlayback);
+      motion.removeEventListener('change', updatePlayback);
+      viewport.removeEventListener('mouseenter', updatePlayback);
+      viewport.removeEventListener('mouseleave', updatePlayback);
+      viewport.removeEventListener('focusin', updatePlayback);
+      viewport.removeEventListener('focusout', afterFocusChange);
+      emblaApi.off('reInit', updatePlayback);
+      autoScroll.stop();
+    };
+  }, [emblaApi, autoScroll]);
 
   return (
     <section
@@ -132,9 +138,7 @@ export function InvestmentFieldsCarousel() {
     >
       <div className="container sv-investment-fields__heading">
         <div>
-          <p className="sv-overline">
-            OUR INVESTMENT FIELDS
-          </p>
+          <p className="sv-overline">OUR INVESTMENT FIELDS</p>
 
           <h2 id="investment-fields-title">
             Investing Across Industries That
@@ -144,9 +148,8 @@ export function InvestmentFieldsCarousel() {
         </div>
 
         <p className="sv-investment-fields__intro">
-          Our investment interests span industries where
-          strategic partnerships, technology and long-term
-          thinking can create lasting commercial value.
+          Our investment interests span industries where strategic partnerships, technology and
+          long-term thinking can create lasting commercial value.
         </p>
       </div>
 
@@ -157,10 +160,7 @@ export function InvestmentFieldsCarousel() {
       >
         <div className="sv-investment-carousel__track">
           {investmentFields.map((field) => (
-            <article
-              className="sv-investment-card"
-              key={field.id}
-            >
+            <article className="sv-investment-card" key={field.id}>
               {/* Background image */}
 
               <div className="sv-investment-card__media">
@@ -169,21 +169,13 @@ export function InvestmentFieldsCarousel() {
                   alt=""
                   aria-hidden="true"
                   draggable={false}
+                  decoding="async"
                 />
               </div>
 
               {/* Gradient overlays */}
 
-              <div
-                className="sv-investment-card__shade"
-                aria-hidden="true"
-              />
-
-              {/* Top number */}
-
-              <span className="sv-investment-card__number">
-                {field.number}
-              </span>
+              <div className="sv-investment-card__shade" aria-hidden="true" />
 
               {/* Content */}
 
