@@ -73,7 +73,7 @@ test('Reference card dimensions, heading weight and removed image numbers', asyn
     .evaluate((element) => parseFloat(getComputedStyle(element).marginRight));
   expect(finalGap).toBe(gap);
   for (const link of await page.locator(`${cards} a`).all()) {
-    await expect(link).toHaveCSS('opacity', '1');
+    await expect(link).toHaveCSS('opacity', '0');
     await expect(link).toHaveAttribute('href', /^\/investment-fields\//);
   }
   await page.screenshot({ path: testInfo.outputPath('investment-desktop.png') });
@@ -100,12 +100,20 @@ test('Steady leftward drift pauses on hover with image zoom, then resumes immedi
     element => new DOMMatrixReadOnly(getComputedStyle(element).transform).a,
   );
   await expect.poll(imageScale).toBeCloseTo(1.065, 3);
+  const button = page.locator(`${cards} a`).nth(1);
+  await expect(button).toHaveCSS('opacity', '1');
+  await expect(button).toHaveCSS('pointer-events', 'auto');
   await expect(page.locator('.sv-investment-card__content').nth(1)).toHaveCSS('transform', 'none');
   await page.mouse.move(-5, -5);
   await expect
     .poll(async () => paused - (await position(page)), { timeout: 1000 })
     .toBeGreaterThan(10);
   await expect.poll(imageScale).toBeCloseTo(1.015, 3);
+  await expect(button).toHaveCSS('opacity', '0');
+  await expect(button).toHaveCSS('pointer-events', 'none');
+  await button.focus();
+  await expect(button).toHaveCSS('opacity', '1');
+  await expect(button).toHaveCSS('pointer-events', 'auto');
 });
 
 test('Drag follows both directions and retains momentum before returning to auto-scroll', async ({

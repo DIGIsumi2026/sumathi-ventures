@@ -192,6 +192,22 @@
   }
 }
 
+@media (min-width: 1001px) and (hover: hover) and (pointer: fine) {
+  .sv-investment-card__button {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 250ms ease, transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sv-investment-card:hover .sv-investment-card__button,
+  .sv-investment-card:focus-within .sv-investment-card__button {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
 /* =========================================================
    FOCUS
 ========================================================= */
