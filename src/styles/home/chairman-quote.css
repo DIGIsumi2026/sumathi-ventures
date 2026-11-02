@@ -1,203 +1,180 @@
 .sv-chairman-quote {
-  position:relative;
-  min-height:520px;
-  overflow:hidden;
-  background:#06251d;
-  color:#fff;
-  isolation:isolate;
+  position: relative;
+  width: min(1600px,100%);
+  aspect-ratio: 4 / 1;
+  margin-inline: auto;
+  overflow: hidden;
+  background: #06251d;
+  color: #fff;
+  isolation: isolate;
 }
 
 .sv-chairman-quote__media {
-  position:absolute;
-  inset:0;
-  z-index:-3;
+  position: absolute;
+  inset: 0;
+  z-index: -3;
 }
 
 .sv-chairman-quote__media img {
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:center;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
 }
 
 .sv-chairman-quote__overlay {
-  position:absolute;
-  inset:0;
-  z-index:-2;
-  background:linear-gradient(90deg,rgba(3,27,22,.93) 0%,rgba(3,27,22,.84) 32%,rgba(3,27,22,.48) 58%,rgba(3,27,22,.15) 78%,rgba(3,27,22,.05) 100%);
-  pointer-events:none;
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(90deg,rgba(3,27,22,.93) 0%,rgba(3,27,22,.84) 32%,rgba(3,27,22,.48) 58%,rgba(3,27,22,.15) 78%,rgba(3,27,22,.05) 100%);
+  pointer-events: none;
 }
 
 .sv-chairman-quote__inner {
-  min-height:520px;
-  display:flex;
-  align-items:center;
-  position:relative;
-  z-index:2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
 .sv-chairman-quote__content {
-  width:min(880px,68%);
-  position:relative;
-  padding:80px 0;
+  width: min(880px,68%);
+  position: relative;
+  padding: 24px 0;
 }
 
 .sv-chairman-quote__mark {
-  display:block;
-  height:55px;
-  margin-bottom:4px;
-  color:#fff;
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:6rem;
-  line-height:1;
-  opacity:.92;
+  display: block;
+  height: 32px;
+  margin-bottom: 6px;
+  color: #fff;
+  font-family: Georgia,'Times New Roman',serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  opacity: .92;
 }
 
 .sv-chairman-quote blockquote {
-  margin:0;
+  margin: 0;
 }
 
 .sv-chairman-quote h2 {
-  max-width:880px;
-  margin:0;
-  color:#fff;
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:clamp(2.5rem,4vw,4.8rem);
-  font-weight:400;
-  line-height:1.15;
-  letter-spacing:-0.025em;
-  text-wrap:balance;
+  max-width: 880px;
+  margin: 0;
+  color: #fff;
+  font-family: Georgia,'Times New Roman',serif;
+  font-size: clamp(2rem,2.25vw,3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
 }
 
 .sv-chairman-quote footer {
-  display:flex;
-  align-items:center;
-  gap:22px;
-  margin-top:38px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 20px;
 }
 
 .sv-chairman-quote__line {
-  width:90px;
-  height:1px;
-  flex:0 0 auto;
-  background:rgba(255,255,255,.8);
+  width: 70px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: rgba(255,255,255,.8);
 }
 
 .sv-chairman-quote footer div {
-  display:flex;
-  align-items:baseline;
-  gap:8px;
-  flex-wrap:wrap;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .sv-chairman-quote footer strong {
-  color:#fff;
-  font-size:1.05rem;
-  font-weight:800;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 800;
 }
 
 .sv-chairman-quote footer div>span {
-  color:rgba(255,255,255,.82);
-  font-size:1rem;
-  font-weight:400;
+  color: rgba(255,255,255,.82);
+  font-size: 1rem;
+  font-weight: 400;
 }
 
-@media(max-width:1000px) {
+@media (max-width:1000px) {
   .sv-chairman-quote {
-    min-height:480px;
+    aspect-ratio: auto;
   }
 
-  .sv-chairman-quote__inner {
-    min-height:480px;
-  }
-
-  .sv-chairman-quote__content {
-    width:70%;
-  }
-
-  .sv-chairman-quote h2 {
-    font-size:clamp(2.3rem,5vw,4rem);
-  }
-}
-
-@media(max-width:720px) {
-  .sv-chairman-quote {
-    min-height:560px;
-  }
-
-  .sv-chairman-quote__inner {
-    min-height:560px;
-    align-items:flex-end;
-  }
-
-  .sv-chairman-quote__media img {
-    object-position:68% center;
+  .sv-chairman-quote__media {
+    position: relative;
+    aspect-ratio: 4 / 1;
   }
 
   .sv-chairman-quote__overlay {
-    background:linear-gradient(90deg,rgba(3,27,22,.91) 0%,rgba(3,27,22,.72) 62%,rgba(3,27,22,.26) 100%),linear-gradient(0deg,rgba(3,27,22,.92) 0%,rgba(3,27,22,.15) 65%);
-  }
-
-  .sv-chairman-quote__content {
-    width:100%;
-    padding:60px 0 48px;
-  }
-
-  .sv-chairman-quote__mark {
-    height:38px;
-    font-size:4.5rem;
-  }
-
-  .sv-chairman-quote h2 {
-    max-width:85%;
-    font-size:clamp(2rem,7vw,3rem);
-    line-height:1.15;
-  }
-
-  .sv-chairman-quote footer {
-    gap:15px;
-    margin-top:28px;
-  }
-
-  .sv-chairman-quote__line {
-    width:50px;
-  }
-
-  .sv-chairman-quote footer div {
-    flex-direction:column;
-    align-items:flex-start;
-    gap:3px;
-  }
-
-  .sv-chairman-quote footer strong {
-    font-size:.95rem;
-  }
-
-  .sv-chairman-quote footer div>span {
-    font-size:.86rem;
-  }
-}
-
-@media(max-width:480px) {
-  .sv-chairman-quote {
-    min-height:600px;
+    display: none;
   }
 
   .sv-chairman-quote__inner {
-    min-height:600px;
+    position: relative;
+    inset: auto;
+    height: auto;
   }
 
-  .sv-chairman-quote__media img {
-    object-position:72% center;
+  .sv-chairman-quote__content {
+    width: 100%;
+    max-width: 880px;
+    padding: 32px 0;
   }
 
   .sv-chairman-quote h2 {
-    max-width:94%;
-    font-size:clamp(1.8rem,8vw,2.5rem);
+    font-size: clamp(2rem,4.4vw,2.75rem);
+  }
+}
+
+@media (max-width:720px) {
+  .sv-chairman-quote h2 {
+    max-width: 100%;
+    font-size: clamp(2rem,7vw,3rem);
+    line-height: 1.15;
+  }
+
+  .sv-chairman-quote footer {
+    gap: 15px;
+    margin-top: 28px;
   }
 
   .sv-chairman-quote__line {
-    display:none;
+    width: 50px;
+  }
+
+  .sv-chairman-quote footer div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .sv-chairman-quote footer strong {
+    font-size: .95rem;
+  }
+
+  .sv-chairman-quote footer div>span {
+    font-size: .86rem;
+  }
+}
+
+@media (max-width:480px) {
+  .sv-chairman-quote h2 {
+    max-width: 100%;
+    font-size: clamp(1.8rem,8vw,2.5rem);
+  }
+
+  .sv-chairman-quote__line {
+    display: none;
   }
 }
