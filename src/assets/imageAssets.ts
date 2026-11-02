@@ -22,4 +22,7 @@ export const imageAssets = {
         industryTechnology:'/images/hero/investment-fields/technology.png',
     },
 
+    //home-quote
+    quote:'/images/hero/home-quote.png',
+
 } as const;
