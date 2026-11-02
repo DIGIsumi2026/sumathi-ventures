@@ -33,20 +33,15 @@ export function ChairmanQuote() {
               ? false
               : {
                   opacity: 0,
-                  y: 40,
                 }
           }
-          whileInView={{
+          animate={{
             opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.35,
           }}
           transition={{
-            duration: reduceMotion ? 0 : 0.85,
-            ease: [0.22, 1, 0.36, 1],
+            duration: reduceMotion ? 0 : 1.1,
+            delay: reduceMotion ? 0 : 0.12,
+            ease: 'easeOut',
           }}
         >
           <span
