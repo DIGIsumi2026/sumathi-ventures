@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 const quote =
-  'Our Goal is to become Globally Present, Regionally Strong, Sri Lankan based leader in Ventures.';
+  'Our Goal is to become Globally Present, Regionally Strong, Sri Lankan based leader in Ventures';
 const section = '.sv-chairman-quote';
 const visibleText = (page: Page) =>
   page
@@ -22,12 +22,14 @@ test('quote types on mount, keeps its layout and remains complete without deleti
   const partial = await visibleText(page);
   expect(quote.startsWith(partial)).toBe(true);
   expect(partial.length).toBeLessThan(quote.length);
+  await expect(page.locator(`${section} .text-type__cursor`)).toHaveCount(1);
   await expect(page.getByRole('heading', { name: quote, exact: true })).toHaveCount(1);
   const heading = page.locator('#chairman-quote-title');
   const initial = await heading.boundingBox();
   await page.locator(section).scrollIntoViewIfNeeded();
   await page.locator(section).screenshot({ path: test.info().outputPath('chairman-typing.png') });
   await expect.poll(() => visibleText(page), { timeout: 15000 }).toBe(quote);
+  await expect(page.locator(`${section} .text-type__cursor`)).toHaveCount(0);
   const complete = await heading.boundingBox();
   expect(complete!.height).toBeCloseTo(initial!.height, 0);
   await page.waitForTimeout(2800);

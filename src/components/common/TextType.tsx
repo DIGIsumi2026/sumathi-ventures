@@ -48,6 +48,7 @@ export default function TextType({
   const count = reduceMotion
     ? chars.length
     : Math.min(progress.text === text ? progress.count : 0, chars.length);
+  const cursorVisible = showCursor && count < chars.length && !reduceMotion;
 
   useEffect(() => {
     // Keep the server and first client render identical, then apply the preference.
@@ -73,7 +74,7 @@ export default function TextType({
 
   useEffect(() => {
     const node = blink.current;
-    if (!showCursor || !node) return;
+    if (!cursorVisible || !node) return;
     gsap.set(node, { opacity: 1 });
     if (reduceMotion || cursorBlinkDuration <= 0) return;
     const hold = cursorBlinkDuration * 0.7;
@@ -93,7 +94,7 @@ export default function TextType({
       gsap.killTweensOf(node);
       blinkTimeline.current = null;
     };
-  }, [showCursor, cursorBlinkDuration, reduceMotion]);
+  }, [cursorVisible, cursorBlinkDuration, reduceMotion]);
 
   const positionCursor = useCallback(
     (instant: boolean) => {
@@ -131,14 +132,15 @@ export default function TextType({
   );
 
   useLayoutEffect(() => {
+    if (!cursorVisible) previousPosition.current = null;
     placeCursor.current = positionCursor;
     positionCursor(false);
-  }, [positionCursor, showCursor]);
+  }, [positionCursor, cursorVisible]);
 
   useEffect(() => {
     const node = container.current;
     const cursorNode = cursor.current;
-    if (!node) return;
+    if (!node || !cursorNode) return;
     let active = true;
     const observer = new ResizeObserver(() => placeCursor.current(true));
     observer.observe(node);
@@ -150,7 +152,7 @@ export default function TextType({
       observer.disconnect();
       if (cursorNode) gsap.killTweensOf(cursorNode);
     };
-  }, [showCursor]);
+  }, [cursorVisible]);
 
   return (
     <span ref={container} className={`text-type ${className}`}>
@@ -168,7 +170,7 @@ export default function TextType({
           </span>
         ))}
       </span>
-      {showCursor && (
+      {cursorVisible && (
         <span
           ref={cursor}
           className="text-type__cursor text-type__cursor--underscore"

@@ -35,7 +35,7 @@ export function ChairmanQuote() {
           <blockquote>
             <h2 id="chairman-quote-title">
               <TextType
-                text="Our Goal is to become Globally Present, Regionally Strong, Sri Lankan based leader in Ventures."
+                text="Our Goal is to become Globally Present, Regionally Strong, Sri Lankan based leader in Ventures"
                 typingSpeed={75}
                 cursorBlinkDuration={0.5}
                 cursorGlide
