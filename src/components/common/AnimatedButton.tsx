@@ -14,8 +14,8 @@ export function AnimatedButton({
     className?: string;
 }) {
     return (
-        <Link href={href} className={`sv-button ${dark ? 'sv-button--dark' : ''} ${className}`}>
-            <span className="sv-button__label">{children}</span>
+        <Link href={href} data-magnetic className={`sv-button ${dark ? 'sv-button--dark' : ''} ${className}`}>
+            <span className="sv-button__label" data-magnetic-content>{children}</span>
             <span aria-hidden="true" className="sv-button__spot">
                 <span className="sv-button__dot" />
                 <ArrowUpRight size={16} className="sv-button__arrow" />

@@ -30,7 +30,7 @@ export function FocusCards() {
                             viewport={{ once: true, amount: 0.15 }}
                             transition={{ duration: 0.65, delay: i * 0.09 }}
                         >
-                            <Link href={`/investment-focus/${s.slug}/`} className="sv-sector__link">
+                            <Link href={`/investment-focus/${s.slug}/`} className="sv-sector__link" data-cursor="VIEW ↗">
                                 <div className="sv-sector__head">
                                     <span>{s.number} / 03</span>
                                     <ArrowUpRight size={19} />

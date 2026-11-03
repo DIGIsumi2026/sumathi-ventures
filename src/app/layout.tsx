@@ -10,6 +10,7 @@ import { Footer } from '@/components/common/Footer';
 import { BackToTop } from '@/components/common/BackToTop';
 import { ScrollReveals } from '@/components/common/ScrollReveals';
 import { PageTransition } from '@/components/common/PageTransition';
+import { CustomCursor } from '@/components/common/CustomCursor';
 
 export const metadata: Metadata = {
     title: {
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <Footer />
                 <BackToTop />
                 <ScrollReveals />
+                <CustomCursor />
             </body>
         </html>
     );

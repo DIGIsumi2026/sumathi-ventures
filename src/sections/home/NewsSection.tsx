@@ -179,6 +179,8 @@ export function NewsSection({ heading = 'Latest Insights' }: { heading?: string 
         {status === 'ready' && videos.length > 0 && (
           <Swiper
             className="sv-news__carousel"
+            data-cursor="DRAG ↔"
+            data-cursor-drag
             modules={[Navigation, A11y]}
             slidesPerView={3}
             spaceBetween={24}

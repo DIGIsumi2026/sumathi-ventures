@@ -1,0 +1,95 @@
+.sv-custom-cursor {
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  opacity:0;
+  pointer-events:none;
+}
+
+.sv-custom-cursor * {
+  pointer-events:none;
+}
+
+.sv-cursor-dot,
+.sv-cursor-ring {
+  position:absolute;
+  top:0;
+  left:0;
+  will-change:transform;
+}
+
+.sv-cursor-dot {
+  width:8px;
+  height:8px;
+  border:1px solid var(--sv-accent);
+  border-radius:50%;
+  background:var(--sv-green);
+}
+
+.sv-cursor-ring {
+  display:grid;
+  width:44px;
+  height:44px;
+  place-items:center;
+}
+
+.sv-cursor-shape {
+  position:absolute;
+  inset:0;
+  border:1px solid var(--sv-green);
+  border-radius:50%;
+  background:color-mix(in srgb,var(--sv-accent) 6%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--sv-accent) 65%,transparent);
+}
+
+.sv-cursor-label {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:78px;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  color:var(--sv-green-dark);
+  font-family:var(--sv-font);
+  font-size:9px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:.04em;
+  text-align:center;
+  white-space:nowrap;
+}
+
+.sv-custom-cursor[data-state='interactive'] .sv-cursor-shape {
+  background:color-mix(in srgb,var(--sv-accent) 20%,transparent);
+}
+
+.sv-custom-cursor[data-state='label'] .sv-cursor-shape,
+.sv-custom-cursor[data-state='dragging'] .sv-cursor-shape {
+  border-color:color-mix(in srgb,var(--sv-green) 65%,transparent);
+  background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.12)),color-mix(in srgb,var(--sv-accent) 40%,transparent);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);
+  backdrop-filter:blur(10px) saturate(140%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.65),0 4px 14px rgba(13,41,31,.12);
+}
+
+.sv-custom-cursor[data-state='label'] .sv-cursor-label,
+.sv-custom-cursor[data-state='dragging'] .sv-cursor-label {
+  opacity:1;
+}
+
+[data-magnetic-content] {
+  display:inline-block;
+}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  html.sv-cursor-enabled,
+  html.sv-cursor-enabled * {
+    cursor:none !important;
+  }
+}
+
+@media (hover:none),(pointer:coarse),(prefers-reduced-motion:reduce) {
+  .sv-custom-cursor {
+    display:none;
+  }
+}

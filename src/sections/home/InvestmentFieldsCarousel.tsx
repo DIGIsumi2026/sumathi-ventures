@@ -155,12 +155,14 @@ export function InvestmentFieldsCarousel() {
 
       <div
         className="sv-investment-carousel"
+        data-cursor="DRAG ↔"
+        data-cursor-drag
         ref={emblaRef}
         aria-label="Sumathi Ventures investment fields"
       >
         <div className="sv-investment-carousel__track">
           {investmentFields.map((field) => (
-            <article className="sv-investment-card" key={field.id}>
+            <article className="sv-investment-card" key={field.id} data-cursor="EXPLORE ↗">
               {/* Background image */}
 
               <div className="sv-investment-card__media">
@@ -185,9 +187,10 @@ export function InvestmentFieldsCarousel() {
                 <Link
                   href={field.href}
                   className="sv-investment-card__button"
+                  data-magnetic
                   aria-label={`Explore ${field.title}`}
                 >
-                  <span>Explore Field</span>
+                  <span data-magnetic-content>Explore Field</span>
 
                   <span className="sv-investment-card__button-icon">
                     <ArrowUpRight size={18} />

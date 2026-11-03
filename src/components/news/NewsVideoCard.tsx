@@ -50,6 +50,7 @@ export function NewsVideoCard({ video, previewing, onPreview, onPreviewEnd, onPl
   return (
     <article
       className="sv-news__card"
+      data-cursor="READ ↗"
       onMouseEnter={() => onPreview(video.id)}
       onMouseLeave={() => onPreviewEnd(video.id)}
       onClick={() => onPlay(video, button.current)}

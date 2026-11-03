@@ -5,6 +5,7 @@ export function HomeContactCta() {
   return (
     <section
       className="sv-home-contact-cta"
+      data-cursor="CONNECT ↗"
       aria-labelledby="sv-home-contact-cta-title"
     >
       <div className="sv-home-contact-cta__media">
@@ -36,17 +37,19 @@ export function HomeContactCta() {
             <a
               className="sv-home-contact-cta__btn sv-home-contact-cta__btn--primary"
               href="tel:+94112697106"
+              data-magnetic
             >
-              Call Us
+              <span data-magnetic-content>Call Us</span>
             </a>
 
             <a
               className="sv-home-contact-cta__btn sv-home-contact-cta__btn--secondary"
               href="https://wa.me/94722259524"
+              data-magnetic
               target="_blank"
               rel="noreferrer"
             >
-              WhatsApp Us
+              <span data-magnetic-content>WhatsApp Us</span>
             </a>
           </div>
         </div>
