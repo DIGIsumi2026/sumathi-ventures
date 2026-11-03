@@ -29,7 +29,7 @@ test('desktop loop loads the supplied logos, moves left, pauses on hover and sup
   page.on('pageerror', (error) => errors.push(error.message));
   await openSection(page);
   const primary = page.locator(`${loop} .logoloop__list:not([aria-hidden])`);
-  await expect(primary.locator('img')).toHaveCount(16);
+  await expect(primary.locator('img')).toHaveCount(17);
   const sources = await primary
     .locator('img')
     .evaluateAll((images) => images.map((image) => (image as HTMLImageElement).src));

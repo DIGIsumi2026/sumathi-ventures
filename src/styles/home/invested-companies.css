@@ -1,6 +1,6 @@
 .sv-invested-companies {
   overflow:hidden;
-  padding:85px 30px 75px;
+  padding:56px 30px 48px;
   background:#fff;
   color:var(--sv-green-dark);
 }
@@ -11,7 +11,7 @@
 }
 
 .sv-invested-companies h2 {
-  margin:0 0 32px;
+  margin:0 0 24px;
   font-family:var(--sv-font);
   font-size:clamp(2rem,3.6vw,3.5rem);
   font-weight:600;
@@ -23,18 +23,18 @@
 
 @media (max-width:768px) {
   .sv-invested-companies {
-    padding:65px 16px 55px;
+    padding:44px 16px 36px;
   }
 
   .sv-invested-companies h2 {
-    margin-bottom:22px;
+    margin-bottom:18px;
   }
 
   .sv-invested-companies .logoloop__item {
-    margin-right:16px;
+    margin-right:36px;
   }
 
   .sv-invested-companies .logoloop__item img {
-    height:136px;
+    height:104px;
   }
 }

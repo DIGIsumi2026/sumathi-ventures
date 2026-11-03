@@ -8,7 +8,7 @@ const logos: LogoItem[] = [
   { src: imageAssets.investedCompanies.company3, alt: 'Sumathi Universal Trading' },
   { src: imageAssets.investedCompanies.company4, alt: 'Rabbit' },
   { src: imageAssets.investedCompanies.company5, alt: 'Sujala' },
-  // The company6 image is listed in imageAssets but has not been supplied yet.
+  { src: imageAssets.investedCompanies.company6, alt: 'Butlers' },
   { src: imageAssets.investedCompanies.company7, alt: 'Octagon Engineering' },
   { src: imageAssets.investedCompanies.company8, alt: 'Napco' },
   { src: imageAssets.investedCompanies.company9, alt: 'Sumathi Printers' },
@@ -31,8 +31,8 @@ export function InvestedCompanies() {
           logos={logos}
           speed={100}
           direction="left"
-          logoHeight={180}
-          gap={32}
+          logoHeight={140}
+          gap={64}
           hoverSpeed={0}
           scaleOnHover
           fadeOut
