@@ -2,6 +2,7 @@
 import '@/styles/home/home.css';
 import'@/styles/home/investment-fields.css';
 import '@/styles/home/chairman-quote.css';
+import '@/styles/home/news-section.css';
 
 
 
@@ -11,6 +12,7 @@ import '@/styles/home/chairman-quote.css';
 import { Hero } from '@/sections/home/Hero';
 import { InvestmentFieldsCarousel } from '@/sections/home/InvestmentFieldsCarousel';
 import {ChairmanQuote} from '@/sections/home/ChairmanQuote';
+import { NewsSection } from '@/sections/home/NewsSection';
 import { FocusCards } from '@/sections/home/FocusCards';
 import { ApproachPreview } from '@/sections/home/ApproachPreview';
 import { Heritage } from '@/sections/home/Heritage';
@@ -22,6 +24,7 @@ export function HomeScreen() {
             <Hero />
             <InvestmentFieldsCarousel />
             <ChairmanQuote/>
+            <NewsSection />
             <FocusCards />
             <ApproachPreview />
             <Heritage />
