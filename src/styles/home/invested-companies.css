@@ -1,0 +1,40 @@
+.sv-invested-companies {
+  overflow:hidden;
+  padding:85px 30px 75px;
+  background:#fff;
+  color:var(--sv-green-dark);
+}
+
+.sv-invested-companies__inner {
+  max-width:1420px;
+  margin-inline:auto;
+}
+
+.sv-invested-companies h2 {
+  margin:0 0 32px;
+  font-family:var(--sv-font);
+  font-size:clamp(2rem,3.6vw,3.5rem);
+  font-weight:600;
+  line-height:1.13;
+  letter-spacing:-.025em;
+  text-align:center;
+  text-wrap:balance;
+}
+
+@media (max-width:768px) {
+  .sv-invested-companies {
+    padding:65px 16px 55px;
+  }
+
+  .sv-invested-companies h2 {
+    margin-bottom:22px;
+  }
+
+  .sv-invested-companies .logoloop__item {
+    margin-right:16px;
+  }
+
+  .sv-invested-companies .logoloop__item img {
+    height:136px;
+  }
+}

@@ -13,6 +13,7 @@ import { Hero } from '@/sections/home/Hero';
 import { InvestmentFieldsCarousel } from '@/sections/home/InvestmentFieldsCarousel';
 import {ChairmanQuote} from '@/sections/home/ChairmanQuote';
 import { NewsSection } from '@/sections/home/NewsSection';
+import { InvestedCompanies } from '@/sections/home/InvestedCompanies';
 import { FocusCards } from '@/sections/home/FocusCards';
 import { ApproachPreview } from '@/sections/home/ApproachPreview';
 import { Heritage } from '@/sections/home/Heritage';
@@ -25,6 +26,7 @@ export function HomeScreen() {
             <InvestmentFieldsCarousel />
             <ChairmanQuote/>
             <NewsSection />
+            <InvestedCompanies />
             <FocusCards />
             <ApproachPreview />
             <Heritage />
