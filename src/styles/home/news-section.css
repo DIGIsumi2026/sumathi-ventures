@@ -3,6 +3,7 @@
   padding:115px 30px 120px;
   background:#edf7e8;
   color:var(--sv-ink);
+  border-radius:0 0 28px 28px;
 }
 
 .sv-news__inner {
@@ -437,6 +438,7 @@
 @media (max-width:480px) {
   .sv-news {
     padding:75px 16px 80px;
+    border-radius:0 0 22px 22px;
   }
 
   .sv-news__intro p {

@@ -6,7 +6,7 @@
   background:#08241d;
   color:#fff;
   isolation:isolate;
-  border-radius:28px;
+  border-radius:28px 28px 0 0;
 }
 
 .sv-home-contact-cta__media {
@@ -160,7 +160,7 @@
 @media(max-width:560px) {
   .sv-home-contact-cta {
     min-height:500px;
-    border-radius:22px;
+    border-radius:22px 22px 0 0;
   }
 
   .sv-home-contact-cta__inner {
