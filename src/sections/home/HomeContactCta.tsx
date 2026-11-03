@@ -1,4 +1,5 @@
 import { imageAssets } from '@/assets/imageAssets';
+import StrokeText from '@/components/common/StrokeText';
 
 export function HomeContactCta() {
   return (
@@ -23,7 +24,7 @@ export function HomeContactCta() {
           </span>
 
           <h2 id="sv-home-contact-cta-title">
-            Let’s Start a Strategic Conversation.
+            <StrokeText text="Let’s Start a Strategic Conversation" />
           </h2>
 
           <p>

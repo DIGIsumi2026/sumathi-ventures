@@ -9,7 +9,7 @@ const visibleText = (page: Page) =>
     .allTextContents()
     .then((characters) => characters.join(''));
 
-test('quote types on mount, keeps its layout and remains complete without deleting or replaying', async ({
+test('quote types on first section entry, keeps its layout and remains complete without replaying', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -18,6 +18,10 @@ test('quote types on mount, keeps its layout and remains complete without deleti
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator(section)).not.toBeInViewport();
+  await page.waitForTimeout(350);
+  expect(await visibleText(page)).toBe('');
+  await expect(page.locator(`${section} .text-type__cursor`)).toHaveCount(0);
+  await page.locator(section).scrollIntoViewIfNeeded();
   await expect.poll(() => visibleText(page)).not.toBe('');
   const partial = await visibleText(page);
   expect(quote.startsWith(partial)).toBe(true);

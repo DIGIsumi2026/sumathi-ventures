@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { useSectionEntered } from '@/hooks/useSectionEntered';
 import '@/styles/common/text-type.css';
 
 type TextTypeProps = {
@@ -15,7 +16,7 @@ type TextTypeProps = {
   className?: string;
 };
 
-// Type once on mount. There is deliberately no deleting or looping phase.
+// Type once when the containing section first becomes visible.
 export default function TextType({
   text,
   typingSpeed = 75,
@@ -29,6 +30,7 @@ export default function TextType({
   const [reduceMotion, setReduceMotion] = useState(false);
   const [progress, setProgress] = useState({ text, count: 0 });
   const container = useRef<HTMLSpanElement>(null);
+  const entered = useSectionEntered(container);
   const characters = useRef<(HTMLSpanElement | null)[]>([]);
   const cursor = useRef<HTMLSpanElement>(null);
   const blink = useRef<HTMLSpanElement>(null);
@@ -48,7 +50,7 @@ export default function TextType({
   const count = reduceMotion
     ? chars.length
     : Math.min(progress.text === text ? progress.count : 0, chars.length);
-  const cursorVisible = showCursor && count < chars.length && !reduceMotion;
+  const cursorVisible = showCursor && entered && count < chars.length && !reduceMotion;
 
   useEffect(() => {
     // Keep the server and first client render identical, then apply the preference.
@@ -65,12 +67,13 @@ export default function TextType({
       setProgress({ text, count: chars.length });
       return;
     }
+    if (!entered) return;
     const timeout = setTimeout(
       () => setProgress({ text, count: count + 1 }),
       Math.max(0, typingSpeed) + (count === 0 ? Math.max(0, initialDelay) : 0),
     );
     return () => clearTimeout(timeout);
-  }, [text, chars.length, count, progress, typingSpeed, initialDelay, reduceMotion]);
+  }, [text, chars.length, count, progress, typingSpeed, initialDelay, reduceMotion, entered]);
 
   useEffect(() => {
     const node = blink.current;
