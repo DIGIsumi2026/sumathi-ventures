@@ -1,11 +1,9 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import TextType from '@/components/common/TextType';
 import { imageAssets } from '@/assets/imageAssets';
 
 export function ChairmanQuote() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       className="sv-chairman-quote"
@@ -26,24 +24,7 @@ export function ChairmanQuote() {
       />
 
       <div className="container sv-chairman-quote__inner">
-        <motion.div
-          className="sv-chairman-quote__content"
-          initial={
-            reduceMotion
-              ? false
-              : {
-                  opacity: 0,
-                }
-          }
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: reduceMotion ? 0 : 1.1,
-            delay: reduceMotion ? 0 : 0.12,
-            ease: 'easeOut',
-          }}
-        >
+        <div className="sv-chairman-quote__content">
           <span
             className="sv-chairman-quote__mark"
             aria-hidden="true"
@@ -53,9 +34,13 @@ export function ChairmanQuote() {
 
           <blockquote>
             <h2 id="chairman-quote-title">
-              Our Goal is to become Globally Present,
-              Regionally Strong, Sri Lankan based leader
-              in Ventures.
+              <TextType
+                text="Our Goal is to become Globally Present, Regionally Strong, Sri Lankan based leader in Ventures."
+                typingSpeed={75}
+                cursorBlinkDuration={0.5}
+                cursorGlide
+                showCursor
+              />
             </h2>
 
             <footer>
@@ -70,7 +55,7 @@ export function ChairmanQuote() {
               </div>
             </footer>
           </blockquote>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
