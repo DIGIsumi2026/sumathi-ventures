@@ -83,7 +83,6 @@ export function CustomCursor() {
           if (!visible) {
             gsap.set(dot, { x, y });
             gsap.set(ring, { x, y });
-            // Seed cached tweens at the entry point so they cannot resume from an old position.
             dotX(x, x); dotY(y, y);
             ringX(x, x); ringY(y, y);
             lastX = x;
