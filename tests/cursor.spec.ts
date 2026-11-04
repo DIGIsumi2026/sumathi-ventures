@@ -50,6 +50,8 @@ test('context labels, button priority and investment dragging remain functional'
   await card.hover({ position: { x: 80, y: 80 } });
   await expect(page.locator('.sv-cursor-label')).toHaveText('EXPLORE ↗');
   await expect(page.locator('.sv-cursor-shape')).toHaveCSS('backdrop-filter', 'blur(10px) saturate(1.4)');
+  // Focus pauses the moving carousel and reveals its CTA before testing cursor priority.
+  await card.locator('a').focus();
   await card.locator('a').hover();
   await expect(page.locator(cursor)).toHaveAttribute('data-state', 'interactive');
   await expect(page.locator('.sv-cursor-label')).toBeEmpty();

@@ -22,10 +22,10 @@ export function CustomCursor() {
         const ring = node.querySelector<HTMLElement>('.sv-cursor-ring')!;
         const shape = node.querySelector<HTMLElement>('.sv-cursor-shape')!;
         const label = node.querySelector<HTMLElement>('.sv-cursor-label')!;
-        const dotX = gsap.quickTo(dot, 'x', { duration: 0.08, ease: 'power3.out' });
-        const dotY = gsap.quickTo(dot, 'y', { duration: 0.08, ease: 'power3.out' });
-        const ringX = gsap.quickTo(ring, 'x', { duration: 0.36, ease: 'power3.out' });
-        const ringY = gsap.quickTo(ring, 'y', { duration: 0.36, ease: 'power3.out' });
+        const dotX = gsap.quickTo(dot, 'x', { duration: 0.09, ease: 'power2.out' });
+        const dotY = gsap.quickTo(dot, 'y', { duration: 0.09, ease: 'power2.out' });
+        const ringX = gsap.quickTo(ring, 'x', { duration: 0.24, ease: 'power2.out' });
+        const ringY = gsap.quickTo(ring, 'y', { duration: 0.24, ease: 'power2.out' });
         gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
         let visible = false;
         let state = '';
@@ -33,12 +33,17 @@ export function CustomCursor() {
         let dragging = false;
         let size = 1;
         let pointer: { x: number; y: number } | null = null;
-        let scrollFrame = 0;
+        let frame = 0;
+        let target: Element | null = null;
+        let hitTest = false;
+        let lastX = Number.NaN;
+        let lastY = Number.NaN;
         node.dataset.enabled = 'true';
 
         const hide = () => {
-          visible = false;
           pressed = dragging = false;
+          if (!visible) return;
+          visible = false;
           document.documentElement.classList.remove('sv-cursor-enabled');
           gsap.to(node, { opacity: 0, duration: 0.15, overwrite: true });
         };
@@ -78,26 +83,42 @@ export function CustomCursor() {
           if (!visible) {
             gsap.set(dot, { x, y });
             gsap.set(ring, { x, y });
+            // Seed cached tweens at the entry point so they cannot resume from an old position.
+            dotX(x, x); dotY(y, y);
+            ringX(x, x); ringY(y, y);
+            lastX = x;
+            lastY = y;
             gsap.to(node, { opacity: 1, duration: 0.18, overwrite: true });
             document.documentElement.classList.add('sv-cursor-enabled');
             visible = true;
           }
           updateState(target);
-          dotX(x);
-          dotY(y);
-          ringX(x);
-          ringY(y);
+          if (x !== lastX) { dotX(x); ringX(x); lastX = x; }
+          if (y !== lastY) { dotY(y); ringY(y); lastY = y; }
+        };
+        const schedule = () => {
+          if (frame) return;
+          frame = requestAnimationFrame(() => {
+            frame = 0;
+            if (!pointer) return;
+            if (hitTest) target = document.elementFromPoint(pointer.x, pointer.y);
+            hitTest = false;
+            showAt(target, pointer.x, pointer.y);
+          });
         };
         const leave = () => {
           pointer = null;
-          cancelAnimationFrame(scrollFrame);
-          scrollFrame = 0;
+          target = null;
+          hitTest = false;
+          cancelAnimationFrame(frame);
+          frame = 0;
           hide();
         };
         const move = (event: PointerEvent) => {
           if (event.pointerType !== 'mouse') { leave(); return; }
           pointer = { x: event.clientX, y: event.clientY };
-          showAt(event.target instanceof Element ? event.target : null, pointer.x, pointer.y);
+          target = event.target instanceof Element ? event.target : null;
+          schedule();
         };
         const down = (event: PointerEvent) => {
           if (event.pointerType !== 'mouse' || !visible || !(event.target instanceof Element))
@@ -117,12 +138,9 @@ export function CustomCursor() {
           if (event.key === 'Tab') leave();
         };
         const scroll = () => {
-          if (!pointer || scrollFrame) return;
-          scrollFrame = requestAnimationFrame(() => {
-            scrollFrame = 0;
-            if (!pointer) return;
-            showAt(document.elementFromPoint(pointer.x, pointer.y), pointer.x, pointer.y);
-          });
+          if (!pointer) return;
+          hitTest = true;
+          schedule();
         };
         document.addEventListener('pointermove', move, { passive: true });
         document.addEventListener('pointerover', move, { passive: true });
