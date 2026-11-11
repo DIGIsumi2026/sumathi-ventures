@@ -11,8 +11,9 @@ export function AboutHero() {
   const reduceMotion = useReducedMotion();
   const [videoAllowed, setVideoAllowed] = useState<boolean | null>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const showFinal = videoAllowed === false || videoEnded;
+  const showFinal = videoAllowed !== true || videoEnded;
   const showVideo = videoAllowed === true && !videoEnded;
+  const skipEntrance = reduceMotion || videoAllowed === null;
 
   useEffect(() => {
     const media = window.matchMedia(
@@ -26,12 +27,32 @@ export function AboutHero() {
 
   useEffect(() => {
     if (!showVideo || !video.current) return;
+    const player = video.current;
     let active = true;
-    video.current.play().catch(() => {
+    let fallback: ReturnType<typeof setTimeout> | undefined;
+    const clearFallback = () => {
+      clearTimeout(fallback);
+      fallback = undefined;
+    };
+    const showThumbnail = () => {
       if (active) setVideoEnded(true);
-    });
+    };
+    const waitForPlayback = () => {
+      if (fallback !== undefined) return;
+      // A stalled intro must not keep the page content hidden indefinitely.
+      fallback = setTimeout(showThumbnail, 8000);
+    };
+    player.addEventListener('playing', clearFallback);
+    player.addEventListener('waiting', waitForPlayback);
+    player.addEventListener('stalled', waitForPlayback);
+    waitForPlayback();
+    player.play().then(clearFallback, showThumbnail);
     return () => {
       active = false;
+      clearFallback();
+      player.removeEventListener('playing', clearFallback);
+      player.removeEventListener('waiting', waitForPlayback);
+      player.removeEventListener('stalled', waitForPlayback);
     };
   }, [showVideo]);
 
@@ -96,7 +117,7 @@ export function AboutHero() {
             <motion.div
               className="sv-about-hero__content"
               initial={
-                reduceMotion
+                skipEntrance
                   ? false
                   : {
                       opacity: 0,
@@ -116,7 +137,7 @@ export function AboutHero() {
               <motion.span
                 className="sv-about-hero__eyebrow"
                 initial={
-                  reduceMotion
+                  skipEntrance
                     ? false
                     : {
                         opacity: 0,
@@ -138,7 +159,7 @@ export function AboutHero() {
               <motion.h1
                 id="sv-about-hero-title"
                 initial={
-                  reduceMotion
+                  skipEntrance
                     ? false
                     : {
                         opacity: 0,
@@ -162,7 +183,7 @@ export function AboutHero() {
 
               <motion.p
                 initial={
-                  reduceMotion
+                  skipEntrance
                     ? false
                     : {
                         opacity: 0,
@@ -184,7 +205,7 @@ export function AboutHero() {
 
               <motion.div
                 className="sv-about-hero__line"
-                initial={reduceMotion ? false : { scaleX: 0 }}
+                initial={skipEntrance ? false : { scaleX: 0 }}
                 animate={{
                   scaleX: 1,
                 }}
