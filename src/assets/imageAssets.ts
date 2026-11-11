@@ -47,7 +47,7 @@ export const imageAssets = {
     },
 
     about:{
-        heroFinal: '/images/about-us/about-hero-thumnail.jpeg',
+        heroFinal: '/images/about-us/about-hero-thumbnail.jpeg',
     },
 
     //contact-cta
