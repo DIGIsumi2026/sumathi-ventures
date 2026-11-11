@@ -1,10 +1,9 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import FadeContent from '@/components/common/FadeContent';
 import { imageAssets } from '@/assets/imageAssets';
 
 export function VisionMission() {
-  const reduceMotion = useReducedMotion();
 
   return (
     <section className="sv-vision-mission">
@@ -15,15 +14,9 @@ export function VisionMission() {
 
       <div className="container sv-vision-mission__row sv-vision-mission__row--vision">
 
-        <motion.div
+        <FadeContent
           className="sv-vision-mission__content"
-          initial={reduceMotion ? false : { opacity:0, x:-45 }}
-          whileInView={{ opacity:1, x:0 }}
-          viewport={{ once:true, amount:.3 }}
-          transition={{
-            duration:reduceMotion ? 0 : .8,
-            ease:[.22,1,.36,1],
-          }}
+          effect="mist" duration={1.8} ease="power2.out" stagger={0.1} threshold={0.1}
         >
           <span className="sv-vision-mission__badge">
             OUR VISION
@@ -46,24 +39,18 @@ export function VisionMission() {
             className="sv-vision-mission__accent"
             aria-hidden="true"
           />
-        </motion.div>
+        </FadeContent>
 
-        <motion.div
+        <FadeContent
           className="sv-vision-mission__image"
-          initial={reduceMotion ? false : { opacity:0, y:40 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true, amount:.25 }}
-          transition={{
-            duration:reduceMotion ? 0 : .9,
-            ease:[.22,1,.36,1],
-          }}
+          effect="mist" duration={1.8} ease="power2.out" stagger={0} threshold={0.1}
         >
           <img
             src={imageAssets.about.vision}
             alt="Sumathi Ventures vision represented through strategic infrastructure and operational development"
             draggable={false}
           />
-        </motion.div>
+        </FadeContent>
 
       </div>
 
@@ -74,32 +61,20 @@ export function VisionMission() {
 
       <div className="container sv-vision-mission__row sv-vision-mission__row--mission">
 
-        <motion.div
+        <FadeContent
           className="sv-vision-mission__image"
-          initial={reduceMotion ? false : { opacity:0, y:40 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true, amount:.25 }}
-          transition={{
-            duration:reduceMotion ? 0 : .9,
-            ease:[.22,1,.36,1],
-          }}
+          effect="mist" duration={1.8} ease="power2.out" stagger={0} threshold={0.1}
         >
           <img
             src={imageAssets.about.mission}
             alt="Sumathi Ventures mission represented through commerce, logistics and operational coordination"
             draggable={false}
           />
-        </motion.div>
+        </FadeContent>
 
-        <motion.div
+        <FadeContent
           className="sv-vision-mission__content"
-          initial={reduceMotion ? false : { opacity:0, x:45 }}
-          whileInView={{ opacity:1, x:0 }}
-          viewport={{ once:true, amount:.3 }}
-          transition={{
-            duration:reduceMotion ? 0 : .8,
-            ease:[.22,1,.36,1],
-          }}
+          effect="mist" duration={1.8} ease="power2.out" stagger={0.1} threshold={0.1}
         >
           <span className="sv-vision-mission__badge">
             OUR MISSION
@@ -121,7 +96,7 @@ export function VisionMission() {
             className="sv-vision-mission__accent"
             aria-hidden="true"
           />
-        </motion.div>
+        </FadeContent>
 
       </div>
 
