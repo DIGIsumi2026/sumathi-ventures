@@ -48,6 +48,8 @@ export const imageAssets = {
 
     about:{
         heroFinal: '/images/about-us/about-hero-thumbnail.jpeg',
+        vision: '/images/about-us/vision.png',
+        mission: '/images/about-us/mission.png',
     },
 
     //contact-cta
