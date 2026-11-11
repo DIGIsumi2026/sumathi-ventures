@@ -46,6 +46,10 @@ export const imageAssets = {
         company17:'/images/hero/invested-companies/company-17-logo.webp',
     },
 
+    about:{
+        heroFinal: '/images/about-us/about-hero-thumnail.jpeg',
+    },
+
     //contact-cta
     contactCtaBanner: '/images/hero/contact-cta-banner.png',
 
