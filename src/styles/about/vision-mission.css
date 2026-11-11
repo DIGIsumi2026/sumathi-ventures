@@ -13,7 +13,7 @@
   width:420px;
   height:420px;
   border-radius:50%;
-  background:rgba(199,164,49,.07);
+  background:color-mix(in srgb,var(--sv-accent) 18%,transparent);
   filter:blur(10px);
   pointer-events:none;
 }
@@ -26,7 +26,7 @@
   width:460px;
   height:460px;
   border-radius:50%;
-  background:rgba(5,63,46,.05);
+  background:color-mix(in srgb,var(--sv-accent) 18%,transparent);
   pointer-events:none;
 }
 
@@ -52,28 +52,43 @@
 }
 
 .sv-vision-mission__badge {
+  position:relative;
   display:inline-flex;
   align-items:center;
   min-height:38px;
   padding:0 17px;
-  border:1px solid rgba(199,164,49,.25);
+  border:1px solid transparent;
   border-radius:999px;
-  background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(236,228,202,.72));
-  box-shadow:0 8px 28px rgba(46,39,15,.05);
-  color:#806d24;
+  background:linear-gradient(135deg,#f4fbef,var(--sv-accent));
+  box-shadow:0 8px 28px rgba(18,62,48,.06);
+  color:var(--sv-green);
   font-size:.72rem;
   font-weight:800;
   letter-spacing:.18em;
+}
+
+.sv-vision-mission__badge::before {
+  content:"";
+  position:absolute;
+  inset:-4px;
+  padding:1px;
+  border-radius:inherit;
+  background:linear-gradient(120deg,#dff4d5,var(--sv-accent),#ccebbf);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
 }
 
 .sv-vision-mission__content h2 {
   max-width:680px;
   margin:24px 0 0;
   color:#07372b;
-  font-size:clamp(2.8rem,4vw,5.6rem);
+  font-size:clamp(2.8rem,3vw,5.6rem);
   font-weight:600;
-  line-height:1.06;
-  letter-spacing:-0.035em;
+  line-height:1.13;
+  letter-spacing:-0.005em;
   text-wrap:balance;
 }
 
@@ -90,17 +105,23 @@
   width:82px;
   height:2px;
   margin-top:32px;
-  background:linear-gradient(90deg,#c7a431,rgba(199,164,49,.15));
+  background:linear-gradient(90deg,var(--sv-green),var(--sv-accent));
 }
 
 .sv-vision-mission__image {
   position:relative;
-  width:100%;
+  width:90%;
+  max-width:520px;
+  justify-self:start;
   aspect-ratio:4/5;
   overflow:hidden;
   border-radius:30px;
   background:#e8e4d8;
   box-shadow:0 28px 70px rgba(15,34,27,.12);
+}
+
+.sv-vision-mission__row--mission .sv-vision-mission__image {
+  justify-self:end;
 }
 
 .sv-vision-mission__image::before {
@@ -194,8 +215,13 @@
   }
 
   .sv-vision-mission__image {
-    max-width:520px;
+    width:92%;
+    max-width:460px;
     border-radius:24px;
+  }
+
+  .sv-vision-mission__row--mission .sv-vision-mission__image {
+    justify-self:start;
   }
 }
 

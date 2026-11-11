@@ -169,7 +169,7 @@ export default function FadeContent({
     return () => media.revert();
   }, [effect, duration, ease, stagger, threshold]);
 
-  // Server-rendered content remains readable if JavaScript is unavailable.
+  
   return (
     <div ref={root} {...props}>
       {children}
