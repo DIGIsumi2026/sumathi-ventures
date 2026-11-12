@@ -1,0 +1,234 @@
+.sv-about-contact {
+  position:relative;
+  width:min(1600px,100%);
+  aspect-ratio:4/1;
+  margin-inline:auto;
+  overflow:hidden;
+  background:#05251b;
+  color:#fff;
+  isolation:isolate;
+}
+
+.sv-about-contact__media {
+  position:absolute;
+  inset:0;
+  z-index:-3;
+}
+
+.sv-about-contact__media img {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+
+.sv-about-contact__overlay {
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:linear-gradient(90deg,rgba(2,24,18,.96) 0%,rgba(2,24,18,.87) 25%,rgba(2,24,18,.58) 43%,rgba(2,24,18,.18) 61%,rgba(2,24,18,.04) 100%);
+  pointer-events:none;
+}
+
+.sv-about-contact__inner {
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.sv-about-contact__content {
+  width:min(690px,50%);
+}
+
+.sv-about-contact__eyebrow {
+  display:block;
+  margin:0 0 14px;
+  color:#d7ba4c;
+  font-size:.69rem;
+  font-weight:800;
+  letter-spacing:.19em;
+}
+
+.sv-about-contact h2 {
+  max-width:650px;
+  margin:0;
+  color:#fff;
+  font-size:clamp(2.6rem,3.25vw,4.8rem);
+  font-weight:600;
+  line-height:1.05;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+}
+
+.sv-about-contact__content>p {
+  max-width:580px;
+  margin:18px 0 0;
+  color:rgba(255,255,255,.76);
+  font-size:clamp(.92rem,1vw,1.05rem);
+  line-height:1.7;
+}
+
+.sv-about-contact__actions {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:27px;
+}
+
+.sv-about-contact__button {
+  min-height:54px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border-radius:999px;
+  text-decoration:none;
+  transition:transform .4s cubic-bezier(.16,1,.3,1),background .4s cubic-bezier(.16,1,.3,1),border-color .4s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-about-contact__button--whatsapp {
+  padding:7px 20px 7px 8px;
+  border:1px solid rgba(255,255,255,.17);
+  background:rgba(255,255,255,.09);
+  color:#fff;
+  backdrop-filter:blur(12px);
+}
+
+.sv-about-contact__button-icon {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  border-radius:50%;
+  background:#d7ba4c;
+  color:#06251d;
+}
+
+.sv-about-contact__button--whatsapp>span:last-child {
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  font-size:.88rem;
+  font-weight:700;
+  line-height:1.2;
+}
+
+.sv-about-contact__button--whatsapp small {
+  color:rgba(255,255,255,.56);
+  font-size:.56rem;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.sv-about-contact__button--contact {
+  padding:7px 8px 7px 22px;
+  background:#d7ba4c;
+  color:#07271d;
+  font-size:.86rem;
+  font-weight:800;
+}
+
+.sv-about-contact__button-arrow {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#07271d;
+  color:#fff;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+@media(hover:hover) {
+  .sv-about-contact__button:hover {
+    transform:translateY(-3px);
+  }
+
+  .sv-about-contact__button--whatsapp:hover {
+    border-color:rgba(215,186,76,.5);
+    background:rgba(255,255,255,.13);
+  }
+
+  .sv-about-contact__button--contact:hover .sv-about-contact__button-arrow {
+    transform:rotate(45deg);
+  }
+}
+
+@media(max-width:1000px) {
+  .sv-about-contact {
+    aspect-ratio:auto;
+    min-height:430px;
+  }
+
+  .sv-about-contact__content {
+    width:58%;
+  }
+
+  .sv-about-contact h2 {
+    font-size:clamp(2.5rem,5vw,4rem);
+  }
+}
+
+@media(max-width:700px) {
+  .sv-about-contact {
+    min-height:600px;
+  }
+
+  .sv-about-contact__media img {
+    object-position:68% center;
+  }
+
+  .sv-about-contact__overlay {
+    background:linear-gradient(180deg,rgba(2,24,18,.25) 0%,rgba(2,24,18,.42) 35%,rgba(2,24,18,.92) 68%,rgba(2,24,18,.98) 100%);
+  }
+
+  .sv-about-contact__inner {
+    align-items:flex-end;
+  }
+
+  .sv-about-contact__content {
+    width:100%;
+    padding:55px 0;
+  }
+
+  .sv-about-contact h2 {
+    max-width:540px;
+    font-size:clamp(2.35rem,8vw,3.5rem);
+  }
+
+  .sv-about-contact__content>p {
+    max-width:520px;
+  }
+}
+
+@media(max-width:480px) {
+  .sv-about-contact {
+    min-height:620px;
+  }
+
+  .sv-about-contact__media img {
+    object-position:72% center;
+  }
+
+  .sv-about-contact__content {
+    padding:45px 0;
+  }
+
+  .sv-about-contact__actions {
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .sv-about-contact__button {
+    width:100%;
+  }
+
+  .sv-about-contact__button--contact {
+    justify-content:space-between;
+  }
+}

@@ -51,6 +51,7 @@ export const imageAssets = {
         vision: '/images/about-us/vision.png',
         mission: '/images/about-us/mission.png',
         foundationValues: '/images/about-us/foundation-values.jpg',
+        contactBanner: '/images/about-us/about-contact-banner.png',
     },
 
     //contact-cta
