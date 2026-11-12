@@ -45,20 +45,7 @@
   text-align:center;
 }
 
-.sv-foundation-values__eyebrow {
-  display:inline-flex;
-  align-items:center;
-  min-height:36px;
-  padding:0 17px;
-  border:1px solid rgba(216,184,73,.28);
-  border-radius:999px;
-  background:rgba(6,43,33,.44);
-  color:#d7ba4c;
-  font-size:.7rem;
-  font-weight:800;
-  letter-spacing:.18em;
-  backdrop-filter:blur(10px);
-}
+
 
 .sv-foundation-values h2 {
   max-width:900px;
@@ -137,13 +124,6 @@
   .sv-foundation-values {
     min-height:560px;
   }
-
-  .sv-foundation-values__eyebrow {
-    min-height:33px;
-    padding:0 14px;
-    font-size:.62rem;
-  }
-
   .sv-foundation-values h2 {
     margin-top:17px;
     font-size:clamp(2.1rem,9vw,3rem);

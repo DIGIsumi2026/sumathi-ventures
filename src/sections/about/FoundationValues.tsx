@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'motion/react';
 import { imageAssets } from '@/assets/imageAssets';
+import TrueFocus from '@/components/common/TrueFocus';
 
 export function FoundationValues() {
   const reduced = useReducedMotion();
@@ -34,7 +35,22 @@ export function FoundationValues() {
         >
 
           <h2 id="sv-foundation-values-title">
-            Our Foundation of Values
+            <TrueFocus
+              sentence="Foundation Values"
+              manualMode={false}
+              focusStyle="brackets"
+              easing="smooth"
+              order="sequential"
+              blurAmount={5}
+              focusScale={1}
+              unfocusedOpacity={1}
+              borderColor="#27ff6f"
+              cornerSize={16}
+              borderWidth={3}
+              animationDuration={0.5}
+              pauseBetweenAnimations={1}
+              highlightColor="#27ff6f"
+            />
           </h2>
 
           <p>
