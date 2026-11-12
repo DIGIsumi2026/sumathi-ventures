@@ -50,6 +50,7 @@ export const imageAssets = {
         heroFinal: '/images/about-us/about-hero-thumbnail.jpeg',
         vision: '/images/about-us/vision.png',
         mission: '/images/about-us/mission.png',
+        foundationValues: '/images/about-us/foundation-values.jpg',
     },
 
     //contact-cta
