@@ -1,14 +1,20 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { imageAssets } from '@/assets/imageAssets';
 import TrueFocus from '@/components/common/TrueFocus';
 
 export function FoundationValues() {
+  const section = useRef<HTMLElement>(null);
+  const active = useInView(section, { amount: 0.15, margin: '-80px 0px 0px 0px' });
   const reduced = useReducedMotion();
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
 
   return (
     <section
+      ref={section}
       className="sv-foundation-values"
       aria-labelledby="sv-foundation-values-title"
     >
@@ -25,9 +31,8 @@ export function FoundationValues() {
       <div className="container sv-foundation-values__inner">
         <motion.div
           className="sv-foundation-values__content"
-          initial={reduced ? false : { opacity:0, y:30 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true, amount:.35 }}
+          initial={false}
+          animate={!hydrated || active || reduced ? { opacity:1, y:0 } : { opacity:0, y:30 }}
           transition={{
             duration:reduced ? 0 : .8,
             ease:[.22,1,.36,1],
@@ -36,6 +41,7 @@ export function FoundationValues() {
 
           <h2 id="sv-foundation-values-title">
             <TrueFocus
+              active={active}
               sentence="Foundation Values"
               manualMode={false}
               focusStyle="brackets"

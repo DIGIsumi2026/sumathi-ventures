@@ -46,7 +46,7 @@
 .sv-about-contact__eyebrow {
   display:block;
   margin:0 0 14px;
-  color:#d7ba4c;
+  color:var(--sv-accent);
   font-size:.69rem;
   font-weight:800;
   letter-spacing:.19em;
@@ -105,7 +105,7 @@
   place-items:center;
   flex:0 0 auto;
   border-radius:50%;
-  background:#d7ba4c;
+  background:var(--sv-accent);
   color:#06251d;
 }
 
@@ -127,7 +127,7 @@
 
 .sv-about-contact__button--contact {
   padding:7px 8px 7px 22px;
-  background:#d7ba4c;
+  background:var(--sv-accent);
   color:#07271d;
   font-size:.86rem;
   font-weight:800;
@@ -150,7 +150,7 @@
   }
 
   .sv-about-contact__button--whatsapp:hover {
-    border-color:rgba(215,186,76,.5);
+    border-color:color-mix(in srgb,var(--sv-accent) 50%,transparent);
     background:rgba(255,255,255,.13);
   }
 

@@ -5,6 +5,7 @@ import { motion, useInView, type Transition } from 'motion/react';
 import '@/styles/common/true-focus.css';
 
 interface TrueFocusProps {
+  active?: boolean;
   sentence?: string;
   separator?: string;
   manualMode?: boolean;
@@ -41,6 +42,7 @@ const SPRING_CSS = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 const TrueFocus: FC<TrueFocusProps> = ({
+  active,
   sentence = 'True Focus',
   separator = ' ',
   manualMode = false,
@@ -64,7 +66,9 @@ const TrueFocus: FC<TrueFocusProps> = ({
   const containerRef = useRef<HTMLSpanElement>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [reduceMotion, setReduceMotion] = useState(true);
-  const inView = useInView(containerRef, { amount: 0.5 });
+  const headingInView = useInView(containerRef, { amount: 0.5 });
+  const inView = active ?? headingInView;
+  const showFocus = Boolean(focusRect && inView && !reduceMotion);
   const duration = reduceMotion ? 0 : animationDuration;
   const activeIndex = words.length ? currentIndex % words.length : -1;
   const spring = easing === 'spring' && !reduceMotion;
@@ -178,7 +182,7 @@ const TrueFocus: FC<TrueFocusProps> = ({
   return (
     <span className="sv-true-focus" ref={containerRef} style={frameStyle}>
       <span className="sv-true-focus__sr">{sentence}</span>
-      {focusStyle === 'highlight' && shapes && !reduceMotion && (
+      {focusStyle === 'highlight' && shapes && showFocus && (
         <motion.span
           className="sv-focus-highlight"
           aria-hidden="true"
@@ -199,9 +203,9 @@ const TrueFocus: FC<TrueFocusProps> = ({
             className={`sv-focus-word ${manualMode ? 'manual' : ''} ${isActive && !manualMode ? 'active' : ''}`}
             aria-hidden="true"
             style={{
-              filter: `blur(${!focusRect || reduceMotion || isActive ? 0 : blurAmount}px)`,
-              opacity: !focusRect || reduceMotion || isActive ? 1 : unfocusedOpacity,
-              transform: !reduceMotion && focusScale !== 1 ? `scale(${isActive ? focusScale : 1})` : undefined,
+              filter: `blur(${!showFocus || isActive ? 0 : blurAmount}px)`,
+              opacity: !showFocus || isActive ? 1 : unfocusedOpacity,
+              transform: showFocus && focusScale !== 1 ? `scale(${isActive ? focusScale : 1})` : undefined,
               transition: `filter ${duration}s ease, opacity ${duration}s ease, transform ${duration}s ${spring ? SPRING_CSS : SMOOTH_CSS}`
             }}
             onMouseEnter={() => {
@@ -213,7 +217,7 @@ const TrueFocus: FC<TrueFocusProps> = ({
         );
       })}
 
-      {shapes && corners && !reduceMotion && focusStyle !== 'highlight' && (
+      {shapes && corners && showFocus && focusStyle !== 'highlight' && (
         <span className="sv-focus-frame" aria-hidden="true">
           {focusStyle === 'box' && (
             <motion.span

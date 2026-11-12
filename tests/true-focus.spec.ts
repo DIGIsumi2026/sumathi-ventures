@@ -55,3 +55,32 @@ test('reduced motion keeps the full heading sharp and responds to live preferenc
   await expect(page.locator(`${focus} .sv-focus-frame`)).toHaveCount(0);
   for (const word of await page.locator(words).all()) await expect(word).toHaveCSS('filter', 'blur(0px)');
 });
+
+for (const width of [1440, 390]) {
+  test(`About section reveals replay and focus pauses offscreen at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/about/');
+    const company = page.locator('.sv-company-intro');
+    const companyContent = page.locator('.sv-company-intro__content');
+    const foundationContent = page.locator('.sv-foundation-values__content');
+    await expect(companyContent).toHaveCSS('opacity', '0');
+    await expect(foundationContent).toHaveCSS('opacity', '0');
+    await expect(page.locator(`${focus} .sv-focus-frame`)).toHaveCount(0);
+    for (let visit = 0; visit < 2; visit++) {
+      await company.scrollIntoViewIfNeeded();
+      await expect(companyContent).toHaveCSS('opacity', '1');
+      await page.locator(section).scrollIntoViewIfNeeded();
+      await expect(foundationContent).toHaveCSS('opacity', '1');
+      await expect(page.locator(`${focus} .sv-focus-corner`)).toHaveCount(4);
+      const initialWord = await page.locator(`${words}.active`).textContent();
+      await expect(page.locator(`${words}.active`)).not.toHaveText(initialWord!);
+      await page.locator('.sv-about-hero').scrollIntoViewIfNeeded();
+      await expect(companyContent).toHaveCSS('opacity', '0');
+      await expect(foundationContent).toHaveCSS('opacity', '0');
+      await expect(page.locator(`${focus} .sv-focus-frame`)).toHaveCount(0);
+      const pausedWord = await page.locator(`${words}.active`).textContent();
+      await page.waitForTimeout(1700);
+      await expect(page.locator(`${words}.active`)).toHaveText(pausedWord!);
+    }
+  });
+}

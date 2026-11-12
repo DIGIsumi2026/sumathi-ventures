@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { MarketChartBackground } from '@/components/common/MarketChartBackground';
-import { useSectionEntered } from '@/hooks/useSectionEntered';
 
 export function CompanyIntro() {
   const section = useRef<HTMLElement>(null);
-  const entered = useSectionEntered(section);
+  const active = useInView(section, { amount: 0.15, margin: '-80px 0px 0px 0px' });
   const reduced = useReducedMotion();
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => setHydrated(true), []);
@@ -22,7 +21,7 @@ export function CompanyIntro() {
         <motion.div
           className="sv-company-intro__content"
           initial={false}
-          animate={!hydrated || entered || reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          animate={!hydrated || active || reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: reduced ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 id="sv-company-intro-title">
