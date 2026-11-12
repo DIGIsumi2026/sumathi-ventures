@@ -25,7 +25,6 @@ export function CompanyIntro() {
           animate={!hydrated || entered || reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: reduced ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="sv-company-intro__badge">ABOUT SUMATHI VENTURES</span>
           <h2 id="sv-company-intro-title">
             Built on Experience.
             <br />
