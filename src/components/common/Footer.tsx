@@ -42,6 +42,7 @@ export function Footer() {
                     © {new Date().getFullYear()} Sumathi Ventures (Pvt) Ltd. All rights reserved.
                 </span>
                 <span>Strategic partnerships. Responsible growth.</span>
+                <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer" title="TradingView Lightweight Charts™ — Copyright (с) 2025 TradingView, Inc.">Charts by TradingView</a>
             </div>
         </footer>
     );
