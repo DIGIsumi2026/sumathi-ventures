@@ -25,9 +25,9 @@ test('synthetic candles and volume data have matching timestamps and valid range
   }
 });
 
-for (const width of [1920, 1440, 1280, 1024, 768, 430, 390, 375, 360]) {
+for (const [width, height] of [[1920, 1080], [1600, 900], [1440, 900], [1280, 800], [1024, 768], [820, 1180], [430, 932], [390, 844], [375, 812], [360, 800]]) {
   test(`company introduction renders intact at ${width}px`, async ({ page }) => {
-    await page.setViewportSize({ width, height: 1000 });
+    await page.setViewportSize({ width, height });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -44,8 +44,31 @@ for (const width of [1920, 1440, 1280, 1024, 768, 430, 390, 375, 360]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.locator('.sv-footer').getByRole('link', { name: 'Charts by TradingView' })).toHaveAttribute('href', 'https://www.tradingview.com/');
     await expect(page.locator(`${section} video, ${section} iframe, ${section} button`)).toHaveCount(0);
+    const composition = await page.locator(section).evaluate((node) => {
+      const graph = node.querySelector('.sv-company-intro__chart')!.getBoundingClientRect();
+      const badge = node.querySelector('.sv-company-intro__badge')!.getBoundingClientRect();
+      const content = node.querySelector('.sv-company-intro__content')!.getBoundingClientRect();
+      return {
+        graphRight: graph.right, graphLeft: graph.left, graphBottom: graph.bottom,
+        badgeTop: badge.top, contentWidth: content.width,
+        opacity: Number(getComputedStyle(node.querySelector('.sv-company-intro__chart')!).opacity),
+        leadingBullet: getComputedStyle(node.querySelector('li')!, '::before').content,
+      };
+    });
+    expect(composition.opacity).toBeGreaterThanOrEqual(.6);
+    expect(composition.leadingBullet).toBe('none');
+    if (width <= 700) {
+      expect(composition.graphBottom).toBeLessThan(composition.badgeTop);
+      expect(composition.graphRight - composition.graphLeft).toBeGreaterThan(width);
+    } else {
+      expect(composition.graphLeft).toBeGreaterThan(width * .4);
+      expect(composition.contentWidth).toBeLessThan(width * .62);
+    }
     expect(errors).toEqual([]);
-    if ([1440, 390].includes(width)) await page.locator(section).screenshot({ path: test.info().outputPath(`company-intro-${width}.png`) });
+    if ([1920, 1440, 820, 390].includes(width)) await page.locator(section).screenshot({
+      path: test.info().outputPath(`company-intro-${width}.png`),
+      style: '.sv-header, .skip-link, .sv-top, .sv-custom-cursor { visibility: hidden !important; }',
+    });
   });
 }
 
@@ -67,6 +90,11 @@ test('chart pauses offscreen and with a hidden tab, responds to reduced motion a
   await openIntro(page);
   const count = () => page.locator(chart).getAttribute('data-point-count').then(Number);
   await expect(page.locator(chart)).toHaveAttribute('data-playback', 'playing');
+  const bounds = await page.locator(section).boundingBox();
+  await page.mouse.move(1300, Math.max(120, bounds!.y + 200));
+  await expect(page.locator('.sv-custom-cursor')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.sv-cursor-label')).toBeEmpty();
+  await expect(page.locator('html')).toHaveClass(/sv-cursor-enabled/);
   await page.locator('.sv-about-hero').scrollIntoViewIfNeeded();
   await expect(page.locator(chart)).toHaveAttribute('data-playback', 'paused');
   const paused = await count();
@@ -86,7 +114,9 @@ test('chart pauses offscreen and with a hidden tab, responds to reduced motion a
   await page.locator('.sv-desktop-nav').getByRole('link', { name: 'Home', exact: true }).click();
   await expect(page.locator(chart)).toHaveCount(0);
   await page.locator('.sv-desktop-nav').getByRole('link', { name: 'About', exact: true }).click();
-  await openIntro(page);
+  await expect(page).toHaveURL(/\/about\/$/);
+  await page.locator(section).scrollIntoViewIfNeeded();
+  await expect(page.locator(chart)).toHaveAttribute('data-ready', 'true');
   await expect(page.locator(chart)).toHaveCount(1);
 });
 
@@ -98,4 +128,21 @@ test('company copy is visible without JavaScript', async ({ browser }) => {
     await expect(page.locator(`${section} .sv-company-intro__content > p`)).toHaveText(paragraphs);
     await expect(page.locator('.sv-company-intro__content')).toHaveCSS('opacity', '1');
   } finally { await context.close(); }
+});
+
+test('chart continues animating through desktop, mobile and small mobile resizing without remounting', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await openIntro(page);
+  const count = () => page.locator(chart).getAttribute('data-point-count').then(Number);
+  await expect.poll(count).toBeGreaterThan(7);
+  await page.locator(`${chart} canvas`).first().evaluate((canvas) => canvas.setAttribute('data-resize-probe', 'original'));
+  for (const width of [390, 360, 1440]) {
+    const before = await count();
+    await page.setViewportSize({ width, height: 900 });
+    await page.locator(section).scrollIntoViewIfNeeded();
+    await expect(page.locator(chart)).toHaveAttribute('data-playback', 'playing');
+    await expect(page.locator(`${chart} canvas`).first()).toHaveAttribute('data-resize-probe', 'original');
+    expect(await count()).toBeGreaterThanOrEqual(before);
+    await expect.poll(count).toBeGreaterThan(before);
+  }
 });

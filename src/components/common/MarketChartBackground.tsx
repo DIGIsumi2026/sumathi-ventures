@@ -36,8 +36,8 @@ export function MarketChartBackground() {
                 attributionLogo: false,
               },
               grid: {
-                vertLines: { visible: false },
-                horzLines: { color: 'rgba(255,255,255,.055)' },
+                vertLines: { color: 'rgba(80,180,125,.10)' },
+                horzLines: { color: 'rgba(80,180,125,.10)' },
               },
               leftPriceScale: { visible: false },
               rightPriceScale: {
@@ -80,7 +80,7 @@ export function MarketChartBackground() {
             let index = 0;
             let phase: 'play' | 'hold' | 'reset' = 'play';
             let timer: ReturnType<typeof setTimeout> | undefined;
-            let isStatic = reduced.matches || element.clientWidth <= 360;
+            let isStatic = reduced.matches;
 
             const range = () => {
               const count = element.clientWidth <= 700 ? 18 : companyCandles.length;
@@ -134,7 +134,7 @@ export function MarketChartBackground() {
             updatePlayback();
             const resize = new ResizeObserver(() => {
               chart.applyOptions({ width: element.clientWidth, height: element.clientHeight });
-              const nextStatic = reduced.matches || element.clientWidth <= 360;
+              const nextStatic = reduced.matches;
               if (nextStatic !== isStatic) {
                 isStatic = nextStatic;
                 reset();
@@ -142,7 +142,7 @@ export function MarketChartBackground() {
               } else range();
             });
             const onMotion = () => {
-              isStatic = reduced.matches || element.clientWidth <= 360;
+              isStatic = reduced.matches;
               reset();
               updatePlayback();
             };
