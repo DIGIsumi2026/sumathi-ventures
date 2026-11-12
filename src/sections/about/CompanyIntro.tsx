@@ -26,9 +26,9 @@ export function CompanyIntro() {
           transition={{ duration: reduced ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 id="sv-company-intro-title">
-            Built on Experience.
+            Built on Experience
             <br />
-            Structured for Partnership.
+            Structured for Partnership
           </h2>
           <p>
             Incorporated on the 30th October 2020, Sumathi Ventures is driven by the visionary
