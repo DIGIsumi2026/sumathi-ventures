@@ -113,14 +113,14 @@ export function InvestmentFocusHero() {
           <h1 id="sv-investment-hero-title">
             Investing Across Industries
             <br />
-            Building Long-Term Value
+            Building Long Term Value
           </h1>
 
           <p>
             From sustainable industry and engineering to technology,
             printing, business and entertainment, we pursue strategic
             opportunities built around partnership, execution and
-            long-term growth.
+            long term growth.
           </p>
 
           <a
