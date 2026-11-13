@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { sectors } from '@/lib/site';
-export function FocusCards() {
+export function FocusCards({ id }: { id?: string }) {
     return (
-        <section className="sv-focus sv-section">
+        <section id={id} className="sv-focus sv-section">
             <div className="container">
                 <div className="sv-section__heading" data-reveal>
                     <div>

@@ -1,4 +1,4 @@
-import { FocusScreen } from '@/screens/FocusScreen';
+import {InvestmentFocusScreen} from '@/screens/InvestmentFocusScreen';
 export default function Page() {
-    return <FocusScreen />;
+    return <InvestmentFocusScreen />;
 }

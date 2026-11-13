@@ -7,7 +7,7 @@ import '@/styles/about/about-contact.css';
 
 import {AboutHero} from '@/sections/about/AboutHero';
 import {VisionMission} from '@/sections/about/VisionMission';
-import { CompanyIntro } from '@/sections/about/CompanyIntro';
+import {CompanyIntro} from '@/sections/about/CompanyIntro';
 import {FoundationValues} from '@/sections/about/FoundationValues';
 import {AboutContactBanner} from '@/sections/about/AboutContactBanner';
 export function AboutScreen() {

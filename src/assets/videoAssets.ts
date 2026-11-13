@@ -6,5 +6,10 @@ export const videoAssets = {
     //about-us
     logoReveal: '/videos/about/about-us.mp4',
 
+    //investment-focus
+    investmentFocus: {
+    hero:'/videos/investment-focus/invetment-hero.mp4',
+  },
+
 
 } as const;

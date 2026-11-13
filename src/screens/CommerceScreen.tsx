@@ -1,4 +1,3 @@
-import '@/styles/investment-focus/focus.css';
 import { InnerHero } from '@/components/common/InnerHero';
 import { AnimatedButton } from '@/components/common/AnimatedButton';
 const focusAreas = [

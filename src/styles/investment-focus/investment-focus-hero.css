@@ -1,0 +1,235 @@
+/* Page-specific rules for investment-focus — focus go here. Shared inner-page styles are in common/inner-pages.css. */
+.sv-investment-hero {
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  overflow:hidden;
+  isolation:isolate;
+  background:#031b15;
+  color:#fff;
+}
+
+.sv-investment-hero__desktop-media,
+.sv-investment-hero__responsive-media {
+  position:absolute;
+  inset:0;
+  z-index:-4;
+}
+
+.sv-investment-hero__video {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+
+.sv-investment-hero__responsive-media {
+  display:block;
+}
+
+.sv-investment-hero__responsive-media picture,
+.sv-investment-hero__responsive-media img {
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.sv-investment-hero__responsive-media img {
+  object-fit:cover;
+}
+
+.sv-investment-hero__overlay {
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background:linear-gradient(90deg,rgba(2,20,15,.91) 0%,rgba(2,20,15,.74) 30%,rgba(2,20,15,.38) 55%,rgba(2,20,15,.15) 78%,rgba(2,20,15,.22) 100%),linear-gradient(180deg,rgba(0,0,0,.10) 0%,rgba(0,0,0,.03) 48%,rgba(1,15,11,.58) 100%);
+  pointer-events:none;
+}
+
+.sv-investment-hero__inner {
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+.sv-investment-hero__content {
+  width:min(850px,58%);
+  padding:150px 0 100px;
+}
+
+.sv-investment-hero h1 {
+  max-width:900px;
+  margin:24px 0 0;
+  color:#fff;
+  font-size:clamp(3.2rem,5vw,7rem);
+  font-weight:600;
+  line-height:1.03;
+  letter-spacing:-.035em;
+  text-wrap:balance;
+}
+
+.sv-investment-hero__content>p {
+  max-width:650px;
+  margin:25px 0 0;
+  color:rgba(255,255,255,.78);
+  font-size:clamp(1rem,1.2vw,1.15rem);
+  line-height:1.75;
+}
+
+.sv-investment-hero__explore {
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:32px;
+  color:#fff;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-decoration:none;
+}
+
+.sv-investment-hero__explore-line {
+  position:relative;
+  width:65px;
+  height:1px;
+  overflow:hidden;
+  background:rgba(255,255,255,.36);
+}
+
+.sv-investment-hero__explore-line::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#d7ba4c;
+  transform:translateX(-100%);
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-investment-hero__scroll {
+  position:absolute;
+  right:34px;
+  bottom:34px;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:rgba(255,255,255,.62);
+  font-size:.59rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  writing-mode:vertical-rl;
+}
+
+.sv-investment-hero__scroll i {
+  width:1px;
+  height:50px;
+  display:block;
+  background:linear-gradient(180deg,#d7ba4c,transparent);
+}
+
+@media(hover:hover) {
+  .sv-investment-hero__explore:hover .sv-investment-hero__explore-line::after {
+    transform:translateX(0);
+  }
+}
+
+@media(max-width:1200px) and (min-width:1025px) {
+  .sv-investment-hero__content {
+    width:62%;
+  }
+
+  .sv-investment-hero h1 {
+    font-size:clamp(3rem,5vw,5rem);
+  }
+}
+
+/* tablet view */
+@media(max-width:1024px) {
+  .sv-investment-hero {
+    min-height:100svh;
+  }
+
+  .sv-investment-hero__desktop-media {
+    display:none;
+  }
+
+  .sv-investment-hero__responsive-media {
+    display:block;
+  }
+
+  .sv-investment-hero__responsive-media img {
+    object-position:center;
+  }
+
+  .sv-investment-hero__overlay {
+    background:linear-gradient(90deg,rgba(2,20,15,.91) 0%,rgba(2,20,15,.71) 40%,rgba(2,20,15,.23) 72%,rgba(2,20,15,.10) 100%),linear-gradient(180deg,rgba(1,15,11,.06) 0%,rgba(1,15,11,.15) 58%,rgba(1,15,11,.65) 100%);
+  }
+
+  .sv-investment-hero__content {
+    width:68%;
+    padding:130px 0 80px;
+  }
+
+  .sv-investment-hero h1 {
+    font-size:clamp(3rem,6vw,5.3rem);
+  }
+}
+
+/* mobile view */
+@media(max-width:700px) {
+  .sv-investment-hero {
+    min-height:100svh;
+  }
+
+  .sv-investment-hero__responsive-media img {
+    object-position:center;
+  }
+
+  .sv-investment-hero__overlay {
+    background:linear-gradient(180deg,rgba(2,20,15,.12) 0%,rgba(2,20,15,.24) 33%,rgba(2,20,15,.72) 58%,rgba(2,20,15,.96) 82%,#021812 100%);
+  }
+
+  .sv-investment-hero__inner {
+    min-height:100svh;
+    align-items:flex-end;
+  }
+
+  .sv-investment-hero__content {
+    width:100%;
+    padding:110px 0 72px;
+  }
+
+  .sv-investment-hero__eyebrow {
+    min-height:34px;
+    padding:0 14px;
+    font-size:.62rem;
+    letter-spacing:.15em;
+  }
+
+  .sv-investment-hero h1 {
+    max-width:580px;
+    margin-top:18px;
+    font-size:clamp(2.55rem,10vw,4rem);
+    line-height:1.05;
+  }
+
+  .sv-investment-hero__content>p {
+    max-width:520px;
+    margin-top:19px;
+    font-size:.94rem;
+    line-height:1.7;
+  }
+
+  .sv-investment-hero__explore {
+    margin-top:25px;
+    font-size:.65rem;
+  }
+
+  .sv-investment-hero__scroll {
+    display:none;
+  }
+}

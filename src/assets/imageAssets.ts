@@ -57,4 +57,10 @@ export const imageAssets = {
     //contact-cta
     contactCtaBanner: '/images/hero/contact-cta-banner.png',
 
+    //investment-focus page 
+    investmentFocus:{
+        heroTabletPoster: '/images/investment-focus/hero-tablet-poster.png',
+        heroMobilePoster: '/images/investment-focus/hero-mobile-poster.png',
+},
+
 } as const;
