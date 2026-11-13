@@ -5,12 +5,15 @@ import '@/styles/common/buttons.css';
 import '@/styles/common/footer.css';
 import '@/styles/common/back-to-top.css';
 import '@/styles/common/inner-pages.css';
+import '@/styles/common/floating-actions.css';
+
 import { Navbar } from '@/components/common/Navbar';
 import { Footer } from '@/components/common/Footer';
 import { BackToTop } from '@/components/common/BackToTop';
 import { ScrollReveals } from '@/components/common/ScrollReveals';
 import { PageTransition } from '@/components/common/PageTransition';
 import { CustomCursor } from '@/components/common/CustomCursor';
+import {WhatsAppFloating} from '@/components/common/WhatsAppFloating';
 
 export const metadata: Metadata = {
     title: {
@@ -39,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     <PageTransition>{children}</PageTransition>
                 </main>
                 <Footer />
+                <WhatsAppFloating/>
                 <BackToTop />
                 <ScrollReveals />
                 <CustomCursor />
