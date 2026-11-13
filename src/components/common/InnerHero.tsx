@@ -9,7 +9,7 @@ export function InnerHero({
     description: ReactNode;
 }) {
     return (
-        <section className="sv-inner-hero">
+        <section className="sv-inner-hero" data-page-hero>
             <div className="container">
                 <p className="sv-overline">{eyebrow}</p>
                 <h1>{title}</h1>

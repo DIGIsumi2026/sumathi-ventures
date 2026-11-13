@@ -1,17 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 gsap.registerPlugin(ScrollToPlugin);
-export function BackToTop() {
-    const [shown, setShown] = useState(false);
-    useEffect(() => {
-        const onScroll = () => setShown(window.scrollY > 500);
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+export function BackToTop({ shown }: { shown: boolean }) {
     const scrollTop = () => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             window.scrollTo(0, 0);
@@ -32,6 +24,8 @@ export function BackToTop() {
             onClick={scrollTop}
             className={`sv-top ${shown ? 'is-shown' : ''}`}
             aria-label="Scroll to top"
+            aria-hidden={!shown}
+            tabIndex={shown ? 0 : -1}
         >
             <ArrowUp size={21} />
         </button>

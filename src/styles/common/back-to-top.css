@@ -13,13 +13,15 @@
   box-shadow: 0 9px 30px #0725172f;
   z-index: 420;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(18px) scale(.7);
   pointer-events: none;
-  transition: opacity .3s,transform .35s cubic-bezier(.2,.8,.2,1),background .25s;
+  transition: opacity .3s,transform .35s cubic-bezier(.2,.8,.2,1),background .25s,visibility .3s;
 }
 
 .sv-top.is-shown {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }

@@ -57,7 +57,7 @@ export function AboutHero() {
   }, [showVideo]);
 
   return (
-    <section className="sv-about-hero" aria-labelledby="sv-about-hero-title">
+    <section className="sv-about-hero" aria-labelledby="sv-about-hero-title" data-page-hero>
       <div className="sv-about-hero__media">
         {showVideo && (
           <motion.video

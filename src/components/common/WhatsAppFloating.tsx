@@ -1,14 +1,16 @@
 'use client';
 
-export function WhatsAppFloating() {
+export function WhatsAppFloating({ shown }: { shown: boolean }) {
   return (
     <a
-      className="sv-whatsapp-floating"
+      className={`sv-whatsapp-floating ${shown ? 'is-shown' : ''}`}
       href="https://wa.me/94722259524"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Sumathi Ventures on WhatsApp"
       title="Chat on WhatsApp"
+      aria-hidden={!shown}
+      tabIndex={shown ? 0 : -1}
     >
       <svg
         viewBox="0 0 32 32"

@@ -141,6 +141,7 @@ export function Hero() {
 
     return (
         <section
+            data-page-hero
             ref={root}
             className="sv-hero sv-hero-carousel"
             id="top"
