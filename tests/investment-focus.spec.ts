@@ -42,14 +42,30 @@ for (const [width, height] of [[1920, 1080], [1440, 900], [1024, 768], [768, 102
   });
 }
 
-test('desktop video loads, loops and is removed when changing to tablet', async ({ page }) => {
+test('desktop video plays once then reveals the thumbnail without replaying on resize', async ({ page }) => {
+  test.setTimeout(60000);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/investment-focus/');
   await expect(page.locator(video)).toHaveCount(1);
   await expect.poll(() => page.locator(video).evaluate(node => (node as HTMLVideoElement).readyState)).toBeGreaterThanOrEqual(2);
   await expect.poll(() => page.locator(video).evaluate(node => (node as HTMLVideoElement).currentTime)).toBeGreaterThan(0);
-  expect(await page.locator(video).evaluate(node => (node as HTMLVideoElement).loop)).toBe(true);
+  expect(await page.locator(video).evaluate(node => (node as HTMLVideoElement).loop)).toBe(false);
+  await page.locator(video).evaluate(node => {
+    const player = node as HTMLVideoElement;
+    // The export test server does not support range requests for seeking.
+    player.playbackRate = 16;
+  });
+  await expect.poll(() => page.locator('.sv-investment-hero__desktop-media').evaluateAll(nodes => {
+    if (!nodes.length) return false;
+    const opacity = Number(getComputedStyle(nodes[0]).opacity);
+    return opacity > 0 && opacity < 1;
+  }), { timeout: 45000, intervals: [20, 40, 80] }).toBe(true);
+  await expect(page.locator(video)).toHaveCount(0, { timeout: 45000 });
+  await expect.poll(() => page.locator(poster).evaluate(node => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('.sv-investment-hero__responsive-media')).toHaveCSS('display', 'block');
   await page.setViewportSize({ width: 768, height: 1024 });
+  await expect(page.locator(video)).toHaveCount(0);
+  await page.setViewportSize({ width: 1440, height: 900 });
   await expect(page.locator(video)).toHaveCount(0);
   await expect(page.locator(`${hero} .sv-investment-hero__content`)).toHaveCSS('opacity', '1');
 });

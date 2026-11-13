@@ -109,28 +109,6 @@
   transition:transform .5s cubic-bezier(.16,1,.3,1);
 }
 
-.sv-investment-hero__scroll {
-  position:absolute;
-  right:34px;
-  bottom:34px;
-  z-index:3;
-  display:flex;
-  align-items:center;
-  gap:11px;
-  color:rgba(255,255,255,.62);
-  font-size:.59rem;
-  font-weight:800;
-  letter-spacing:.18em;
-  writing-mode:vertical-rl;
-}
-
-.sv-investment-hero__scroll i {
-  width:1px;
-  height:50px;
-  display:block;
-  background:linear-gradient(180deg,#d7ba4c,transparent);
-}
-
 @media(hover:hover) {
   .sv-investment-hero__explore:hover .sv-investment-hero__explore-line::after {
     transform:translateX(0);
@@ -229,7 +207,4 @@
     font-size:.65rem;
   }
 
-  .sv-investment-hero__scroll {
-    display:none;
-  }
 }

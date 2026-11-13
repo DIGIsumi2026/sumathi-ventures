@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { imageAssets } from '@/assets/imageAssets';
 import { videoAssets } from '@/assets/videoAssets';
@@ -8,9 +8,9 @@ import { videoAssets } from '@/assets/videoAssets';
 export function InvestmentFocusHero() {
   const reduced = useReducedMotion();
   const [videoAllowed, setVideoAllowed] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
+  const [videoFinished, setVideoFinished] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
-  const showVideo = videoAllowed && !videoFailed;
+  const showVideo = videoAllowed && !videoFinished;
 
   useEffect(() => {
     const media = window.matchMedia(
@@ -32,7 +32,7 @@ export function InvestmentFocusHero() {
       fallback = undefined;
     };
     const showThumbnail = () => {
-      if (active) setVideoFailed(true);
+      if (active) setVideoFinished(true);
     };
     const waitForPlayback = () => {
       if (fallback === undefined) fallback = setTimeout(showThumbnail, 8000);
@@ -77,8 +77,17 @@ export function InvestmentFocusHero() {
         </picture>
       </div>
 
-      {showVideo && (
-        <div className="sv-investment-hero__desktop-media" aria-hidden="true">
+      <AnimatePresence>
+        {showVideo && (
+        <motion.div
+          key="investment-hero-video"
+          className="sv-investment-hero__desktop-media"
+          aria-hidden="true"
+          initial={false}
+          animate={{ opacity:1 }}
+          exit={{ opacity:0 }}
+          transition={{ duration:reduced ? 0 : .75, ease:[.22,1,.36,1] }}
+        >
           <video
             ref={video}
             className="sv-investment-hero__video"
@@ -86,13 +95,14 @@ export function InvestmentFocusHero() {
             poster={imageAssets.investmentFocus.heroTabletPoster}
             autoPlay
             muted
-            loop
             playsInline
             preload="metadata"
-            onError={() => setVideoFailed(true)}
+            onEnded={() => setVideoFinished(true)}
+            onError={() => setVideoFinished(true)}
           />
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
 
       <div
         className="sv-investment-hero__overlay"
@@ -137,13 +147,6 @@ export function InvestmentFocusHero() {
         </motion.div>
       </div>
 
-      <div
-        className="sv-investment-hero__scroll"
-        aria-hidden="true"
-      >
-        <span>SCROLL</span>
-        <i />
-      </div>
     </section>
   );
 }
