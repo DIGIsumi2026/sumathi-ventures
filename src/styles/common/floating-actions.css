@@ -77,11 +77,19 @@
 }
 
 @media(max-width:700px) {
-  .sv-whatsapp-floating {
-    right:18px;
-    bottom:96px;
+  .sv-whatsapp-floating,
+  .sv-top {
+    right:calc(18px + env(safe-area-inset-right,0px));
     width:52px;
     height:52px;
+  }
+
+  .sv-top {
+    bottom:calc(28px + env(safe-area-inset-bottom,0px));
+  }
+
+  .sv-whatsapp-floating {
+    bottom:calc(96px + env(safe-area-inset-bottom,0px));
   }
 
   .sv-whatsapp-floating svg {
@@ -95,11 +103,15 @@
 }
 
 @media(max-width:480px) {
-  .sv-whatsapp-floating {
-    right:16px;
-    bottom:88px;
+  .sv-whatsapp-floating,
+  .sv-top {
+    right:calc(16px + env(safe-area-inset-right,0px));
     width:50px;
     height:50px;
+  }
+
+  .sv-whatsapp-floating {
+    bottom:calc(94px + env(safe-area-inset-bottom,0px));
   }
 }
 
