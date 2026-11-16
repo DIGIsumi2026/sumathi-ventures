@@ -16,7 +16,7 @@
   margin:0 0 14px;
   color:#3a7853;
   font-size:.69rem;
-  font-weight:800;
+  font-weight:600;
   letter-spacing:.19em;
 }
 
@@ -197,14 +197,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-}
-
-.sv-pillar-carousel__title>span {
-  color:#3a7853;
-  font-size:.72rem;
-  font-weight:800;
-  letter-spacing:.1em;
+  text-align:center;
 }
 
 .sv-pillar-carousel__title h3 {

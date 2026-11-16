@@ -187,7 +187,6 @@ export function ThreePillarFoundation() {
               }}
             >
               <div className="sv-pillar-carousel__title">
-                <span>{current.number}</span>
                 <h3>{current.title}</h3>
               </div>
 
