@@ -61,6 +61,12 @@ export const imageAssets = {
     investmentFocus:{
         heroTabletPoster: '/images/investment-focus/hero-tablet-poster.png',
         heroMobilePoster: '/images/investment-focus/hero-mobile-poster.png',
+
+        pillas:{
+            industry:'/images/investment-focus/pillars/industry.png',
+            commerce: '/images/investment-focus/pillars/commerce.png',  
+            technology: '/images/investment-focus/pillars/technology.png',
+        },
 },
 
 } as const;

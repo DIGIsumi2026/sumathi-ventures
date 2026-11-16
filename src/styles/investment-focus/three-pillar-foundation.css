@@ -1,0 +1,330 @@
+.sv-pillar-foundation {
+  position:relative;
+  overflow:hidden;
+  padding:105px 0 92px;
+  background:#090909;
+  color:#fff;
+}
+
+.sv-pillar-foundation__heading {
+  position:relative;
+  z-index:2;
+}
+
+.sv-pillar-foundation__heading>span {
+  display:block;
+  margin:0 0 14px;
+  color:#d7ba4c;
+  font-size:.69rem;
+  font-weight:800;
+  letter-spacing:.19em;
+}
+
+.sv-pillar-foundation__heading h2 {
+  max-width:850px;
+  margin:0;
+  color:#fff;
+  font-size:clamp(2.7rem,3.6vw,5.6rem);
+  font-weight:600;
+  line-height:1.13;
+  letter-spacing:-.005em;
+  text-wrap:balance;
+}
+
+.sv-pillar-foundation__heading p {
+  max-width:650px;
+  margin:20px 0 0;
+  color:rgba(255,255,255,.6);
+  font-size:1rem;
+  line-height:1.7;
+}
+
+.sv-pillar-carousel {
+  width:100%;
+  margin-top:70px;
+}
+
+.sv-pillar-carousel__stage {
+  --active-w:545px;
+  --active-h:362px;
+  --side-w:174px;
+  --side-h:240px;
+  --step:376px;
+  position:relative;
+  width:min(1180px,100%);
+  height:362px;
+  margin-inline:auto;
+}
+
+.sv-pillar-carousel__card {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:var(--side-w);
+  height:var(--side-h);
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:18px;
+  background:#171717;
+  cursor:pointer;
+  opacity:.64;
+  filter:brightness(.57) saturate(.78);
+  transform:translate3d(-50%,-50%,0);
+  transform-origin:center;
+  transition:
+    width .52s cubic-bezier(.22,1,.36,1),
+    height .52s cubic-bezier(.22,1,.36,1),
+    transform .52s cubic-bezier(.22,1,.36,1),
+    opacity .42s ease,
+    filter .42s ease,
+    box-shadow .52s cubic-bezier(.22,1,.36,1);
+  will-change:width,height,transform;
+}
+
+.sv-pillar-carousel__card[data-position='active'] {
+  z-index:3;
+  width:var(--active-w);
+  height:var(--active-h);
+  opacity:1;
+  filter:none;
+  cursor:default;
+  transform:translate3d(-50%,-50%,0);
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+}
+
+.sv-pillar-carousel__card[data-position='left'] {
+  z-index:1;
+  transform:translate3d(calc(-50% - var(--step)),-50%,0);
+}
+
+.sv-pillar-carousel__card[data-position='right'] {
+  z-index:1;
+  transform:translate3d(calc(-50% + var(--step)),-50%,0);
+}
+
+.sv-pillar-carousel__card img {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  user-select:none;
+  transition:transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.sv-pillar-carousel__shade {
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.13);
+  opacity:1;
+  transition:opacity .4s ease;
+  pointer-events:none;
+}
+
+.sv-pillar-carousel__card[data-position='active'] .sv-pillar-carousel__shade {
+  opacity:0;
+}
+
+.sv-pillar-carousel__info {
+  min-height:150px;
+  margin-top:22px;
+  text-align:center;
+}
+
+.sv-pillar-carousel__copy {
+  min-height:72px;
+}
+
+.sv-pillar-carousel__title {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.sv-pillar-carousel__title>span {
+  color:#d7ba4c;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.1em;
+}
+
+.sv-pillar-carousel__title h3 {
+  margin:0;
+  color:#fff;
+  font-size:1.22rem;
+  font-weight:700;
+  line-height:1.25;
+}
+
+.sv-pillar-carousel__copy>p {
+  max-width:530px;
+  margin:7px auto 0;
+  color:rgba(255,255,255,.55);
+  font-size:.92rem;
+  line-height:1.55;
+}
+
+.sv-pillar-carousel__controls {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:21px;
+  margin-top:15px;
+}
+
+.sv-pillar-carousel__controls button {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#202020;
+  color:#fff;
+  cursor:pointer;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .35s cubic-bezier(.22,1,.36,1);
+}
+
+.sv-pillar-carousel__counter {
+  min-width:58px;
+  color:rgba(255,255,255,.7);
+  font-size:.86rem;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.02em;
+}
+
+.sv-pillar-carousel__counter i {
+  margin:0 6px;
+  color:rgba(255,255,255,.32);
+  font-style:normal;
+}
+
+@media(hover:hover) {
+  .sv-pillar-carousel__card:not([data-position='active']):hover {
+    opacity:.86;
+    filter:brightness(.76) saturate(.9);
+  }
+
+  .sv-pillar-carousel__card[data-position='active']:hover img {
+    transform:scale(1.018);
+  }
+
+  .sv-pillar-carousel__controls button:hover {
+    background:#d7ba4c;
+    color:#071d16;
+    transform:scale(1.07);
+  }
+}
+
+@media(max-width:1200px) {
+  .sv-pillar-carousel__stage {
+    --active-w:clamp(450px,45vw,545px);
+    --active-h:clamp(300px,30vw,362px);
+    --side-w:clamp(125px,14vw,174px);
+    --side-h:clamp(190px,20vw,240px);
+    --step:clamp(290px,31vw,376px);
+  }
+}
+
+@media(max-width:900px) {
+  .sv-pillar-foundation {
+    padding:85px 0 75px;
+  }
+
+  .sv-pillar-carousel {
+    margin-top:55px;
+  }
+
+  .sv-pillar-carousel__stage {
+    --active-w:min(64vw,500px);
+    --active-h:min(42.66vw,333px);
+    --side-w:15vw;
+    --side-h:28vw;
+    --step:40vw;
+    height:min(42.66vw,333px);
+  }
+}
+
+@media(max-width:700px) {
+  .sv-pillar-foundation {
+    padding:72px 0 64px;
+  }
+
+  .sv-pillar-foundation__heading h2 {
+    font-size:clamp(2.4rem,9vw,3.7rem);
+  }
+
+  .sv-pillar-foundation__heading p {
+    max-width:520px;
+    font-size:.94rem;
+  }
+
+  .sv-pillar-carousel {
+    margin-top:45px;
+  }
+
+  .sv-pillar-carousel__stage {
+    --active-w:76vw;
+    --active-h:50.6vw;
+    --side-w:20vw;
+    --side-h:40vw;
+    --step:52vw;
+    height:50.6vw;
+  }
+
+  .sv-pillar-carousel__card {
+    border-radius:15px;
+  }
+
+  .sv-pillar-carousel__info {
+    padding:0 24px;
+    margin-top:20px;
+  }
+
+  .sv-pillar-carousel__copy>p {
+    font-size:.87rem;
+  }
+}
+
+@media(max-width:480px) {
+  .sv-pillar-carousel__stage {
+    --active-w:80vw;
+    --active-h:53.3vw;
+    --side-w:18vw;
+    --side-h:38vw;
+    --step:54vw;
+    height:53.3vw;
+  }
+
+  .sv-pillar-carousel__title h3 {
+    font-size:1.1rem;
+  }
+
+  .sv-pillar-carousel__copy>p {
+    max-width:340px;
+    font-size:.84rem;
+  }
+
+  .sv-pillar-carousel__controls {
+    gap:17px;
+  }
+
+  .sv-pillar-carousel__controls button {
+    width:38px;
+    height:38px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .sv-pillar-carousel__card,
+  .sv-pillar-carousel__card img,
+  .sv-pillar-carousel__controls button {
+    transition:none;
+  }
+}
