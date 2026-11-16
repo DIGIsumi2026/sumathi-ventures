@@ -7,21 +7,24 @@ import { WhatsAppFloating } from '@/components/common/WhatsAppFloating';
 
 export function FloatingActions() {
   const pathname = usePathname();
-  const [visibility, setVisibility] = useState({ pathname, shown: false });
+  const [visibility, setVisibility] = useState({ pathname, shown: false, footerVisible: false });
   const shown = visibility.pathname === pathname && visibility.shown;
 
   useEffect(() => {
     const main = document.getElementById('main-content');
     if (!main) return;
+    const footer = document.querySelector('.sv-footer');
     let hero: HTMLElement | null = null;
     const update = () => {
       const nextShown = Boolean(
         hero?.isConnected && hero.getBoundingClientRect().bottom <= 0 && window.scrollY > 0,
       );
+      const footerBounds = footer?.getBoundingClientRect();
+      const footerVisible = Boolean(footerBounds && footerBounds.top <= window.innerHeight && footerBounds.bottom >= 0);
       setVisibility(previous =>
-        previous.pathname === pathname && previous.shown === nextShown
+        previous.pathname === pathname && previous.shown === nextShown && previous.footerVisible === footerVisible
           ? previous
-          : { pathname, shown: nextShown },
+          : { pathname, shown: nextShown, footerVisible },
       );
     };
     const intersection = new IntersectionObserver(update);
@@ -41,9 +44,12 @@ export function FloatingActions() {
     const mutations = new MutationObserver(bindHero);
     mutations.observe(main, { childList: true, subtree: true });
     bindHero();
+    const footerIntersection = new IntersectionObserver(update);
+    if (footer) footerIntersection.observe(footer);
     window.addEventListener('pageshow', update);
     return () => {
       intersection.disconnect();
+      footerIntersection.disconnect();
       resize.disconnect();
       mutations.disconnect();
       window.removeEventListener('pageshow', update);
@@ -52,7 +58,7 @@ export function FloatingActions() {
 
   return (
     <>
-      <WhatsAppFloating shown={shown} />
+      <WhatsAppFloating shown={shown && !visibility.footerVisible} />
       <BackToTop shown={shown} />
     </>
   );

@@ -9,10 +9,15 @@ const routes = [
 
 async function expectActions(page: Page, shown: boolean) {
   for (const action of await page.locator(actions).all()) {
-    await expect(action).toHaveCSS('opacity', shown ? '1' : '0');
-    await expect(action).toHaveCSS('visibility', shown ? 'visible' : 'hidden');
-    await expect(action).toHaveAttribute('aria-hidden', String(!shown));
-    await expect(action).toHaveAttribute('tabindex', shown ? '0' : '-1');
+    const footerVisible = await page.locator('.sv-footer').evaluate(footer => {
+      const bounds = footer.getBoundingClientRect();
+      return bounds.top <= innerHeight && bounds.bottom >= 0;
+    });
+    const actionShown = shown && !(await action.evaluate(node => node.classList.contains('sv-whatsapp-floating')) && footerVisible);
+    await expect(action).toHaveCSS('opacity', actionShown ? '1' : '0');
+    await expect(action).toHaveCSS('visibility', actionShown ? 'visible' : 'hidden');
+    await expect(action).toHaveAttribute('aria-hidden', String(!actionShown));
+    await expect(action).toHaveAttribute('tabindex', actionShown ? '0' : '-1');
   }
 }
 
@@ -64,6 +69,27 @@ test('navigation, history and viewport resizing use the current hero boundary', 
   const passed = await page.locator('[data-page-hero]').evaluate(hero => hero.getBoundingClientRect().bottom <= 0 && scrollY > 0);
   await expectActions(page, passed);
 });
+
+for (const width of [1440, 390]) {
+  for (const route of ['/', '/about/']) {
+    test(`WhatsApp hides over the footer and returns above it at ${width}px on ${route}`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 844 });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto(route);
+      const end = await page.locator('[data-page-hero]').evaluate(hero => hero.getBoundingClientRect().bottom + scrollY);
+      await page.evaluate(y => window.scrollTo(0, y), end + 50);
+      await expect(page.locator('.sv-whatsapp-floating')).toHaveCSS('opacity', '1');
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await expect(page.locator('.sv-whatsapp-floating')).toHaveCSS('visibility', 'hidden');
+      await expect(page.locator('.sv-whatsapp-floating')).toHaveAttribute('tabindex', '-1');
+      await expect(page.locator('.sv-top')).toHaveCSS('opacity', '1');
+      await page.evaluate(y => window.scrollTo(0, y), end + 50);
+      await expect(page.locator('.sv-whatsapp-floating')).toHaveCSS('opacity', '1');
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expectActions(page, false);
+    });
+  }
+}
 
 test('normal-motion buttons fade in together and smooth scrolling returns to the hero', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
