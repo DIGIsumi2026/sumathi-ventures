@@ -154,8 +154,8 @@
   margin:0;
   color:#fff;
   font-size:1.22rem;
-  font-weight:700;
-  line-height:1.25;
+  font-weight:600;
+  line-height:1.13;
 }
 
 .sv-pillar-carousel__copy>p {
@@ -163,7 +163,7 @@
   margin:7px auto 0;
   color:rgba(255,255,255,.55);
   font-size:.92rem;
-  line-height:1.55;
+  line-height:1.13;
 }
 
 .sv-pillar-carousel__controls {

@@ -9,7 +9,7 @@ const pillars = [
   {
     number:'01',
     title:'Industry',
-    description:'Building resilient industries through sustainable development, infrastructure and long-term operational value.',
+    description:'Building resilient industries through sustainable development, infrastructure and long term operational value.',
     image:imageAssets.investmentFocus.pillas.industry,
   },
   {
@@ -71,7 +71,7 @@ export function ThreePillarFoundation() {
 
         <p>
           Our investment portfolio is shaped around three interconnected
-          pillars — Industry, Commerce and Technology — creating a strong
+          pillars - Industry, Commerce and Technology creating a strong
           foundation for sustainable partnerships and long-term growth.
         </p>
       </div>
