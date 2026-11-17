@@ -37,15 +37,6 @@ const fields = [
 ] as const;
 
 export function InvestmentFields() {
-  const scrollToField = (id:string) => {
-    document
-      .getElementById(`investment-field-${id}`)
-      ?.scrollIntoView({
-        behavior:'smooth',
-        block:'center',
-      });
-  };
-
   return (
     <section
       className="sv-investment-fields"
@@ -66,27 +57,6 @@ export function InvestmentFields() {
             <i />
           </div>
         </div>
-
-        <nav
-          className="sv-investment-fields__nav"
-          aria-label="Investment fields"
-        >
-          <div className="sv-investment-fields__nav-track">
-            {fields.map((field,index) => (
-              <button
-                key={field.id}
-                type="button"
-                onClick={() => scrollToField(field.id)}
-              >
-                {field.title}
-
-                {index !== fields.length - 1 && (
-                  <span aria-hidden="true" />
-                )}
-              </button>
-            ))}
-          </div>
-        </nav>
 
         <div className="sv-investment-fields__grid">
           {fields.map((field) => (
