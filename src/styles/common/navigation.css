@@ -11,12 +11,12 @@
 
 .sv-navbar__shell {
   position:relative;
-  width:min(1500px,100%);
+  width:min(1500px,calc(100% - 20px));
   height:60px;
   display:flex;
   align-items:center;
-  margin:0 auto;
-  padding:0 10px;
+  margin:10px auto 0;
+  padding:0 50px;
   border:1px solid rgba(15,74,52,.12);
   border-radius:22px;
   background:#E3EDE3;
