@@ -6,7 +6,7 @@
 
 .stroke-text__layout {
   display:block;
-  visibility:hidden;
+  visibility:visible;
 }
 
 .stroke-text__word {
@@ -34,4 +34,8 @@
 .stroke-text__fill {
   user-select:none;
   letter-spacing:0;
+}
+
+.stroke-text[data-ready="true"] .stroke-text__layout {
+  visibility:hidden;
 }

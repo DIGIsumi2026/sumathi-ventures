@@ -7,6 +7,8 @@ import '@/styles/common/stroke-text.css';
 
 type Props = {
   text: string;
+  active?: boolean;
+  lineBreakAfter?: number;
   strokeColor?: string;
   strokeWidth?: number;
   drawDuration?: number;
@@ -28,6 +30,8 @@ type Layout = {
 // Measure the real heading's wrapped words so the SVG retains its responsive typography.
 export default function StrokeText({
   text,
+  active,
+  lineBreakAfter,
   strokeColor = '#0ada95',
   strokeWidth = 1.4,
   drawDuration = 1.6,
@@ -37,7 +41,8 @@ export default function StrokeText({
   fontWeight = 800,
 }: Props) {
   const root = useRef<HTMLSpanElement>(null);
-  const entered = useSectionEntered(root);
+  const sectionEntered = useSectionEntered(root);
+  const entered = active ?? sectionEntered;
   const letters = useRef<(HTMLSpanElement | null)[]>([]);
   const baselines = useRef<(HTMLSpanElement | null)[]>([]);
   const wipe = useRef<SVGRectElement>(null);
@@ -83,7 +88,7 @@ export default function StrokeText({
       active = false;
       observer.disconnect();
     };
-  }, [words, fontWeight]);
+  }, [words, fontWeight, lineBreakAfter]);
 
   const ready = layout !== null;
   useLayoutEffect(() => {
@@ -130,11 +135,11 @@ export default function StrokeText({
   }, [ready, entered, text, drawDuration, fillDelay, stagger, ease]);
 
   return (
-    <span ref={root} className="stroke-text" role="img" aria-label={text} style={{ fontWeight }}>
+    <span ref={root} className="stroke-text" data-ready={ready} role="img" aria-label={text} style={{ fontWeight }}>
       <span className="stroke-text__layout" aria-hidden="true">
         {words.map((word, wordIndex) => (
           <span key={wordIndex}>
-            {wordIndex > 0 && ' '}
+            {wordIndex > 0 && (wordIndex === lineBreakAfter ? <br /> : ' ')}
             <span className="stroke-text__word">
               {word.chars.map((char, index) => (
                 <span

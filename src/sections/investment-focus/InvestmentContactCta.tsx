@@ -2,11 +2,15 @@
 
 import Link from 'next/link';
 import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useRef } from 'react';
+import StrokeText from '@/components/common/StrokeText';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { imageAssets } from '@/assets/imageAssets';
 
 export function InvestmentContactCTA() {
   const reduced = useReducedMotion();
+  const content = useRef<HTMLDivElement>(null);
+  const entered = useInView(content, { once:true, amount:.35 });
 
   return (
     <section
@@ -28,6 +32,7 @@ export function InvestmentContactCTA() {
 
       <div className="container sv-investment-contact__inner">
         <motion.div
+          ref={content}
           className="sv-investment-contact__content"
           initial={reduced ? false : { opacity:0, y:28 }}
           whileInView={{ opacity:1, y:0 }}
@@ -39,9 +44,12 @@ export function InvestmentContactCTA() {
         >
 
           <h2 id="sv-investment-contact-title">
-            Let&apos;s Build the
-            <br />
-            Next Opportunity.
+            <StrokeText
+              text="Let&apos;s Build the Next Opportunity"
+              fontWeight={600}
+              lineBreakAfter={3}
+              active={entered}
+            />
           </h2>
 
           <p>

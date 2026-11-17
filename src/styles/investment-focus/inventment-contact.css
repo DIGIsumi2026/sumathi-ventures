@@ -48,15 +48,15 @@
   max-width:720px;
   margin:0;
   color:#fff;
-  font-size:clamp(2.5rem,3.25vw,5rem);
+  font-size:clamp(2.5rem,2.25vw,5rem);
   font-weight:600;
-  line-height:1.03;
-  letter-spacing:-.025em;
+  line-height:1.13;
+  letter-spacing:-.005em;
   text-wrap:balance;
 }
 
 .sv-investment-contact__content>p {
-  max-width:620px;
+  max-width:600px;
   margin:17px 0 0;
   color:rgba(255,255,255,.74);
   font-size:clamp(.9rem,1vw,1.04rem);
@@ -117,6 +117,10 @@
   background:rgb(186, 241, 156);
   color:#06251d;
   font-weight:800;
+}
+
+.sv-investment-contact__button--primary>span {
+  font-weight:inherit;
 }
 
 .sv-investment-contact__arrow {
@@ -202,7 +206,8 @@
   }
 
   .sv-investment-contact__button--primary {
-    justify-content:space-between;
+    justify-content:center;
+    padding:6px 20px;
   }
 }
 
@@ -224,7 +229,8 @@
   }
 
   .sv-investment-contact__button--primary {
-    justify-content:space-between;
+    justify-content:center;
+    padding:6px 20px;
   }
 }
 

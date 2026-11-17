@@ -20,9 +20,6 @@ export function HomeContactCta() {
 
       <div className="container sv-home-contact-cta__inner">
         <div className="sv-home-contact-cta__content">
-          <span className="sv-home-contact-cta__eyebrow">
-            CONTACT SUMATHI VENTURES
-          </span>
 
           <h2 id="sv-home-contact-cta-title">
             <StrokeText text="Let’s Start a Strategic Conversation" />
