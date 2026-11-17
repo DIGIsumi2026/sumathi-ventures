@@ -67,6 +67,15 @@ export const imageAssets = {
             commerce: '/images/investment-focus/pillars/commerce.png',  
             technology: '/images/investment-focus/pillars/technology.png',
         },
-},
+
+        fields:{
+            industry: '/images/investment-focus/fields/industry-sustainability.png',
+            printing:'/images/investment-focus/fields/printing.png',
+            business: '/images/investment-focus/fields/business.png',
+            entertainment: '/images/investment-focus/fields/entertainment.png',
+            technology: '/images/investment-focus/fields/technology.png',
+            engineering: '/images/investment-focus/fields/engineering.png',
+        },
+    },
 
 } as const;
