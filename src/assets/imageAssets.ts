@@ -76,6 +76,9 @@ export const imageAssets = {
             technology: '/images/investment-focus/fields/technology.png',
             engineering: '/images/investment-focus/fields/engineering.png',
         },
+        
+        contactCta:'/images/investment-focus/investment-contact-cta.png',
+
     },
 
 } as const;

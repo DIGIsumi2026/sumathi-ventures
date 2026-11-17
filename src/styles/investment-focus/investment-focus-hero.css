@@ -81,7 +81,7 @@
 
 .sv-investment-hero__explore {
   width:max-content;
-  display:flex;
+  display:none;
   align-items:center;
   gap:15px;
   margin-top:32px;
@@ -104,14 +104,24 @@
   content:"";
   position:absolute;
   inset:0;
-  background:#d7ba4c;
+  background:var(--sv-accent);
   transform:translateX(-100%);
   transition:transform .5s cubic-bezier(.16,1,.3,1);
 }
 
-@media(hover:hover) {
-  .sv-investment-hero__explore:hover .sv-investment-hero__explore-line::after {
+@media(min-width:1025px) and (hover:hover) and (pointer:fine) {
+  .sv-investment-hero__explore {
+    display:flex;
+  }
+
+  .sv-investment-hero__explore:is(:hover,:focus-visible) .sv-investment-hero__explore-line::after {
     transform:translateX(0);
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .sv-investment-hero__explore-line::after {
+    transition:none;
   }
 }
 

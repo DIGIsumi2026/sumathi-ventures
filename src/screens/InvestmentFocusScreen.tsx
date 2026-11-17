@@ -13,7 +13,7 @@ export function InvestmentFocusScreen() {
             <InvestmentFocusHero />
             <ThreePillarFoundation/>
             <InvestmentFields/>
-            <FocusCards id="investment-fields" />
+            <FocusCards />
         </>
     );
 }

@@ -1,9 +1,15 @@
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { imageAssets } from '@/assets/imageAssets';
 import { videoAssets } from '@/assets/videoAssets';
+
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
+const DESKTOP_QUERY = "(min-width:1025px) and (hover:hover) and (pointer:fine)";
 
 export function InvestmentFocusHero() {
   const reduced = useReducedMotion();
@@ -11,6 +17,44 @@ export function InvestmentFocusHero() {
   const [videoFinished, setVideoFinished] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
   const showVideo = videoAllowed && !videoFinished;
+  const scrollTween = useRef<gsap.core.Tween | null>(null);
+
+  useEffect(() => {
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    const stopOnMobile = () => {
+      if (!desktop.matches) scrollTween.current?.kill();
+    };
+    desktop.addEventListener("change", stopOnMobile);
+    return () => {
+      desktop.removeEventListener("change", stopOnMobile);
+      scrollTween.current?.kill();
+    };
+  }, []);
+
+  const exploreFocus = (event:MouseEvent<HTMLAnchorElement>) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const target = document.querySelector<HTMLElement>("section.sv-investment-fields#investment-fields");
+    if (!target) return;
+    event.preventDefault();
+    if (!window.matchMedia(DESKTOP_QUERY).matches) return;
+    scrollTween.current?.kill();
+    const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 96;
+    const y = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+    const updateHash = () => window.history.replaceState(window.history.state, "", "#investment-fields");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.scrollTo({ top:y, behavior:"instant" });
+      updateHash();
+      return;
+    }
+    scrollTween.current = gsap.to(window, {
+      duration:1.2,
+      ease:"power2.inOut",
+      scrollTo:{ y, autoKill:true },
+      overwrite:"auto",
+      onComplete:updateHash,
+    });
+  };
+
 
   useEffect(() => {
     const media = window.matchMedia(
@@ -135,6 +179,7 @@ export function InvestmentFocusHero() {
 
           <a
             href="#investment-fields"
+            onClick={exploreFocus}
             className="sv-investment-hero__explore"
           >
             <span>EXPLORE OUR FOCUS</span>
