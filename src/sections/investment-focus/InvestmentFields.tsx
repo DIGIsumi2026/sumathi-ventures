@@ -1,5 +1,6 @@
 'use client';
 
+import ScrollReveal from '@/components/common/ScrollReveal';
 import { ArrowUpRight } from 'lucide-react';
 import { imageAssets } from '@/assets/imageAssets';
 
@@ -60,45 +61,59 @@ export function InvestmentFields() {
 
         <div className="sv-investment-fields__grid">
           {fields.map((field) => (
-            <article
+            <ScrollReveal
               key={field.id}
-              id={`investment-field-${field.id}`}
-              className="sv-investment-field-card"
+              mode="enter"
+              splitBy="words"
+              effect="fade"
+              stagger={0.05}
+              duration={0.8}
+              smoothing={0}
+              baseOpacity={0.1}
+              baseRotation={3}
+              baseOffset={0}
+              enableBlur
+              blurStrength={4}
             >
-              <div className="sv-investment-field-card__media">
-                <img
-                  src={field.image}
-                  alt={`${field.title} investment field`}
-                  loading="lazy"
-                  draggable={false}
-                />
-
-                <div
-                  className="sv-investment-field-card__overlay"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div className="sv-investment-field-card__content">
-                <h3>{field.title}</h3>
-
-                <span
-                  className="sv-investment-field-card__line"
-                  aria-hidden="true"
-                />
-
-                <button
-                  type="button"
-                  className="sv-investment-field-card__arrow"
-                  aria-label={`Explore ${field.title}`}
-                >
-                  <ArrowUpRight
-                    size={19}
-                    strokeWidth={1.7}
+              <article
+                id={`investment-field-${field.id}`}
+                className="sv-investment-field-card"
+              >
+                <div className="sv-investment-field-card__media">
+                  <img
+                    src={field.image}
+                    alt={`${field.title} investment field`}
+                    loading="lazy"
+                    draggable={false}
                   />
-                </button>
-              </div>
-            </article>
+
+                  <div
+                    className="sv-investment-field-card__overlay"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div className="sv-investment-field-card__content">
+                  <h3>{field.title}</h3>
+
+                  <span
+                    className="sv-investment-field-card__line"
+                    aria-hidden="true"
+                  />
+
+                  <button
+                    type="button"
+                    className="sv-investment-field-card__arrow"
+                    aria-label={`Explore ${field.title}`}
+                  >
+                    <ArrowUpRight
+                      size={19}
+                      strokeWidth={1.7}
+                    />
+                  </button>
+                </div>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>
