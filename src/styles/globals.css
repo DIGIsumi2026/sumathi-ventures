@@ -17,12 +17,17 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  margin:0;
+  padding:0;
+}
+
 html {
   scroll-padding-top: 96px;
 }
 
 body {
-  margin: 0;
   background: #fff;
   color: var(--sv-ink);
   font-family: var(--sv-font);
