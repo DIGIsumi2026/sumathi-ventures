@@ -74,23 +74,12 @@ export function Navbar() {
               />
             </Link>
           ))}
+          <Link href="/contact" className="sv-navbar__contact">
+            Contact Us
+          </Link>
         </nav>
 
         <div className="sv-navbar__actions">
-          <Link
-            href="/contact"
-            className="sv-navbar__contact"
-          >
-            <span>Contact Us</span>
-
-            <span className="sv-navbar__contact-icon">
-              <ArrowUpRight
-                size={16}
-                strokeWidth={1.8}
-              />
-            </span>
-          </Link>
-
           <button
             type="button"
             className="sv-navbar__menu"
