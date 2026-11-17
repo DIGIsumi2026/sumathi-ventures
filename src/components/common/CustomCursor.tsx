@@ -61,7 +61,7 @@ export function CustomCursor() {
           state = key;
           node.dataset.state = next;
           label.textContent = text;
-          size = text ? 78 / 44 : control ? 72 / 44 : 1;
+          size = text ? 78 / 44 : control ? 48 / 44 : 1;
           gsap.to(shape, {
             scale: size * (pressed ? 0.82 : 1),
             duration: 0.3,
