@@ -37,9 +37,6 @@ export function InvestmentContactCTA() {
             ease:[.22,1,.36,1],
           }}
         >
-          <span className="sv-investment-contact__eyebrow">
-            PARTNER WITH SUMATHI VENTURES
-          </span>
 
           <h2 id="sv-investment-contact-title">
             Let&apos;s Build the

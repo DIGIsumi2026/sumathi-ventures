@@ -43,14 +43,6 @@
   width:min(760px,52%);
 }
 
-.sv-investment-contact__eyebrow {
-  display:block;
-  margin:0 0 13px;
-  color:#d7ba4c;
-  font-size:.67rem;
-  font-weight:800;
-  letter-spacing:.19em;
-}
 
 .sv-investment-contact h2 {
   max-width:720px;
@@ -122,7 +114,7 @@
 .sv-investment-contact__button--primary {
   gap:14px;
   padding:6px 7px 6px 20px;
-  background:#d7ba4c;
+  background:rgb(186, 241, 156);
   color:#06251d;
   font-weight:800;
 }
@@ -144,7 +136,7 @@
   }
 
   .sv-investment-contact__button--glass:hover {
-    border-color:rgba(215,186,76,.5);
+    border-color:rgba(254, 254, 254, 0.716);
     background:rgba(255,255,255,.12);
   }
 
