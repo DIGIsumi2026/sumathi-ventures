@@ -11,6 +11,12 @@ import {
   X,
 } from 'lucide-react';
 
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaXTwitter,
+} from 'react-icons/fa6';
+
 import { imageAssets } from '@/assets/imageAssets';
 
 const navLinks = [
@@ -29,6 +35,24 @@ const navLinks = [
   {
     label:'Insights',
     href:'/insights',
+  },
+] as const;
+
+const socialLinks = [
+  {
+    label:'Facebook',
+    href:'https://www.facebook.com/share/1FoY3Jj9cF/?mibextid=wwXIfr',
+    icon:FaFacebookF,
+  },
+  {
+    label:'X',
+    href:'#',
+    icon:FaXTwitter,
+  },
+  {
+    label:'LinkedIn',
+    href:'http://lk.linkedin.com/company/sumathi-ventures',
+    icon:FaLinkedinIn,
   },
 ] as const;
 
@@ -102,54 +126,76 @@ export function Navbar() {
         </nav>
 
         <div className="sv-navbar__actions">
-          <a
-            href="mailto:info@sumathiventures.com"
-            className="sv-navbar__utility sv-navbar__utility--mail"
-            aria-label="Email Sumathi Ventures"
-          >
-            <span className="sv-navbar__utility-icon">
-              <Mail
-                size={18}
-                strokeWidth={1.8}
-              />
-            </span>
+  <a
+    href="mailto:info@sumathiventures.com"
+    className="sv-navbar__utility sv-navbar__utility--mail"
+    aria-label="Email Sumathi Ventures"
+  >
+    <span className="sv-navbar__utility-icon">
+      <Mail
+        size={18}
+        strokeWidth={1.8}
+      />
+    </span>
 
-            <span className="sv-navbar__utility-label">
-              info@sumathiventures.com
-            </span>
-          </a>
+    <span className="sv-navbar__utility-label">
+      info@sumathiventures.com
+    </span>
+  </a>
 
-          <a
-            href="tel:+94112697106"
-            className="sv-navbar__utility sv-navbar__utility--phone"
-            aria-label="Call Sumathi Ventures"
-          >
-            <span className="sv-navbar__utility-icon">
-              <Phone
-                size={18}
-                strokeWidth={1.8}
-              />
-            </span>
+  <a
+    href="tel:+94112697106"
+    className="sv-navbar__utility sv-navbar__utility--phone"
+    aria-label="Call Sumathi Ventures"
+  >
+    <span className="sv-navbar__utility-icon">
+      <Phone
+        size={18}
+        strokeWidth={1.8}
+      />
+    </span>
 
-            <span className="sv-navbar__utility-label">
-              (+94) 112 697 106
-            </span>
-          </a>
+    <span className="sv-navbar__utility-label">
+      (+94) 112 697 106
+    </span>
+  </a>
 
-          <button
-            type="button"
-            className="sv-navbar__menu"
-            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((current) => !current)}
-          >
-            {open ? (
-              <X size={22} strokeWidth={1.8} />
-            ) : (
-              <Menu size={22} strokeWidth={1.8} />
-            )}
-          </button>
-        </div>
+  <div className="sv-navbar__socials">
+    {socialLinks.map((item,index) => {
+      const Icon = item.icon;
+
+      return (
+        <a
+          key={item.label}
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sv-navbar__social"
+          aria-label={item.label}
+          style={{
+            '--social-index':index,
+          } as React.CSSProperties}
+        >
+          <Icon />
+        </a>
+      );
+    })}
+  </div>
+
+  <button
+    type="button"
+    className="sv-navbar__menu"
+    aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+    aria-expanded={open}
+    onClick={() => setOpen((current) => !current)}
+  >
+    {open ? (
+      <X size={22} strokeWidth={1.8} />
+    ) : (
+      <Menu size={22} strokeWidth={1.8} />
+    )}
+  </button>
+</div>
 
         <div
           className={`sv-navbar__mobile ${open ? 'is-open' : ''}`}
