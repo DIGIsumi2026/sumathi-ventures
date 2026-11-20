@@ -16,7 +16,7 @@
   display:flex;
   align-items:center;
   margin:10px auto 0;
-  padding:0 50px;
+  padding:0 18px 0 50px;
   border:1px solid rgba(15,74,52,.12);
   border-radius:22px;
   background:#E3EDE3;
@@ -60,7 +60,7 @@
   transform:translateX(-50%);
 }
 
-.sv-navbar__desktop>a:not(.sv-navbar__contact) {
+.sv-navbar__desktop>a {
   position:relative;
   height:100%;
   display:flex;
@@ -106,21 +106,74 @@
   margin-left:auto;
 }
 
-.sv-navbar__contact {
-  min-height:46px;
-  display:inline-flex;
+.sv-navbar__utility {
+  position:relative;
+  height:44px;
+  width:44px;
+  display:flex;
   align-items:center;
-  justify-content:center;
-  margin-left:8px;
-  padding:0 20px;
+  justify-content:flex-start;
+  overflow:hidden;
+  border:1px solid rgba(8,47,36,.12);
   border-radius:999px;
   background:#082f24;
   color:#fff;
-  font-size:.8rem;
-  font-weight:700;
-  line-height:1;
   text-decoration:none;
-  transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s ease;
+  white-space:nowrap;
+  transition:width .55s cubic-bezier(.16,1,.3,1),background .3s ease,transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease;
+}
+
+.sv-navbar__utility-icon {
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  flex:0 0 42px;
+  color:#fff;
+}
+
+.sv-navbar__utility-label {
+  max-width:0;
+  padding-right:0;
+  overflow:hidden;
+  color:#fff;
+  font-size:.73rem;
+  font-weight:600;
+  opacity:0;
+  transform:translateX(-5px);
+  transition:max-width .5s cubic-bezier(.16,1,.3,1),padding-right .4s ease,opacity .25s ease,transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-navbar.is-top .sv-navbar__utility--mail:hover {
+  width:238px;
+}
+
+.sv-navbar.is-top .sv-navbar__utility--phone:hover {
+  width:180px;
+}
+
+.sv-navbar.is-top .sv-navbar__utility:hover .sv-navbar__utility-label {
+  max-width:210px;
+  padding-right:18px;
+  opacity:1;
+  transform:translateX(0);
+}
+
+.sv-navbar.is-top .sv-navbar__utility:hover {
+  background:#0b4937;
+  box-shadow:0 9px 24px rgba(4,38,28,.18);
+  transform:translateY(-1px);
+}
+
+.sv-navbar.is-scrolled .sv-navbar__utility {
+  width:44px;
+}
+
+.sv-navbar.is-scrolled .sv-navbar__utility-label {
+  max-width:0;
+  padding-right:0;
+  opacity:0;
+  pointer-events:none;
 }
 
 .sv-navbar__menu {
@@ -186,6 +239,15 @@
   letter-spacing:.08em;
 }
 
+.sv-navbar__mobile .sv-navbar__mobile-utility {
+  color:#082f24;
+}
+
+.sv-navbar__mobile .sv-navbar__mobile-utility svg {
+  flex:0 0 auto;
+  color:#0a7b4d;
+}
+
 .sv-navbar__mobile .sv-navbar__mobile-contact {
   justify-content:space-between;
   margin-top:8px;
@@ -196,18 +258,13 @@
 }
 
 @media(hover:hover) {
-  .sv-navbar__desktop>a:not(.sv-navbar__contact):hover {
+  .sv-navbar__desktop>a:hover {
     color:#075d3d;
   }
 
-  .sv-navbar__desktop>a:not(.sv-navbar__contact):not(.is-active):hover .sv-navbar__active-line {
+  .sv-navbar__desktop>a:not(.is-active):hover .sv-navbar__active-line {
     opacity:.4;
     transform:scaleX(.55);
-  }
-
-  .sv-navbar__contact:hover {
-    background:#0b4937;
-    transform:translateY(-2px);
   }
 
   .sv-navbar__mobile nav>a:hover {
@@ -221,24 +278,48 @@
   }
 }
 
-@media(max-width:1200px) {
+@media(max-width:1250px) {
+  .sv-navbar__shell {
+    padding-left:32px;
+  }
+
   .sv-navbar__desktop {
     gap:2px;
   }
 
-  .sv-navbar__desktop>a:not(.sv-navbar__contact) {
-    padding:0 14px;
-    font-size:.82rem;
+  .sv-navbar__desktop>a {
+    padding:0 13px;
+    font-size:.8rem;
   }
 
   .sv-navbar__active-line {
-    right:13px;
-    left:13px;
+    right:12px;
+    left:12px;
+  }
+}
+
+@media(max-width:1100px) {
+  .sv-navbar__utility--mail,
+  .sv-navbar__utility--phone {
+    width:40px;
+    height:40px;
   }
 
-  .sv-navbar__contact {
-    padding:0 18px;
-    font-size:.76rem;
+  .sv-navbar__utility-icon {
+    width:38px;
+    height:38px;
+    flex-basis:38px;
+  }
+
+  .sv-navbar.is-top .sv-navbar__utility--mail:hover,
+  .sv-navbar.is-top .sv-navbar__utility--phone:hover {
+    width:40px;
+  }
+
+  .sv-navbar.is-top .sv-navbar__utility:hover .sv-navbar__utility-label {
+    max-width:0;
+    padding-right:0;
+    opacity:0;
   }
 }
 
@@ -260,7 +341,7 @@
   }
 
   .sv-navbar__desktop,
-  .sv-navbar__contact {
+  .sv-navbar__utility {
     display:none;
   }
 
@@ -334,7 +415,8 @@
 @media(prefers-reduced-motion:reduce) {
   .sv-navbar__desktop>a,
   .sv-navbar__active-line,
-  .sv-navbar__contact,
+  .sv-navbar__utility,
+  .sv-navbar__utility-label,
   .sv-navbar__mobile,
   .sv-navbar__mobile nav>a {
     transition:none;

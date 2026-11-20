@@ -3,7 +3,14 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Mail,
+  Menu,
+  Phone,
+  X,
+} from 'lucide-react';
+
 import { imageAssets } from '@/assets/imageAssets';
 
 const navLinks = [
@@ -27,11 +34,27 @@ const navLinks = [
 
 export function Navbar() {
   const pathname = usePathname();
+
   const [open,setOpen] = useState(false);
+  const [isScrolled,setIsScrolled] = useState(false);
 
   useEffect(() => {
     setOpen(false);
   },[pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 60);
+    };
+
+    handleScroll();
+
+    window.addEventListener('scroll',handleScroll,{ passive:true });
+
+    return () => {
+      window.removeEventListener('scroll',handleScroll);
+    };
+  },[]);
 
   const isActive = (href:string) => {
     if(href === '/') {
@@ -42,7 +65,9 @@ export function Navbar() {
   };
 
   return (
-    <header className="sv-navbar">
+    <header
+      className={`sv-navbar ${isScrolled ? 'is-scrolled' : 'is-top'}`}
+    >
       <div className="sv-navbar__shell">
         <Link
           href="/"
@@ -74,12 +99,43 @@ export function Navbar() {
               />
             </Link>
           ))}
-          <Link href="/contact" className="sv-navbar__contact">
-            Contact Us
-          </Link>
         </nav>
 
         <div className="sv-navbar__actions">
+          <a
+            href="mailto:info@sumathiventures.com"
+            className="sv-navbar__utility sv-navbar__utility--mail"
+            aria-label="Email Sumathi Ventures"
+          >
+            <span className="sv-navbar__utility-icon">
+              <Mail
+                size={18}
+                strokeWidth={1.8}
+              />
+            </span>
+
+            <span className="sv-navbar__utility-label">
+              info@sumathiventures.com
+            </span>
+          </a>
+
+          <a
+            href="tel:+94112697106"
+            className="sv-navbar__utility sv-navbar__utility--phone"
+            aria-label="Call Sumathi Ventures"
+          >
+            <span className="sv-navbar__utility-icon">
+              <Phone
+                size={18}
+                strokeWidth={1.8}
+              />
+            </span>
+
+            <span className="sv-navbar__utility-label">
+              (+94) 112 697 106
+            </span>
+          </a>
+
           <button
             type="button"
             className="sv-navbar__menu"
@@ -112,6 +168,24 @@ export function Navbar() {
                 <span>{item.label}</span>
               </Link>
             ))}
+
+            <a
+              href="mailto:info@sumathiventures.com"
+              className="sv-navbar__mobile-utility"
+            >
+              <Mail size={17} strokeWidth={1.8} />
+
+              <span>info@sumathiventures.com</span>
+            </a>
+
+            <a
+              href="tel:+94112697106"
+              className="sv-navbar__mobile-utility"
+            >
+              <Phone size={17} strokeWidth={1.8} />
+
+              <span>(+94) 112 697 106</span>
+            </a>
 
             <Link
               href="/contact"
