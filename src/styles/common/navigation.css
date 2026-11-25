@@ -176,6 +176,290 @@
   transition:background .3s ease,color .3s ease,border-color .3s ease,transform .4s cubic-bezier(.16,1,.3,1),opacity .3s ease;
 }
 
+.sv-navbar__investment {
+  position:relative;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.sv-navbar__investment-trigger {
+  position:relative;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:0 18px;
+  color:var(--sv-green-dark);
+  font-size:.86rem;
+  font-weight:600;
+  line-height:1;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:color .3s ease;
+}
+
+.sv-navbar__investment-trigger svg {
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-navbar__investment.is-active .sv-navbar__investment-trigger {
+  color:#075d3d;
+}
+
+.sv-navbar__investment.is-active .sv-navbar__active-line {
+  opacity:1;
+  transform:scaleX(1);
+}
+
+.sv-navbar__investment-menu {
+  position:absolute;
+  top:calc(100% + 10px);
+  left:50%;
+  width:680px;
+  padding-top:8px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,-8px);
+  transition:opacity .3s ease,visibility .3s ease,transform .45s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-navbar__investment-menu-inner {
+  display:grid;
+  grid-template-columns:210px 1fr;
+  gap:28px;
+  padding:26px;
+  border:1px solid rgba(15,74,52,.12);
+  border-radius:20px;
+  background:rgba(235,242,235,.98);
+  box-shadow:0 24px 60px rgba(0,0,0,.16);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+}
+
+.sv-navbar__investment-intro {
+  padding:4px 20px 4px 4px;
+  border-right:1px solid rgba(8,47,36,.12);
+}
+
+.sv-navbar__investment-intro>span {
+  display:block;
+  margin-bottom:12px;
+  color:#b39835;
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.17em;
+}
+
+.sv-navbar__investment-intro h3 {
+  margin:0;
+  color:#082f24;
+  font-size:1.75rem;
+  font-weight:600;
+  line-height:1.08;
+  letter-spacing:-.025em;
+}
+
+.sv-navbar__investment-intro>a {
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:24px;
+  color:#075d3d;
+  font-size:.7rem;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.sv-navbar__investment-links {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+}
+
+.sv-navbar__investment-links>a {
+  min-height:56px;
+  display:grid;
+  grid-template-columns:26px 1fr 18px;
+  align-items:center;
+  gap:8px;
+  padding:0 12px;
+  border-radius:12px;
+  color:#263b33;
+  text-decoration:none;
+  transition:background .3s ease,color .3s ease;
+}
+
+.sv-navbar__investment-number {
+  color:#b39835;
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+.sv-navbar__investment-label {
+  font-size:.77rem;
+  font-weight:600;
+  line-height:1.2;
+}
+
+.sv-navbar__investment-arrow {
+  opacity:0;
+  transform:translate(-5px,5px);
+  transition:opacity .3s ease,transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-navbar__investment-links>a.is-active {
+  background:#082f24;
+  color:#fff;
+}
+
+.sv-navbar__investment-links>a.is-active .sv-navbar__investment-number {
+  color:#d7ba4c;
+}
+
+.sv-navbar__investment-links>a.is-active .sv-navbar__investment-arrow {
+  opacity:1;
+  transform:none;
+}
+
+@media(hover:hover) {
+  .sv-navbar__investment:hover .sv-navbar__investment-menu,
+  .sv-navbar__investment:focus-within .sv-navbar__investment-menu {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translate(-50%,0);
+  }
+
+  .sv-navbar__investment:hover .sv-navbar__investment-trigger svg {
+    transform:rotate(180deg);
+  }
+
+  .sv-navbar__investment-links>a:hover {
+    background:rgba(8,47,36,.07);
+    color:#075d3d;
+  }
+
+  .sv-navbar__investment-links>a:hover .sv-navbar__investment-arrow {
+    opacity:1;
+    transform:none;
+  }
+
+  .sv-navbar__investment-links>a.is-active:hover {
+    background:#082f24;
+    color:#fff;
+  }
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-trigger {
+  color:rgba(255,255,255,.7);
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment.is-active .sv-navbar__investment-trigger {
+  color:#fff;
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-menu-inner {
+  border-color:rgba(255,255,255,.1);
+  background:rgba(7,20,17,.97);
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-intro {
+  border-color:rgba(255,255,255,.1);
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-intro h3 {
+  color:#fff;
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-intro>a {
+  color:#8cd39e;
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-links>a {
+  color:rgba(255,255,255,.78);
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-links>a.is-active {
+  background:#d7ba4c;
+  color:#082f24;
+}
+
+.sv-navbar.is-scrolled .sv-navbar__investment-links>a.is-active .sv-navbar__investment-number {
+  color:#082f24;
+}
+
+.sv-navbar__mobile-investment-trigger {
+  width:100%;
+  display:grid;
+  grid-template-columns:27px 1fr 20px;
+  align-items:center;
+  gap:14px;
+  padding:14px 13px;
+  border:0;
+  border-bottom:1px solid rgba(8,47,36,.08);
+  background:transparent;
+  color:#1d3129;
+  font:inherit;
+  font-size:.96rem;
+  font-weight:600;
+  text-align:left;
+  cursor:pointer;
+}
+
+.sv-navbar__mobile-investment-trigger svg {
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+
+.sv-navbar__mobile-investment-trigger[aria-expanded='true'] svg {
+  transform:rotate(180deg);
+}
+
+.sv-navbar__mobile-investment-trigger.is-active {
+  color:#0a7b4d;
+}
+
+.sv-navbar__mobile-investment {
+  max-height:0;
+  overflow:hidden;
+  padding:0 10px;
+  background:rgba(8,47,36,.035);
+  opacity:0;
+  transition:max-height .55s cubic-bezier(.16,1,.3,1),opacity .3s ease,padding .4s ease;
+}
+
+.sv-navbar__mobile-investment.is-open {
+  max-height:520px;
+  padding:8px 10px;
+  opacity:1;
+}
+
+.sv-navbar__mobile-investment>a {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 12px;
+  border-radius:9px;
+  color:#30443b;
+  font-size:.83rem;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.sv-navbar__mobile-investment>a>span {
+  color:#b39835;
+  font-size:.56rem;
+  font-weight:800;
+}
+
+.sv-navbar__mobile-investment>a.is-active {
+  background:#082f24;
+  color:#fff;
+}
 .sv-navbar__social svg {
   width:14px;
   height:14px;
