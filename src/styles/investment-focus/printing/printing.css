@@ -335,6 +335,15 @@
 }
 
 @media(max-width:700px) {
+  .sv-printing-platform__aurora {
+    top:auto;
+    height:clamp(140px,35vw,190px);
+    z-index:-1;
+    opacity:.5;
+    mask-image:linear-gradient(to bottom,transparent,#000 55%);
+    pointer-events:none;
+  }
+
   .sv-printing-platform__inner {
     gap:45px;
     padding-top:80px;
@@ -371,26 +380,19 @@
 }
 @media(min-width:1025px) {
   .sv-printing-platform {
-    --printing-aurora-band-height:clamp(180px,19vw,280px);
-    flex-direction:column;
+    min-height:auto;
   }
 
   .sv-printing-platform__inner {
-    flex:1;
-    padding-bottom:48px;
-  }
-
-  .sv-printing-platform__shade {
-    bottom:var(--printing-aurora-band-height);
+    padding-bottom:clamp(64px,8vw,104px);
   }
 
   .sv-printing-platform__aurora {
-    position:relative;
-    inset:auto;
-    width:100%;
-    height:var(--printing-aurora-band-height);
-    flex:0 0 auto;
-    z-index:auto;
-    opacity:1;
+    top:auto;
+    height:clamp(150px,17vw,240px);
+    z-index:-1;
+    opacity:.8;
+    mask-image:linear-gradient(to bottom,transparent,#000 55%);
+    pointer-events:none;
   }
 }
