@@ -83,6 +83,7 @@ export const imageAssets = {
 
         printing:{
             hero: '/images/investment-focus/printing/printing-hero.png',
+            sumathiPrinters:'/images/investment-focus/printing/sumathi-printers-section.png',
         }
     },
 
