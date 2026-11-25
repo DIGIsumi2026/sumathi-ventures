@@ -201,15 +201,8 @@
   line-height:1.5;
 }
 
-.sv-sp-section__footer a {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  flex:0 0 auto;
-  color:#082f24;
-  font-size:.75rem;
-  font-weight:750;
-  text-decoration:none;
+.sv-sp-section__visit-company {
+  --sb-surface: #3a3939;
 }
 
 .sv-sp-section__footer a svg {

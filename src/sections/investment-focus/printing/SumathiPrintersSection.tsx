@@ -3,6 +3,8 @@ import { ArrowUpRight } from 'lucide-react';
 import { imageAssets } from '@/assets/imageAssets';
 import '@/styles/investment-focus/printing/sumathi-printers.css';
 
+import SpecularButton from './SpecularButton';
+
 const strengths = [
   'Commercial Print',
   'Packaging',
@@ -87,12 +89,24 @@ export function SumathiPrintersSection() {
           </div>
 
           <div className="sv-sp-section__footer">
-            <p>
-              Established capability. Broader applications.
-              Higher-value growth.
-            </p>
 
-            <a
+            <SpecularButton
+              className="sv-sp-section__visit-company"
+              size="lg"
+              radius={40}
+              tint="#ffffff"
+              tintOpacity={0.04}
+              textColor="#ffffff"
+              lineColor="#0a7b4d"
+              baseColor="#3a3939"
+              intensity={1}
+              idleIntensity={0.35}
+              shineSize={14}
+              shineFade={40}
+              thickness={1.5}
+              glow={1.4}
+              followMouse
+              proximity={250}
               href="https://www.sumathiprinters.lk/"
               target="_blank"
               rel="noopener noreferrer"
@@ -103,8 +117,9 @@ export function SumathiPrintersSection() {
               <ArrowUpRight
                 size={17}
                 strokeWidth={1.7}
+                aria-hidden="true"
               />
-            </a>
+            </SpecularButton>
           </div>
 
         </div>
