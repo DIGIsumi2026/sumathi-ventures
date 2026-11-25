@@ -48,6 +48,29 @@
   text-wrap:balance;
 }
 
+.sv-printing-hero__content {
+  max-width:850px;
+}
+
+.sv-printing-hero__content p {
+  max-width:620px;
+  margin:20px 0 0;
+  color:rgba(255,255,255,.82);
+  font-size:clamp(1rem,1.25vw,1.2rem);
+  font-weight:400;
+  line-height:1.65;
+  letter-spacing:-.01em;
+}
+
+@media(max-width:700px) {
+  .sv-printing-hero__content p {
+    max-width:480px;
+    margin-top:16px;
+    font-size:.96rem;
+    line-height:1.55;
+  }
+}
+
 @media(max-width:700px) {
   .sv-printing-hero {
     min-height:85svh;

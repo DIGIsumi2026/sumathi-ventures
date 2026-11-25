@@ -80,6 +80,10 @@ export const imageAssets = {
         },
 
         contactCta:'/images/investment-focus/investment-contact-cta.png',
+
+        printing:{
+            hero: '/images/investment-focus/printing/printing-hero.png',
+        }
     },
 
 } as const;
