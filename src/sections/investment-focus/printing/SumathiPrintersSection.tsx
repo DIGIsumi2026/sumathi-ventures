@@ -32,12 +32,8 @@ export function SumathiPrintersSection() {
             />
 
             <div className="sv-sp-section__image-label">
-              <span>01</span>
-
               <p>
-                Portfolio
-                <br />
-                Company
+                Sunathi Printers
               </p>
             </div>
           </div>
@@ -45,20 +41,12 @@ export function SumathiPrintersSection() {
 
         <div className="sv-sp-section__content">
 
-          <span className="sv-sp-section__eyebrow">
-            Portfolio Company 01
-          </span>
-
           <h2>
-            Sumathi
-            <br />
-            Printers
+            Sumathi Printers
           </h2>
 
           <h3>
-            Integrated Commercial
-            <br />
-            Print & Packaging
+            Integrated Commercial Print & Packaging
           </h3>
 
           <div className="sv-sp-section__copy">

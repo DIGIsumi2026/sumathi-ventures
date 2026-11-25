@@ -107,10 +107,10 @@
 .sv-sp-section h2 {
   margin:0;
   color:#082f24;
-  font-size:clamp(4rem,5.6vw,7.3rem);
+  font-size:clamp(3rem,4.6vw,5.3rem);
   font-weight:500;
-  line-height:.88;
-  letter-spacing:-.055em;
+  line-height:1.13;
+  letter-spacing:-0.005em;
 }
 
 .sv-sp-section h3 {
@@ -142,13 +142,13 @@
   max-width:650px;
   margin-top:33px;
   padding:23px 0 23px 22px;
-  border-left:2px solid #b79a3d;
+  border-left:2px solid #0a7b4d;
 }
 
 .sv-sp-section__investment>span {
   display:block;
   margin-bottom:10px;
-  color:#a5892e;
+  color:#0a7b4d;
   font-size:.64rem;
   font-weight:800;
   letter-spacing:.15em;
