@@ -38,6 +38,13 @@ const navLinks = [
   },
 ] as const;
 
+const contactLink = {
+  label:'Contact Us',
+  href:'/contact',
+} as const;
+
+const desktopNavLinks = [...navLinks, contactLink];
+
 const socialLinks = [
   {
     label:'Facebook',
@@ -59,8 +66,13 @@ const socialLinks = [
 export function Navbar() {
   const pathname = usePathname();
 
+  const [hydrated,setHydrated] = useState(false);
   const [open,setOpen] = useState(false);
   const [isScrolled,setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  },[]);
 
   useEffect(() => {
     setOpen(false);
@@ -81,11 +93,8 @@ export function Navbar() {
   },[]);
 
   const isActive = (href:string) => {
-    if(href === '/') {
-      return pathname === '/';
-    }
-
-    return pathname.startsWith(href);
+    if (!hydrated || !pathname) return false;
+    return href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
   };
 
   return (
@@ -109,7 +118,7 @@ export function Navbar() {
           className="sv-navbar__desktop"
           aria-label="Main navigation"
         >
-          {navLinks.map((item) => (
+          {desktopNavLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -234,10 +243,11 @@ export function Navbar() {
             </a>
 
             <Link
-              href="/contact"
+              href={contactLink.href}
               className="sv-navbar__mobile-contact"
+              aria-current={isActive(contactLink.href) ? 'page' : undefined}
             >
-              Contact Us
+              {contactLink.label}
 
               <ArrowUpRight
                 size={17}
