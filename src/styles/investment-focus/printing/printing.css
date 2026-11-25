@@ -1,7 +1,8 @@
 .sv-printing-hero {
+  --printing-hero-height:100svh;
   position:relative;
   width:100%;
-  min-height:100svh;
+  min-height:var(--printing-hero-height);
   overflow:hidden;
   isolation:isolate;
   background:#111;
@@ -32,7 +33,7 @@
 }
 
 .sv-printing-hero__inner {
-  min-height:100svh;
+  min-height:var(--printing-hero-height);
   display:flex;
   align-items:center;
 }
@@ -73,7 +74,7 @@
 
 @media(max-width:700px) {
   .sv-printing-hero {
-    min-height:85svh;
+    --printing-hero-height:85svh;
   }
 
   .sv-printing-hero__image {
@@ -90,12 +91,16 @@
   }
 
   .sv-printing-hero__inner {
-    min-height:85svh;
     align-items:flex-end;
     padding-bottom:60px;
   }
 
   .sv-printing-hero h1 {
     font-size:clamp(3rem,12vw,4.8rem);
+  }
+}
+@media(min-width:1025px) {
+  .sv-printing-hero {
+    --printing-hero-height:70svh;
   }
 }
