@@ -27,36 +27,36 @@ import {
 import { imageAssets } from '@/assets/imageAssets';
 
 const investmentLinks = [
-  {
+    {
     number:'01',
-    label:'Industry & Sustainability',
-    href:'/investment-focus/industry-sustainability',
-  },
-  {
-    number:'02',
     label:'Printing',
     href:'/investment-focus/printing',
-  },
-  {
-    number:'03',
+  },  {
+    number:'02',
     label:'Business',
     href:'/investment-focus/business',
   },
   {
-    number:'04',
-    label:'Entertainment',
-    href:'/investment-focus/entertainment',
-  },
-  {
-    number:'05',
+    number:'03',
     label:'Technology',
     href:'/investment-focus/technology',
   },
   {
-    number:'06',
+    number:'04',
     label:'Engineering',
     href:'/investment-focus/engineering',
   },
+  {
+    number:'05',
+    label:'Entertainment',
+    href:'/investment-focus/entertainment',
+  },  
+  {
+    number:'06',
+    label:'Industry & Sustainability',
+    href:'/investment-focus/industry-sustainability',
+  },
+
 ] as const;
 
 const socialLinks = [
