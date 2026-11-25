@@ -80,7 +80,6 @@ export const imageAssets = {
         },
 
         contactCta:'/images/investment-focus/investment-contact-cta.png',
-
     },
 
 } as const;
