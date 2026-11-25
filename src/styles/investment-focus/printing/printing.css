@@ -163,6 +163,8 @@
 
 .sv-printing-platform__content {
   max-width:900px;
+  margin-inline:auto;
+  text-align:center;
 }
 
 .sv-printing-platform__eyebrow {
@@ -189,16 +191,16 @@
   max-width:900px;
   margin:0;
   color:#fff;
-  font-size:clamp(3rem,4.5vw,6.4rem);
+  font-size:clamp(3rem,4vw,4.4rem);
   font-weight:500;
-  line-height:1.02;
-  letter-spacing:-.04em;
+  line-height:1.13;
+  letter-spacing:-.005em;
   text-wrap:balance;
 }
 
 .sv-printing-platform__copy {
   max-width:760px;
-  margin-top:38px;
+  margin:38px auto 0;
 }
 
 .sv-printing-platform__copy p {
@@ -221,6 +223,7 @@
 .sv-printing-platform__priorities {
   display:flex;
   flex-wrap:wrap;
+  justify-content:center;
   gap:9px;
   margin-top:35px;
 }
@@ -263,20 +266,11 @@
 }
 
 .sv-printing-platform__company {
-  display:grid;
-  grid-template-columns:38px 1fr;
-  gap:16px;
-  align-items:start;
   padding:23px 0;
-  border-top:1px solid rgba(255,255,255,.1);
 }
 
-.sv-printing-platform__company>span {
-  padding-top:5px;
-  color:#d2b65a;
-  font-size:.64rem;
-  font-weight:800;
-  letter-spacing:.08em;
+.sv-printing-platform__company + .sv-printing-platform__company {
+  border-top:1px solid rgba(255,255,255,.1);
 }
 
 .sv-printing-platform__company h3 {
@@ -373,5 +367,30 @@
   .sv-printing-platform__portfolio {
     padding:25px 22px;
     border-radius:18px;
+  }
+}
+@media(min-width:1025px) {
+  .sv-printing-platform {
+    --printing-aurora-band-height:clamp(180px,19vw,280px);
+    flex-direction:column;
+  }
+
+  .sv-printing-platform__inner {
+    flex:1;
+    padding-bottom:48px;
+  }
+
+  .sv-printing-platform__shade {
+    bottom:var(--printing-aurora-band-height);
+  }
+
+  .sv-printing-platform__aurora {
+    position:relative;
+    inset:auto;
+    width:100%;
+    height:var(--printing-aurora-band-height);
+    flex:0 0 auto;
+    z-index:auto;
+    opacity:1;
   }
 }

@@ -3,18 +3,6 @@ import Aurora from './Aurora';
 export function PrintingPlatform() {
   return (
     <section className="sv-printing-platform">
-      <div className="sv-printing-platform__aurora" aria-hidden="true">
-        <Aurora
-          colorStops={["#10b981", "#27ff6f", "#84cc16"]}
-          amplitude={1.75}
-          blend={0.5}
-          height={0.34}
-          speed={2}
-          glow={0.75}
-          direction="bottom"
-        />
-      </div>
-
       <div
         className="sv-printing-platform__shade"
         aria-hidden="true"
@@ -23,23 +11,20 @@ export function PrintingPlatform() {
       <div className="container sv-printing-platform__inner">
 
         <div className="sv-printing-platform__content">
-          <span className="sv-printing-platform__eyebrow">
-            Printing Investment Platform
-          </span>
 
           <h2>
             An Established Platform
             <br />
-            for the Future of Print.
+            for the Future of Print
           </h2>
 
           <div className="sv-printing-platform__copy">
             <p>
               Sumathi Ventures&apos; printing portfolio brings together
               <strong> Sumathi Printers</strong> and
-              <strong> NAPCO</strong>—two operating businesses with
+              <strong> NAPCO</strong>, two operating businesses with
               complementary strengths across commercial printing,
-              large-volume production, finishing and specialised
+              large volume production, finishing and specialised
               print capabilities.
             </p>
 
@@ -61,13 +46,8 @@ export function PrintingPlatform() {
         </div>
 
         <div className="sv-printing-platform__portfolio">
-          <span className="sv-printing-platform__portfolio-label">
-            Portfolio Companies
-          </span>
 
           <div className="sv-printing-platform__company">
-            <span>01</span>
-
             <div>
               <h3>Sumathi Printers</h3>
               <p>Commercial & integrated print production</p>
@@ -75,20 +55,25 @@ export function PrintingPlatform() {
           </div>
 
           <div className="sv-printing-platform__company">
-            <span>02</span>
-
             <div>
               <h3>NAPCO</h3>
               <p>Large-scale & specialised print production</p>
             </div>
           </div>
-
-          <div className="sv-printing-platform__platform-line">
-            <span />
-            <p>One scalable printing platform.</p>
-          </div>
         </div>
 
+      </div>
+
+      <div className="sv-printing-platform__aurora" aria-hidden="true">
+        <Aurora
+          colorStops={["#10b981", "#27ff6f", "#84cc16"]}
+          amplitude={1.75}
+          blend={0.5}
+          height={0.34}
+          speed={2}
+          glow={0.75}
+          direction="bottom"
+        />
       </div>
     </section>
   );

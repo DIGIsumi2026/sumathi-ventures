@@ -152,7 +152,7 @@ void main() {
   float u = frag.x / uResolution.x;
   float X = (frag.x - uResolution.x * 0.5) / uResolution.y;
   float t = uTime;
-  float reach = uPointer.z * exp(-pow((X - uPointer.x) / 0.38, 2.0));
+  float reach = uPointer.z * exp(-pow((X - uPointer.x) / 0.60, 2.0));
 
   vec3 glow = vec3(0.0);
   float cover = 0.0;
@@ -165,7 +165,7 @@ void main() {
     float wave = snoise(vec2(X * 0.75 * uScale + warp * 0.35 - pace * 0.03 + seed, pace * 0.07 - seed)) * 0.72
       + snoise(vec2(X * 1.6 * uScale + warp * 0.5 + pace * 0.04 - seed, pace * 0.1 + seed * 0.5)) * 0.28;
     float hem = uHeight + layer * 0.07 + wave * 0.15 * uAmplitude;
-    hem += reach * 0.08 * (layer < 0.5 ? 1.0 : 0.4);
+    hem += reach * mix(0.24, 0.12, uPointer.y) * (layer < 0.5 ? 1.0 : 0.4);
     hem = mix(-0.25, hem, uReveal);
 
     float soft = (0.04 + uBlend * 0.16) * (1.0 + layer * 0.9);
@@ -175,7 +175,7 @@ void main() {
     float body = pow(smootherstep(low, high, rise), 1.5 + uGlow * 0.6);
     float lobes = 0.86 + 0.14 * snoise(vec2(X * 0.9 * uScale - pace * 0.025 + seed, y * 0.3 + pace * 0.04));
     float alpha = body * lobes * (layer < 0.5 ? 1.0 : 0.32 / layer);
-    alpha = clamp(alpha * (1.0 + reach * 0.25 * smootherstep(0.9, 0.0, abs(y - hem))), 0.0, 1.0);
+    alpha = clamp(alpha * (1.0 + reach * 0.48 * smootherstep(0.9, 0.0, abs(y - hem))), 0.0, 1.0);
 
     vec3 tint = ramp(u + 0.05 * sin(pace * 0.08 + layer * 2.3) + layer * 0.1 + max(rise, 0.0) * 0.05);
     glow = 1.0 - (1.0 - glow) * (1.0 - tint * alpha);
@@ -334,6 +334,7 @@ const Aurora = ({
 
     const probe = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const desktopPointer = window.matchMedia("(min-width: 1025px) and (hover: hover) and (pointer: fine)");
     const cache = new Map<string, number[]>();
     const parse = (value: string): number[] => {
       const cached = cache.get(value);
@@ -405,15 +406,15 @@ const Aurora = ({
       }
       const motion = reduce ? 0 : 1;
       state.clock += dt * s.speed * motion;
-      const engaged = s.mouseInteraction && pointer.inside && !reduce;
-      const follow = 1 - Math.exp(-dt / 0.6);
+      const engaged = s.mouseInteraction && desktopPointer.matches && pointer.inside && !reduce;
+      const follow = 1 - Math.exp(-dt / 0.16);
       if (engaged) {
         const tx = (pointer.x - view.width / 2) / view.height;
         const ty = s.flip ? 1 - pointer.y / view.height : pointer.y / view.height;
         state.px += (tx - state.px) * follow;
         state.py += (ty - state.py) * follow;
       }
-      state.reach += ((engaged ? 1 : 0) - state.reach) * (1 - Math.exp(-dt / (engaged ? 0.9 : 1.4)));
+      state.reach += ((engaged ? 1 : 0) - state.reach) * (1 - Math.exp(-dt / (engaged ? 0.22 : 0.65)));
       if (!s.intro || reduce) state.reveal = 1;
       else if (state.reveal < 1) state.reveal = Math.min(1, state.reveal + dt / INTRO_SECONDS);
       render();
@@ -438,6 +439,10 @@ const Aurora = ({
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" || !desktopPointer.matches) {
+        pointer.inside = false;
+        return;
+      }
       const rect = container.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
