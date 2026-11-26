@@ -1,7 +1,7 @@
-import { ArrowUpRight } from 'lucide-react';
-
 import { imageAssets } from '@/assets/imageAssets';
 import '@/styles/investment-focus/printing/napco.css';
+
+import { CompanyWebsiteLink } from './CompanyWebsiteLink';
 
 const strengths = [
   'High-Volume Printing',
@@ -19,16 +19,12 @@ export function NapcoSection() {
 
         <div className="sv-napco-section__content">
 
-          <span className="sv-napco-section__eyebrow">
-            Portfolio Company 02
-          </span>
-
           <h2>
             NAPCO
           </h2>
 
           <h3>
-            Large-Scale & Specialized
+            Large Scale & Specialized
             <br />
             Print Production
           </h3>
@@ -46,7 +42,7 @@ export function NapcoSection() {
               brochures, catalogues, annual reports, labels and other
               specialised print applications, supported by dedicated
               production machinery, experienced teams and disciplined
-              quality-control processes.
+              quality control processes.
             </p>
           </div>
 
@@ -75,23 +71,13 @@ export function NapcoSection() {
           </div>
 
           <div className="sv-napco-section__footer">
-            <p>
-              Scale. Reliability. Production discipline.
-            </p>
 
-            <a
+            <CompanyWebsiteLink
               href="https://napco.lk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit NAPCO website"
-            >
-              Visit Company
-
-              <ArrowUpRight
-                size={17}
-                strokeWidth={1.7}
-              />
-            </a>
+              company="NAPCO"
+              textColor="#000000"
+              lineColor="#d3b452"
+            />
           </div>
 
         </div>
@@ -111,12 +97,9 @@ export function NapcoSection() {
             />
 
             <div className="sv-napco-section__image-label">
-              <span>02</span>
 
               <p>
-                Portfolio
-                <br />
-                Company
+                Napco
               </p>
             </div>
           </div>

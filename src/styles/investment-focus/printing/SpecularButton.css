@@ -80,6 +80,11 @@
   gap: inherit;
 }
 
+.specular-button--company .specular-button__label {
+  font-size: 13px;
+  font-weight: 800;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .specular-button {
     transition: none;

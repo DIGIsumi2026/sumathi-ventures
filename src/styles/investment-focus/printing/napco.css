@@ -46,10 +46,10 @@
 .sv-napco-section h2 {
   margin:0;
   color:#fff;
-  font-size:clamp(4rem,5.8vw,7.5rem);
+  font-size:clamp(3rem,4.6vw,5.3rem);
   font-weight:500;
-  line-height:.9;
-  letter-spacing:-.055em;
+  line-height:1.13;
+  letter-spacing:-0.005em;
 }
 
 .sv-napco-section h3 {
@@ -141,15 +141,9 @@
   line-height:1.5;
 }
 
-.sv-napco-section__footer a {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  flex:0 0 auto;
-  color:#fff;
-  font-size:.75rem;
-  font-weight:750;
-  text-decoration:none;
+.sv-napco-section__footer .specular-button {
+  padding-inline:14px;
+  gap:5px;
 }
 
 .sv-napco-section__footer a svg {
