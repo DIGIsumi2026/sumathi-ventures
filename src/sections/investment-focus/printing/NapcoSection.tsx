@@ -24,9 +24,7 @@ export function NapcoSection() {
           </h2>
 
           <h3>
-            Large Scale & Specialized
-            <br />
-            Print Production
+            Large Scale & Specialized Print Production
           </h3>
 
           <div className="sv-napco-section__copy">
