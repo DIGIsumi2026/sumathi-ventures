@@ -37,7 +37,7 @@ export function SumathiPrintersSection() {
               <p>
                 Sunathi Printers
               </p>
-            </div>
+            </div>3
           </div>
         </div>
 
