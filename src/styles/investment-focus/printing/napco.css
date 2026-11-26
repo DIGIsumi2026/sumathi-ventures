@@ -58,7 +58,7 @@
   font-size:clamp(1.5rem,2vw,2.35rem);
   font-weight:500;
   line-height:1.15;
-  letter-spacing:-.03em;
+  letter-spacing:-.0005em;
 }
 
 .sv-napco-section__copy {
