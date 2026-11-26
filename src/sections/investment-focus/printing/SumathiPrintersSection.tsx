@@ -74,7 +74,7 @@ export function SumathiPrintersSection() {
             <p>
               For Sumathi Ventures, this established operating platform
               creates opportunities for the next stage of value creation
-              through production modernisation, higher-value packaging,
+              through production modernisation, higher value packaging,
               advanced finishing, operational automation and broader access
               to regional and international markets.
             </p>
@@ -91,12 +91,12 @@ export function SumathiPrintersSection() {
           <div className="sv-sp-section__footer">
 
             <SpecularButton
-              className="sv-sp-section__visit-company"
-              size="lg"
+              size="md"
               radius={40}
-              tint="#ffffff"
-              tintOpacity={0.04}
-              textColor="#ffffff"
+              tint="#fffdfd"
+              tintOpacity={0.88}
+              blur={8}
+              textColor="#0f0f0f"
               lineColor="#0a7b4d"
               baseColor="#3a3939"
               intensity={1}

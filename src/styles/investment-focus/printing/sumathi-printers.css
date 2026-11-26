@@ -201,8 +201,9 @@
   line-height:1.5;
 }
 
-.sv-sp-section__visit-company {
-  --sb-surface: #3a3939;
+.sv-sp-section__footer .specular-button {
+  padding-inline:14px;
+  gap:5px;
 }
 
 .sv-sp-section__footer a svg {
