@@ -1,4 +1,3 @@
-/** Only use compressed, approved video assets. */
 export const videoAssets = { 
     //home
     heroLoop: '/videos/hero-loop.webm',
@@ -8,7 +7,11 @@ export const videoAssets = {
 
     //investment-focus
     investmentFocus: {
-    hero:'/videos/investment-focus/invetment-hero.mp4',
+    hero:'/videos/investment-focus/investment-hero.mp4',
+
+        printing: {
+          napcoSustainability:'/videos/investment-focus/printing/napco-intro.webm',
+        },
   },
 
 

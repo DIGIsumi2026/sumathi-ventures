@@ -1,0 +1,330 @@
+.sv-print-sustainability {
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  background:#e5eee6;
+  color:#082f24;
+}
+
+.sv-print-sustainability::before {
+  content:'';
+  position:absolute;
+  top:-180px;
+  left:-180px;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  background:rgba(10,123,77,.06);
+  filter:blur(20px);
+  pointer-events:none;
+}
+
+.sv-print-sustainability::after {
+  content:'';
+  position:absolute;
+  right:-160px;
+  bottom:-220px;
+  width:540px;
+  height:540px;
+  border-radius:50%;
+  background:rgba(183,154,61,.07);
+  filter:blur(30px);
+  pointer-events:none;
+}
+
+.sv-print-sustainability__inner {
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr);
+  align-items:center;
+  gap:clamp(55px,7vw,120px);
+  padding-top:120px;
+  padding-bottom:120px;
+}
+
+.sv-print-sustainability__content {
+  max-width:720px;
+}
+
+.sv-print-sustainability__eyebrow {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:26px;
+  color:#a2842e;
+  font-size:.67rem;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.sv-print-sustainability__eyebrow::after {
+  content:'';
+  width:58px;
+  height:1px;
+  background:#b79a3d;
+}
+
+.sv-print-sustainability h2 {
+  max-width:780px;
+  margin:0;
+  color:#082f24;
+  font-size:clamp(3.3rem,4.7vw,6.3rem);
+  font-weight:500;
+  line-height:.98;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+
+.sv-print-sustainability__accent {
+  width:65px;
+  height:4px;
+  margin-top:30px;
+  border-radius:999px;
+  background:#b79a3d;
+}
+
+.sv-print-sustainability__description {
+  max-width:650px;
+  margin:28px 0 0;
+  color:#40564d;
+  font-size:clamp(.98rem,1.05vw,1.08rem);
+  line-height:1.75;
+}
+
+.sv-print-sustainability__description--secondary {
+  margin-top:14px;
+  color:#62736c;
+}
+
+.sv-print-sustainability__solar {
+  max-width:610px;
+  display:grid;
+  grid-template-columns:58px 1px 1fr;
+  align-items:center;
+  gap:20px;
+  margin-top:34px;
+  padding:20px 24px;
+  border:1px solid rgba(155,126,37,.45);
+  border-radius:16px;
+  background:rgba(255,255,255,.36);
+  box-shadow:0 12px 35px rgba(8,47,36,.05);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.sv-print-sustainability__solar-icon {
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#9c7d26;
+  background:rgba(183,154,61,.1);
+}
+
+.sv-print-sustainability__solar-divider {
+  width:1px;
+  height:42px;
+  background:rgba(8,47,36,.15);
+}
+
+.sv-print-sustainability__solar span {
+  display:block;
+  margin-bottom:5px;
+  color:#718078;
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.sv-print-sustainability__solar strong {
+  display:block;
+  color:#173b2f;
+  font-size:clamp(1.12rem,1.4vw,1.4rem);
+  font-weight:650;
+  line-height:1.2;
+  letter-spacing:-.02em;
+}
+
+.sv-print-sustainability__priorities {
+  max-width:610px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.sv-print-sustainability__priority {
+  min-height:84px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  border:1px solid rgba(8,47,36,.11);
+  border-radius:14px;
+  background:rgba(255,255,255,.27);
+  color:#173b2f;
+}
+
+.sv-print-sustainability__priority svg {
+  flex:0 0 auto;
+  color:#a2842e;
+}
+
+.sv-print-sustainability__priority span {
+  font-size:.72rem;
+  font-weight:700;
+  line-height:1.35;
+}
+
+.sv-print-sustainability__media {
+  min-width:0;
+}
+
+.sv-print-sustainability__video-wrap {
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  aspect-ratio:16/10;
+  border:1px solid rgba(183,154,61,.48);
+  border-radius:26px;
+  background:#0b2119;
+  box-shadow:
+    0 30px 70px rgba(8,47,36,.14),
+    0 8px 25px rgba(8,47,36,.08);
+}
+
+.sv-print-sustainability__video {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+
+.sv-print-sustainability__video-shade {
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 55%,
+      rgba(3,18,13,.4) 100%
+    );
+  pointer-events:none;
+}
+
+.sv-print-sustainability__video-label {
+  position:absolute;
+  right:24px;
+  bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+}
+
+.sv-print-sustainability__video-label>span {
+  color:#e0c15d;
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.sv-print-sustainability__video-label p {
+  margin:0;
+  color:rgba(255,255,255,.85);
+  font-size:.66rem;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+@media(hover:hover) {
+  .sv-print-sustainability__priority {
+    transition:
+      transform .4s cubic-bezier(.16,1,.3,1),
+      background .3s ease,
+      border-color .3s ease;
+  }
+
+  .sv-print-sustainability__priority:hover {
+    transform:translateY(-4px);
+    border-color:rgba(8,47,36,.2);
+    background:rgba(255,255,255,.5);
+  }
+}
+
+@media(max-width:1100px) {
+  .sv-print-sustainability__inner {
+    grid-template-columns:minmax(0,.9fr) minmax(460px,1.1fr);
+    gap:50px;
+  }
+
+  .sv-print-sustainability__video-wrap {
+    aspect-ratio:4/3;
+  }
+}
+
+@media(max-width:900px) {
+  .sv-print-sustainability__inner {
+    grid-template-columns:1fr;
+    gap:55px;
+    padding-top:90px;
+    padding-bottom:90px;
+  }
+
+  .sv-print-sustainability__content {
+    max-width:760px;
+  }
+
+  .sv-print-sustainability__video-wrap {
+    aspect-ratio:16/9;
+  }
+}
+
+@media(max-width:700px) {
+  .sv-print-sustainability__inner {
+    gap:42px;
+    padding-top:72px;
+    padding-bottom:72px;
+  }
+
+  .sv-print-sustainability h2 {
+    font-size:clamp(2.8rem,12vw,4.5rem);
+  }
+
+  .sv-print-sustainability__description {
+    margin-top:24px;
+    font-size:.95rem;
+    line-height:1.65;
+  }
+
+  .sv-print-sustainability__solar {
+    grid-template-columns:47px 1px 1fr;
+    gap:14px;
+    padding:17px;
+  }
+
+  .sv-print-sustainability__solar-icon {
+    width:44px;
+    height:44px;
+  }
+
+  .sv-print-sustainability__priorities {
+    grid-template-columns:1fr;
+  }
+
+  .sv-print-sustainability__priority {
+    min-height:68px;
+  }
+
+  .sv-print-sustainability__video-wrap {
+    border-radius:20px;
+  }
+}
