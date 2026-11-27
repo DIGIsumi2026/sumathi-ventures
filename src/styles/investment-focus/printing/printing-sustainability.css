@@ -47,42 +47,23 @@
   max-width:720px;
 }
 
-.sv-print-sustainability__eyebrow {
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:26px;
-  color:#a2842e;
-  font-size:.67rem;
-  font-weight:800;
-  line-height:1;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-
-.sv-print-sustainability__eyebrow::after {
-  content:'';
-  width:58px;
-  height:1px;
-  background:#b79a3d;
-}
 
 .sv-print-sustainability h2 {
   max-width:780px;
   margin:0;
   color:#082f24;
-  font-size:clamp(3.3rem,4.7vw,6.3rem);
+  font-size:clamp(2.3rem,3.7vw,4.3rem);
   font-weight:500;
-  line-height:.98;
-  letter-spacing:-.045em;
+  line-height:1.13;
+  letter-spacing:0.005em;
   text-wrap:balance;
 }
 
 .sv-print-sustainability__accent {
-  width:65px;
+  width:200px;
   height:4px;
   margin-top:30px;
-  border-radius:999px;
+  border-radius:800px;
   background:#b79a3d;
 }
 

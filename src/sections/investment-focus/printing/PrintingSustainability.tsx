@@ -32,14 +32,8 @@ export function PrintingSustainability() {
 
         <div className="sv-print-sustainability__content">
 
-          <span className="sv-print-sustainability__eyebrow">
-            Sustainability & Operational Efficiency
-          </span>
-
           <h2>
-            Building a More
-            <br />
-            Efficient Print Future.
+            Building a More Efficient Print Future
           </h2>
 
           <div
@@ -117,8 +111,7 @@ export function PrintingSustainability() {
             >
               <source
                 src={
-                  videoAssets.investmentFocus.printing
-                    .napcoSustainability
+                  videoAssets.investmentFocus.printing.napcoSustainability
                 }
                 type="video/webm"
               />
@@ -130,12 +123,9 @@ export function PrintingSustainability() {
             />
 
             <div className="sv-print-sustainability__video-label">
-              <span>NAPCO</span>
 
               <p>
-                Sustainable
-                <br />
-                Production
+                Sustainable Production
               </p>
             </div>
 
