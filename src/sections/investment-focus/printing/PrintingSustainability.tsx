@@ -1,5 +1,8 @@
 'use client';
 
+import { useInView } from 'motion/react';
+import { useRef } from 'react';
+
 import {
   Leaf,
   Recycle,
@@ -9,6 +12,8 @@ import {
 
 import { videoAssets } from '@/assets/videoAssets';
 import '@/styles/investment-focus/printing/printing-sustainability.css';
+
+import MagicBento from './MagicBento';
 
 const priorities = [
   {
@@ -25,7 +30,36 @@ const priorities = [
   },
 ];
 
+const sustainabilityCards = [
+  {
+    id: 'solar-installation',
+    content: (
+      <div className="sv-print-sustainability__solar">
+        <div className="sv-print-sustainability__solar-icon">
+          <SunMedium size={30} strokeWidth={1.6} aria-hidden="true" />
+        </div>
+        <div>
+          <span>Existing Renewable Energy Initiative</span>
+          <strong>300 KVA Solar Installation</strong>
+        </div>
+      </div>
+    ),
+  },
+  ...priorities.map(({ title, icon: Icon }) => ({
+    id: title,
+    content: (
+      <div className="sv-print-sustainability__priority">
+        <Icon size={24} strokeWidth={1.6} aria-hidden="true" />
+        <span>{title}</span>
+      </div>
+    ),
+  })),
+];
+
 export function PrintingSustainability() {
+  const accentRef = useRef<HTMLDivElement>(null);
+  const accentInView = useInView(accentRef, { once: true });
+
   return (
     <section className="sv-print-sustainability">
       <div className="container sv-print-sustainability__inner">
@@ -37,14 +71,16 @@ export function PrintingSustainability() {
           </h2>
 
           <div
+            ref={accentRef}
             className="sv-print-sustainability__accent"
+            data-filled={accentInView}
             aria-hidden="true"
           />
 
           <p className="sv-print-sustainability__description">
             Our printing platform is increasingly focused on improving
             energy efficiency, reducing production waste and encouraging
-            more responsible material use while strengthening long-term
+            more responsible material use while strengthening long term
             operational resilience.
           </p>
 
@@ -54,45 +90,18 @@ export function PrintingSustainability() {
             to more efficient and responsible print production.
           </p>
 
-          <div className="sv-print-sustainability__solar">
-            <div className="sv-print-sustainability__solar-icon">
-              <SunMedium
-                size={30}
-                strokeWidth={1.6}
-              />
-            </div>
-
-            <div className="sv-print-sustainability__solar-divider" />
-
-            <div>
-              <span>Existing Renewable Energy Initiative</span>
-
-              <strong>
-                300 KVA Solar Installation
-              </strong>
-            </div>
-          </div>
-
           <div className="sv-print-sustainability__priorities">
-            {priorities.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.title}
-                  className="sv-print-sustainability__priority"
-                >
-                  <Icon
-                    size={24}
-                    strokeWidth={1.6}
-                  />
-
-                  <span>
-                    {item.title}
-                  </span>
-                </div>
-              );
-            })}
+            <MagicBento
+              items={sustainabilityCards}
+              columns={4}
+              rowHeight={200}
+              gap={12}
+              radius={20}
+              enableBorderGlow
+              enableSpotlight
+              spotlightRadius={300}
+              clickEffect
+            />
           </div>
 
         </div>
