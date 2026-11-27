@@ -2,16 +2,10 @@
 
 import Link from 'next/link';
 import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react';
-import { useRef } from 'react';
-import StrokeText from '@/components/common/StrokeText';
-import { motion, useInView, useReducedMotion } from 'motion/react';
 import { imageAssets } from '@/assets/imageAssets';
+import { InvestmentCtaReveal } from './InvestmentCtaReveal';
 
 export function InvestmentContactCTA() {
-  const reduced = useReducedMotion();
-  const content = useRef<HTMLDivElement>(null);
-  const entered = useInView(content, { once:true, amount:.35 });
-
   return (
     <section
       className="sv-investment-contact"
@@ -31,27 +25,12 @@ export function InvestmentContactCTA() {
       />
 
       <div className="container sv-investment-contact__inner">
-        <motion.div
-          ref={content}
+        <InvestmentCtaReveal
           className="sv-investment-contact__content"
-          initial={reduced ? false : { opacity:0, y:28 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true, amount:.35 }}
-          transition={{
-            duration:reduced ? 0 : .8,
-            ease:[.22,1,.36,1],
-          }}
+          headingId="sv-investment-contact-title"
+          heading="Let&apos;s Build the Next Opportunity"
+          lineBreakAfter={3}
         >
-
-          <h2 id="sv-investment-contact-title">
-            <StrokeText
-              text="Let&apos;s Build the Next Opportunity"
-              fontWeight={600}
-              lineBreakAfter={3}
-              active={entered}
-            />
-          </h2>
-
           <p>
             Connect with our team to discuss investment opportunities,
             strategic partnerships and ventures designed for long-term value.
@@ -95,7 +74,7 @@ export function InvestmentContactCTA() {
               </span>
             </Link>
           </div>
-        </motion.div>
+        </InvestmentCtaReveal>
       </div>
     </section>
   );
