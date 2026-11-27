@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
 import { imageAssets } from '@/assets/imageAssets';
+import StrokeText from '@/components/common/StrokeText';
 
 export function AboutContactBanner() {
   const reduced = useReducedMotion();
@@ -34,12 +35,8 @@ export function AboutContactBanner() {
             ease:[.22,1,.36,1],
           }}
         >
-          <span className="sv-about-contact__eyebrow">
-            LET&apos;S CONNECT
-          </span>
-
           <h2 id="sv-about-contact-title">
-            Let&apos;s Build What&apos;s Next.
+            <StrokeText text="Let&apos;s Build What&apos;s Next" fontWeight={600} />
           </h2>
 
           <p>

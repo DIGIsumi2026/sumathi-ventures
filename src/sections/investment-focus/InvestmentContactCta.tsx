@@ -3,17 +3,30 @@
 import Link from 'next/link';
 import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react';
 import { imageAssets } from '@/assets/imageAssets';
+import '@/styles/investment-focus/inventment-contact.css';
 import { InvestmentCtaReveal } from './InvestmentCtaReveal';
 
-export function InvestmentContactCTA() {
+type InvestmentContactCTAProps = {
+  headingId?: string;
+  heading?: string;
+  description?: string;
+  image?: string;
+};
+
+export function InvestmentContactCTA({
+  headingId = 'sv-investment-contact-title',
+  heading = "Let's Build the Next Opportunity",
+  description = 'Connect with our team to discuss investment opportunities, strategic partnerships and ventures designed for long-term value.',
+  image = imageAssets.investmentFocus.contactCta,
+}: InvestmentContactCTAProps) {
   return (
     <section
       className="sv-investment-contact"
-      aria-labelledby="sv-investment-contact-title"
+      aria-labelledby={headingId}
     >
       <div className="sv-investment-contact__media" aria-hidden="true">
         <img
-          src={imageAssets.investmentFocus.contactCta}
+          src={image}
           alt=""
           draggable={false}
         />
@@ -27,14 +40,11 @@ export function InvestmentContactCTA() {
       <div className="container sv-investment-contact__inner">
         <InvestmentCtaReveal
           className="sv-investment-contact__content"
-          headingId="sv-investment-contact-title"
-          heading="Let&apos;s Build the Next Opportunity"
+          headingId={headingId}
+          heading={heading}
           lineBreakAfter={3}
         >
-          <p>
-            Connect with our team to discuss investment opportunities,
-            strategic partnerships and ventures designed for long-term value.
-          </p>
+          <p>{description}</p>
 
           <div className="sv-investment-contact__actions">
             <a
