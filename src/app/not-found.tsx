@@ -9,13 +9,11 @@ export default function NotFound() {
       <span className="sv-not-found__background-number" aria-hidden="true">404</span>
 
       <div className="sv-not-found__content">
-        <span className="sv-not-found__eyebrow">404 / Page Not Found</span>
-
-        <h1 id="sv-not-found-title">This Opportunity Couldn’t Be Found.</h1>
+        <h1 id="sv-not-found-title">This Opportunity Couldn’t Be Found</h1>
 
         <p>
           The page you are looking for may have been moved, removed or is currently
-          unavailable. Explore our investment focus or return to the homepage.
+          unavailable. Explore our investment focus or return to the homepage
         </p>
 
         <div className="sv-not-found__actions">
