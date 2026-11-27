@@ -10,10 +10,10 @@ import {
   SunMedium,
 } from 'lucide-react';
 
-import { videoAssets } from '@/assets/videoAssets';
 import '@/styles/investment-focus/printing/printing-sustainability.css';
 
 import MagicBento from './MagicBento';
+import { PrintingSustainabilityVideo } from './PrintingSustainabilityVideo';
 
 const priorities = [
   {
@@ -108,38 +108,7 @@ export function PrintingSustainability() {
         </div>
 
         <div className="sv-print-sustainability__media">
-          <div className="sv-print-sustainability__video-wrap">
-
-            <video
-              className="sv-print-sustainability__video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="NAPCO sustainable printing and production"
-            >
-              <source
-                src={
-                  videoAssets.investmentFocus.printing.napcoSustainability
-                }
-                type="video/webm"
-              />
-            </video>
-
-            <div
-              className="sv-print-sustainability__video-shade"
-              aria-hidden="true"
-            />
-
-            <div className="sv-print-sustainability__video-label">
-
-              <p>
-                Sustainable Production
-              </p>
-            </div>
-
-          </div>
+          <PrintingSustainabilityVideo />
         </div>
 
       </div>
