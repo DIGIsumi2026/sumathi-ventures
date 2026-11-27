@@ -5,6 +5,7 @@ import {PrintingPlatform} from '@/sections/investment-focus/printing/PrintingPla
 import {SumathiPrintersSection} from '@/sections/investment-focus/printing/SumathiPrintersSection';
 import {NapcoSection} from '@/sections/investment-focus/printing/NapcoSection';
 import {PrintingSustainability} from '@/sections/investment-focus/printing/PrintingSustainability';
+import{PrintingInvestmentCTA} from '@/sections/investment-focus/printing/PrintingInvestmentCTA';
 export default function PrintingPage() {
   return (
     <>
@@ -13,6 +14,7 @@ export default function PrintingPage() {
       <SumathiPrintersSection />
       <NapcoSection/>
       <PrintingSustainability/>
+      <PrintingInvestmentCTA/>
     </>
   );
 }
