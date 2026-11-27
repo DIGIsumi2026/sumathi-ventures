@@ -6,7 +6,7 @@ import { useRef, type CSSProperties, type MouseEvent, type PointerEvent, type Re
 import '@/styles/investment-focus/printing/MagicBento.css';
 
 type MagicBentoProps = {
-  items: { id: string; content: ReactNode }[];
+  items: { id: string; content: ReactNode; fullWidth?: boolean }[];
   columns: number;
   rowHeight: number;
   gap: number;
@@ -97,8 +97,13 @@ export default function MagicBento({
           '--mb-spot-size': `${spotlightRadius}px`,
         } as CSSProperties}
       >
-        {items.map(({ id, content }, index) => (
-          <div key={id} className="magic-bento__card" style={{ animationDelay: `${index * 80}ms` }}>
+        {items.map(({ id, content, fullWidth }, index) => (
+          <div
+            key={id}
+            className="magic-bento__card"
+            data-full-width={fullWidth}
+            style={{ animationDelay: `${index * 80}ms` }}
+          >
             <div className="magic-bento__content">{content}</div>
             {clickEffect && <div className="magic-bento__wave" aria-hidden="true" />}
           </div>

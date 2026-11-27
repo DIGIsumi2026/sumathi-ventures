@@ -9,16 +9,14 @@
   gap: var(--mb-gap);
 }
 
-@container (min-width: 310px) {
-  .magic-bento__grid {
-    grid-template-columns: repeat(min(2, var(--mb-columns)), minmax(0, 1fr));
-  }
-}
-
-@container (min-width: 580px) {
+@container (min-width: 340px) {
   .magic-bento__grid {
     grid-template-columns: repeat(var(--mb-columns), minmax(0, 1fr));
   }
+}
+
+.magic-bento__card[data-full-width='true'] {
+  grid-column: 1 / -1;
 }
 
 .magic-bento__card {

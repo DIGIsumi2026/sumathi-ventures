@@ -33,6 +33,7 @@ const priorities = [
 const sustainabilityCards = [
   {
     id: 'solar-installation',
+    fullWidth: true,
     content: (
       <div className="sv-print-sustainability__solar">
         <div className="sv-print-sustainability__solar-icon">
@@ -93,8 +94,8 @@ export function PrintingSustainability() {
           <div className="sv-print-sustainability__priorities">
             <MagicBento
               items={sustainabilityCards}
-              columns={4}
-              rowHeight={200}
+              columns={3}
+              rowHeight={116}
               gap={12}
               radius={20}
               enableBorderGlow

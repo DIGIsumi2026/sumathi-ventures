@@ -64,7 +64,7 @@
   height:4px;
   margin-top:30px;
   border-radius:800px;
-  background:rgba(183,154,61,.2);
+  background:#7eecc59b;
   overflow:hidden;
 }
 
@@ -73,7 +73,7 @@
   display:block;
   height:100%;
   border-radius:inherit;
-  background:#b79a3d;
+  background:#0da06d;
 }
 
 @media (prefers-reduced-motion:no-preference) {
@@ -117,7 +117,7 @@
   display:grid;
   place-items:center;
   border-radius:50%;
-  color:#9c7d26;
+  color:#0da06d;
   background:rgba(183,154,61,.1);
 }
 
@@ -146,7 +146,7 @@
 }
 
 .sv-print-sustainability__priority svg {
-  color:#a2842e;
+  color:#0da06d;
 }
 
 .sv-print-sustainability__priority span {
@@ -204,7 +204,7 @@
 }
 
 .sv-print-sustainability__video-label>span {
-  color:#e0c15d;
+  color:#0da06d;
   font-size:.68rem;
   font-weight:800;
   letter-spacing:.12em;
