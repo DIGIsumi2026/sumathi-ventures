@@ -20,7 +20,7 @@
 }
 
 .magic-bento__card {
-  --mb-glow: 162, 132, 46;
+  --mb-glow: 108, 147, 92;
   --mb-spot-center: var(--mb-x, -999px) var(--mb-y, -999px);
   position: relative;
   display: grid;
