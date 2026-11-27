@@ -1,8 +1,11 @@
 .sv-print-cta {
   position:relative;
+  display:grid;
+  align-items:center;
   width:min(2508px,100%);
-  aspect-ratio:2508/627;
+  min-height:min(25vw,627px);
   margin:0 auto;
+  padding-block:28px;
   overflow:hidden;
   isolation:isolate;
   background:#071a14;
@@ -36,11 +39,8 @@
 }
 
 .sv-print-cta__content {
-  position:absolute;
-  top:50%;
-  left:clamp(28px,5vw,90px);
   width:min(560px,42%);
-  transform:translateY(-50%);
+  margin-inline-start:clamp(28px,5vw,90px);
   z-index:2;
 }
 
@@ -90,37 +90,9 @@
   margin-top:22px;
 }
 
-.sv-print-cta__primary,
-.sv-print-cta__secondary {
-  min-height:44px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:0 18px;
-  border-radius:999px;
-  font-size:.7rem;
-  font-weight:700;
-  line-height:1;
-  text-decoration:none;
-}
-
-.sv-print-cta__primary {
-  background:#d1b34f;
-  color:#082f24;
-}
-
-.sv-print-cta__secondary {
-  border:1px solid rgba(255,255,255,.32);
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-
 @media(max-width:900px) {
   .sv-print-cta {
-    aspect-ratio:16/6;
+    min-height:37.5vw;
   }
 
   .sv-print-cta__content {
@@ -138,8 +110,9 @@
 
 @media(max-width:700px) {
   .sv-print-cta {
+    align-items:end;
     min-height:600px;
-    aspect-ratio:auto;
+    padding-block-end:42px;
   }
 
   .sv-print-cta__image {
@@ -158,12 +131,8 @@
   }
 
   .sv-print-cta__content {
-    top:auto;
-    right:25px;
-    bottom:42px;
-    left:25px;
     width:auto;
-    transform:none;
+    margin-inline:25px;
   }
 
   .sv-print-cta h2 {

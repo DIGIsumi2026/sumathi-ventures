@@ -80,9 +80,6 @@
   border-radius:999px;
   color:#fff;
   text-decoration:none;
-}
-
-:is(.sv-investment-contact__button,.sv-print-cta__primary,.sv-print-cta__secondary) {
   transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s ease,border-color .3s ease;
 }
 
@@ -134,18 +131,15 @@
   border-radius:50%;
   background:#06251d;
   color:#fff;
-}
-
-:is(.sv-investment-contact__arrow,.sv-print-cta__arrow) {
   transition:transform .4s cubic-bezier(.16,1,.3,1);
 }
 
 @media(hover:hover) {
-  :is(.sv-investment-contact__button,.sv-print-cta__primary,.sv-print-cta__secondary):hover {
+  .sv-investment-contact__button:hover {
     transform:translateY(-3px);
   }
 
-  :is(.sv-investment-contact__button--glass,.sv-print-cta__secondary):hover {
+  .sv-investment-contact__button--glass:hover {
     border-color:rgba(254, 254, 254, 0.716);
     background:rgba(255,255,255,.12);
   }
@@ -155,8 +149,7 @@
     background:rgba(37,211,102,.18);
   }
 
-  .sv-investment-contact__button--primary:hover .sv-investment-contact__arrow,
-  .sv-print-cta__primary:hover .sv-print-cta__arrow {
+  .sv-investment-contact__button--primary:hover .sv-investment-contact__arrow {
     transform:rotate(45deg);
   }
 }
@@ -243,10 +236,7 @@
 
 @media(prefers-reduced-motion:reduce) {
   .sv-investment-contact__button,
-  .sv-investment-contact__arrow,
-  .sv-print-cta__primary,
-  .sv-print-cta__secondary,
-  .sv-print-cta__arrow {
+  .sv-investment-contact__arrow {
     transition:none;
   }
 }

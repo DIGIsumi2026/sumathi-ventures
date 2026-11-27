@@ -23,7 +23,7 @@ export function PrintingInvestmentCTA() {
       />
 
       <div className="sv-print-cta__content">
-        <InvestmentCtaReveal headingId="sv-print-cta-title" heading="Invest in the Future of Print.">
+        <InvestmentCtaReveal headingId="sv-print-cta-title" heading="Invest in the Future of Print">
           <p>
             Partner with us to expand production capability, introduce
             new technologies, unlock new markets and create long term
@@ -31,14 +31,16 @@ export function PrintingInvestmentCTA() {
           </p>
 
           <div className="sv-print-cta__actions">
-            <Link href="/contact" className="sv-print-cta__primary">
-              Discuss an Opportunity
-              <ArrowUpRight className="sv-print-cta__arrow" size={17} strokeWidth={1.8} aria-hidden="true" />
+            <Link href="/contact" className="sv-investment-contact__button sv-investment-contact__button--primary">
+              <span>Discuss an Opportunity</span>
+              <span className="sv-investment-contact__arrow">
+                <ArrowUpRight size={18} strokeWidth={1.8} aria-hidden="true" />
+              </span>
             </Link>
 
-            <a href="mailto:info@sumathiventures.com" className="sv-print-cta__secondary">
-              <Mail size={16} strokeWidth={1.8} aria-hidden="true" />
-              Email Us
+            <a href="mailto:info@sumathiventures.com" className="sv-investment-contact__button sv-investment-contact__button--glass">
+              <Mail size={18} strokeWidth={1.8} aria-hidden="true" />
+              <span>Email Us</span>
             </a>
           </div>
         </InvestmentCtaReveal>
